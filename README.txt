@@ -14,6 +14,8 @@ Beautiful Color, Image and Buttons Variation Swatches For WooCommerce Product At
 
 [youtube https://www.youtube.com/watch?v=BySSYFuqwls]
 
+[youtube https://www.youtube.com/watch?v=k-Snfpzy8M0]
+
 WooCommerce Variation Swatches is easy to use WooCommerce product variation swatches plugin. It offers an aesthetic and professional experience to select attributes for variation products. It turns the product variation select options fields into radio images, colors, and label. It means with the help of this powerful WooCommerce color or image variation swatches plugin, you can show product variation items in images, colors, and label. So, you can say goodbye to dropdown product attribute fields.
 
 WooCommerce Variation Swatches not only offers the color, image and label attributes in the single WooCommerce product. It also enables them in product quick view. If you're using WooCommerce themes like Flatsome that comes with default Quick View option, you don’t need to hassle to load color and image swatches for variable product attributes in quick view separately.
