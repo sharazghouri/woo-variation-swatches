@@ -121,7 +121,7 @@
 			}
 			
 			private function get_default( $key ) {
-				return $this->defaults[ $key ];
+				return isset( $this->defaults[ $key ] ) ? $this->defaults[ $key ] : NULL;
 			}
 			
 			public function get_defaults() {

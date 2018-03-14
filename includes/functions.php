@@ -80,12 +80,12 @@
 			
 			return $selector;
 		}
-	
 	endif;
 	
 	//-------------------------------------------------------------------------------
 	// Enable Ajax Variation
 	//-------------------------------------------------------------------------------
+	
 	if ( ! function_exists( 'wvs_ajax_variation_threshold' ) ):
 		function wvs_ajax_variation_threshold() {
 			return absint( woo_variation_swatches()->get_option( 'threshold' ) );
@@ -99,7 +99,6 @@
 	//-------------------------------------------------------------------------------
 	
 	if ( ! function_exists( 'wvs_settings' ) ):
-		
 		function wvs_settings() {
 			
 			do_action( 'before_wvs_settings', woo_variation_swatches() );
@@ -142,6 +141,19 @@
 								'squared' => esc_html__( 'Squared Shape', 'woo-variation-swatches' )
 							),
 							'default' => 'rounded'
+						),
+						array(
+							'id'      => 'attribute_image_size',
+							'type'    => 'select',
+							'title'   => esc_html__( 'Attribute image size', 'woo-variation-swatches' ),
+							'desc'    => has_filter( 'wvs_product_attribute_image_size' ) ? __( '<span style="color: red">Attribute image size changed by <code>wvs_product_attribute_image_size</code> hook. So this option will not apply any effect.</span>', 'woo-variation-swatches' ) : esc_html__( 'Choose attribute image size', 'woo-variation-swatches' ),
+							'options' => array_reduce( get_intermediate_image_sizes(), function ( $carry, $item ) {
+								$carry[ $item ] = ucwords( str_ireplace( array( '-', '_' ), ' ', $item ) );
+								
+								return $carry;
+							}, array() ),
+							
+							'default' => 'thumbnail'
 						),
 					) )
 				)
@@ -194,7 +206,6 @@
 	//-------------------------------------------------------------------------------
 	
 	if ( ! function_exists( 'wvs_add_product_taxonomy_meta' ) ) {
-		
 		function wvs_add_product_taxonomy_meta() {
 			
 			$fields         = wvs_taxonomy_meta_fields();
@@ -447,7 +458,8 @@
 					foreach ( $terms as $term ) {
 						if ( in_array( $term->slug, $options ) ) {
 							$attachment_id  = absint( get_term_meta( $term->term_id, 'product_attribute_image', TRUE ) );
-							$image          = wp_get_attachment_image_url( $attachment_id );
+							$image_size     = woo_variation_swatches()->get_option( 'attribute_image_size' );
+							$image          = wp_get_attachment_image_url( $attachment_id, apply_filters( 'wvs_product_attribute_image_size', $image_size ) );
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
 							?>
                             <li data-wvstooltip="<?php echo esc_html( $term->name ) ?>" class="variable-item image-variable-item image-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><img alt="<?php echo esc_html( $term->name ) ?>" src="<?php echo esc_url( $image ) ?>"></li>
@@ -565,3 +577,4 @@
 			return ob_get_clean();
 		}
 	endif;
+	

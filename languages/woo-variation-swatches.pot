@@ -40,11 +40,11 @@ msgstr ""
 msgid "Remove image"
 msgstr ""
 
-#: ../includes/functions.php:14, ../includes/functions.php:165
+#: ../includes/functions.php:14, ../includes/functions.php:177
 msgid "Color"
 msgstr ""
 
-#: ../includes/functions.php:20, ../includes/functions.php:174
+#: ../includes/functions.php:20, ../includes/functions.php:186
 msgid "Image"
 msgstr ""
 
@@ -52,87 +52,99 @@ msgstr ""
 msgid "Button"
 msgstr ""
 
-#: ../includes/functions.php:107
+#: ../includes/functions.php:106
 msgid "General"
 msgstr ""
 
-#: ../includes/functions.php:109
+#: ../includes/functions.php:108
 msgid "Display Section"
 msgstr ""
 
-#: ../includes/functions.php:110
+#: ../includes/functions.php:109
 msgid "Simply change some visual styles"
 msgstr ""
 
-#: ../includes/functions.php:115
+#: ../includes/functions.php:114
 msgid "Enable Tooltip"
 msgstr ""
 
-#: ../includes/functions.php:116
+#: ../includes/functions.php:115
 msgid "Enable / Disable plugin default tooltip on each product attribute."
 msgstr ""
 
-#: ../includes/functions.php:122
+#: ../includes/functions.php:121
 msgid "Enable Stylesheet"
 msgstr ""
 
-#: ../includes/functions.php:123
+#: ../includes/functions.php:122
 msgid "Enable / Disable plugin default stylesheet"
 msgstr ""
 
-#: ../includes/functions.php:129
+#: ../includes/functions.php:128
 msgid "Ajax variation threshold"
 msgstr ""
 
-#: ../includes/functions.php:130
+#: ../includes/functions.php:129
 msgid "Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>"
 msgstr ""
 
-#: ../includes/functions.php:138
+#: ../includes/functions.php:137
 msgid "Shape style"
 msgstr ""
 
-#: ../includes/functions.php:139
+#: ../includes/functions.php:138
 msgid "Attribute Shape Style"
 msgstr ""
 
-#: ../includes/functions.php:141
+#: ../includes/functions.php:140
 msgid "Rounded Shape"
 msgstr ""
 
-#: ../includes/functions.php:142
+#: ../includes/functions.php:141
 msgid "Squared Shape"
 msgstr ""
 
-#: ../includes/functions.php:166
+#: ../includes/functions.php:148
+msgid "Attribute image size"
+msgstr ""
+
+#: ../includes/functions.php:149
+msgid "<span style=\"color: red\">Attribute image size changed by <code>wvs_product_attribute_image_size</code> hook. So this option will not apply any effect.</span>"
+msgstr ""
+
+#: ../includes/functions.php:149
+msgid "Choose attribute image size"
+msgstr ""
+
+#: ../includes/functions.php:178
 msgid "Choose a color"
 msgstr ""
 
-#: ../includes/functions.php:175, ../woo-variation-swatches.php:154
+#: ../includes/functions.php:187, ../woo-variation-swatches.php:154
 msgid "Choose an Image"
 msgstr ""
 
-#: ../includes/functions.php:237
+#: ../includes/functions.php:248
 msgid "Select terms"
 msgstr ""
 
-#: ../includes/functions.php:248
+#: ../includes/functions.php:259
 msgid "Select all"
 msgstr ""
 
-#: ../includes/functions.php:249
+#: ../includes/functions.php:260
 msgid "Select none"
 msgstr ""
 
-#: ../includes/functions.php:254
+#: ../includes/functions.php:265
 msgid "Add new %s"
 msgstr ""
 
-#: ../includes/functions.php:254, ../includes/functions.php:256
+#: ../includes/functions.php:265, ../includes/functions.php:267
 msgid "Add new"
 msgstr ""
 
-#: ../includes/functions.php:331, ../includes/functions.php:404, ../includes/functions.php:478
+#: ../includes/functions.php:342, ../includes/functions.php:415, ../includes/functions.php:490
 msgid "Choose an option"
 msgstr ""
 

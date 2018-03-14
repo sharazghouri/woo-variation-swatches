@@ -12,7 +12,11 @@ Beautiful Color, Image and Buttons Variation Swatches For WooCommerce Product At
 
 == Description ==
 
+=== How To Install WooCommerce Variation Swatches Plugin for WooCommerce Variable Products ===
+
 [youtube https://www.youtube.com/watch?v=BySSYFuqwls]
+
+=== How To Import WooCommerce Swatches Plugin Data For Existing Product Attribute Variations ===
 
 [youtube https://www.youtube.com/watch?v=k-Snfpzy8M0]
 
@@ -55,7 +59,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 = Forum and Feature Request =
 
 <blockquote>
-<h4>For feature request and bug reporting</h4>
+<h4>For Quick Support, feature request and bug reporting</h4>
 <ul>
 <li><a target="_blank" href="http://bit.ly/getwoopluginsgroup">Join Our Facebook Group</a></li>
 </ul>
@@ -122,7 +126,7 @@ Yes, it supports any kinds of product quick view.
 
 = How to use it on ajax load more? =
 
-Just call this javascript function on ajax load event `$('.variations_form').trigger('wc_variation_form');` or `$('.variations_form').WooVariationSwatches();`. And your are ready to go.
+Just call this javascript function on ajax load event `$('.variations_form').wc_variation_form()`. And your are ready to go.
 
 == Screenshots ==
 
@@ -136,6 +140,12 @@ Just call this javascript function on ajax load event `$('.variations_form').tri
 8. Settings Panel
 
 == Changelog ==
+
+= 1.0.14 =
+
+* Support Jetpack's Infinite Scroll event, `post-load` event.
+* `wvs_product_attribute_image_size` filter to change attribute image size
+* Increased tooltip z-index
 
 = 1.0.13 =
 

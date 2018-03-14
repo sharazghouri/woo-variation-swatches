@@ -23,6 +23,7 @@ const WooVariationSwatches = (($) => {
             this.update(this.is_ajax_variation);
             this.reset(this.is_ajax_variation);
 
+            // Trigger
             $(document).trigger('woo_variation_swatches', [this._element]);
         }
 
@@ -37,6 +38,11 @@ const WooVariationSwatches = (($) => {
             this._element.find('ul.variable-items-wrapper').each(function (i, el) {
 
                 let select = $(this).siblings('select.woo-variation-raw-select');
+
+                // For Avada FIX
+                if (select.length < 1) {
+                    select = $(this).parent().find('select.woo-variation-raw-select');
+                }
 
                 $(this).on('click', 'li', function (e) {
                     e.preventDefault();
