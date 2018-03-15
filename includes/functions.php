@@ -123,6 +123,13 @@
 							'default' => TRUE
 						),
 						array(
+							'id'      => 'clear_on_reselect',
+							'type'    => 'checkbox',
+							'title'   => esc_html__( 'Clear on Reselect', 'woo-variation-swatches' ),
+							'desc'    => esc_html__( 'Clear selected attribute on select again', 'woo-variation-swatches' ),
+							'default' => FALSE
+						),
+						array(
 							'id'      => 'threshold',
 							'type'    => 'number',
 							'title'   => esc_html__( 'Ajax variation threshold', 'woo-variation-swatches' ),
@@ -356,7 +363,12 @@
 				$options    = $attributes[ $attribute ];
 			}
 			
-			echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			if ( $product && taxonomy_exists( $attribute ) ) {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+				
+			} else {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			}
 			
 			if ( $args[ 'show_option_none' ] ) {
 				echo '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
@@ -372,12 +384,20 @@
 							echo '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args[ 'selected' ] ), $term->slug, FALSE ) . '>' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</option>';
 						}
 					}
+				} else {
+					foreach ( $options as $option ) {
+						// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
+						$selected = sanitize_title( $args[ 'selected' ] ) === $args[ 'selected' ] ? selected( $args[ 'selected' ], sanitize_title( $option ), FALSE ) : selected( $args[ 'selected' ], $option, FALSE );
+						echo '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
+					}
 				}
 			}
 			
 			echo '</select>';
 			
-			echo '<ul class="list-inline variable-items-wrapper color-variable-wrapper" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '">';
+			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
+			printf( '<ul class="list-inline variable-items-wrapper color-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			
 			if ( ! empty( $options ) ) {
 				if ( $product && taxonomy_exists( $attribute ) ) {
 					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
@@ -386,8 +406,9 @@
 						if ( in_array( $term->slug, $options ) ) {
 							$get_term_meta  = sanitize_hex_color( get_term_meta( $term->term_id, 'product_attribute_color', TRUE ) );
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
+							$tooltip        = apply_filters( 'wvs_color_variable_item_tooltip', $term->name, $term, $args );
 							?>
-                            <li data-wvstooltip="<?php echo esc_html( $term->name ) ?>" class="variable-item color-variable-item color-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span style="background-color:<?php echo esc_attr( $get_term_meta ) ?>;"></span></li>
+                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item color-variable-item color-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span style="background-color:<?php echo esc_attr( $get_term_meta ) ?>;"></span></li>
 							<?php
 						}
 					}
@@ -429,7 +450,13 @@
 				$options    = $attributes[ $attribute ];
 			}
 			
-			echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			
+			if ( $product && taxonomy_exists( $attribute ) ) {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			} else {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			}
+			
 			
 			if ( $args[ 'show_option_none' ] ) {
 				echo '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
@@ -445,12 +472,20 @@
 							echo '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args[ 'selected' ] ), $term->slug, FALSE ) . '>' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</option>';
 						}
 					}
+				} else {
+					foreach ( $options as $option ) {
+						// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
+						$selected = sanitize_title( $args[ 'selected' ] ) === $args[ 'selected' ] ? selected( $args[ 'selected' ], sanitize_title( $option ), FALSE ) : selected( $args[ 'selected' ], $option, FALSE );
+						echo '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
+					}
 				}
 			}
 			
 			echo '</select>';
 			
-			echo '<ul class="list-inline variable-items-wrapper image-variable-wrapper" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '">';
+			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
+			printf( '<ul class="list-inline variable-items-wrapper image-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			
 			if ( ! empty( $options ) ) {
 				if ( $product && taxonomy_exists( $attribute ) ) {
 					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
@@ -461,8 +496,10 @@
 							$image_size     = woo_variation_swatches()->get_option( 'attribute_image_size' );
 							$image          = wp_get_attachment_image_url( $attachment_id, apply_filters( 'wvs_product_attribute_image_size', $image_size ) );
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
+							$tooltip        = apply_filters( 'wvs_image_variable_item_tooltip', $term->name, $term, $args );
+							
 							?>
-                            <li data-wvstooltip="<?php echo esc_html( $term->name ) ?>" class="variable-item image-variable-item image-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><img alt="<?php echo esc_html( $term->name ) ?>" src="<?php echo esc_url( $image ) ?>"></li>
+                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item image-variable-item image-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><img alt="<?php echo esc_html( $term->name ) ?>" src="<?php echo esc_url( $image ) ?>"></li>
 							<?php
 						}
 					}
@@ -504,7 +541,11 @@
 				$options    = $attributes[ $attribute ];
 			}
 			
-			echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			if ( $product && taxonomy_exists( $attribute ) ) {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			} else {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			}
 			
 			if ( $args[ 'show_option_none' ] ) {
 				echo '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
@@ -520,12 +561,20 @@
 							echo '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args[ 'selected' ] ), $term->slug, FALSE ) . '>' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</option>';
 						}
 					}
+				} else {
+					foreach ( $options as $option ) {
+						// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
+						$selected = sanitize_title( $args[ 'selected' ] ) === $args[ 'selected' ] ? selected( $args[ 'selected' ], sanitize_title( $option ), FALSE ) : selected( $args[ 'selected' ], $option, FALSE );
+						echo '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
+					}
 				}
 			}
 			
 			echo '</select>';
 			
-			echo '<ul class="list-inline variable-items-wrapper button-variable-wrapper" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '">';
+			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
+			printf( '<ul class="list-inline variable-items-wrapper button-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			
 			if ( ! empty( $options ) ) {
 				if ( $product && taxonomy_exists( $attribute ) ) {
 					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
@@ -533,8 +582,9 @@
 					foreach ( $terms as $term ) {
 						if ( in_array( $term->slug, $options ) ) {
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
+							$tooltip        = apply_filters( 'wvs_button_variable_item_tooltip', $term->name, $term, $args );
 							?>
-                            <li data-wvstooltip="<?php echo esc_html( $term->name ) ?>" class="variable-item button-variable-item button-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span><?php echo esc_html( $term->name ) ?></span></li>
+                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item button-variable-item button-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span><?php echo esc_html( $term->name ) ?></span></li>
 							<?php
 						}
 					}
@@ -565,6 +615,8 @@
 						                  'product'   => $args[ 'product' ],
 						                  'selected'  => $args[ 'selected' ]
 					                  ) );
+					
+					// print_r( $args); die;
 					
 					$default = FALSE;
 				}

@@ -37,22 +37,46 @@ const WooVariationSwatches = (($) => {
 
             this._element.find('ul.variable-items-wrapper').each(function (i, el) {
 
-                let select = $(this).siblings('select.woo-variation-raw-select');
+                let select         = $(this).siblings('select.woo-variation-raw-select');
+                let li             = $(this).find('li');
+                let reselect_clear = $(this).hasClass('reselect-clear');
 
                 // For Avada FIX
                 if (select.length < 1) {
                     select = $(this).parent().find('select.woo-variation-raw-select');
                 }
 
-                $(this).on('click', 'li', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    let value = $(this).data('value');
-                    select.val(value).trigger('change');
-                    select.trigger('click');
-                    select.trigger('focusin');
-                    select.trigger('touchstart');
-                });
+                if (reselect_clear) {
+                    $(this).on('click', 'li:not(.selected)', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        let value = $(this).data('value');
+                        select.val(value).trigger('change');
+                        select.trigger('click');
+                        select.trigger('focusin');
+                        select.trigger('touchstart');
+                    });
+
+                    $(this).on('click', 'li.selected', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        select.val('').trigger('change');
+                        select.trigger('click');
+                        select.trigger('focusin');
+                        select.trigger('touchstart');
+                    });
+                }
+                else {
+                    $(this).on('click', 'li', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        let value = $(this).data('value');
+                        select.val(value).trigger('change');
+                        select.trigger('click');
+                        select.trigger('focusin');
+                        select.trigger('touchstart');
+                    });
+                }
             });
 
             _.delay(() => {
@@ -136,6 +160,7 @@ const WooVariationSwatches = (($) => {
                                 selected = current ? current.val() : eq.val();
                             }
                         });
+
                         _.delay(function () {
                             li.each(function () {
                                 let value = $(this).attr('data-value');

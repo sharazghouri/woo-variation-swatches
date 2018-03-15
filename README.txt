@@ -141,11 +141,17 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.15 =
+
+* New: Attribute deselect option
+* Fix: Custom attribute select from product
+* Update: translation
+
 = 1.0.14 =
 
-* Support Jetpack's Infinite Scroll event, `post-load` event.
-* `wvs_product_attribute_image_size` filter to change attribute image size
-* Increased tooltip z-index
+* New: Support Jetpack's Infinite Scroll event, `post-load` event.
+* New: `wvs_product_attribute_image_size` filter to change attribute image size
+* New: Increased tooltip z-index
 
 = 1.0.13 =
 
@@ -157,62 +163,62 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 = 1.0.11 =
 
-* New Attribute create from product
-* Variation Preview color, image
-* Settings option also added on customizer
+* New: Attribute create from product
+* New: Variation Preview color, image
+* New: Settings option also added on customizer
 * Fix: Any variation issue caused by outofstock variation
 
 = 1.0.10 =
 
-* Extendable hooks added to extend
-* Fixed: Out Of Stock Product Issue.
-* ajax variation threshold option added to control ajax variation.
+* New: Extendable hooks added to extend
+* New: ajax variation threshold option added to control ajax variation.
+* Fix: Out Of Stock Product Issue.
 
 = 1.0.9 =
 
-* Merged Pull request from `spoyntersmith`
-* Tooltip hardware acceleration issue fix for theme animation
-* use jquery `sibling` instead of `prev`
+* Fix: Merged Pull request from `spoyntersmith`
+* Fix: Tooltip hardware acceleration issue fix for theme animation
+* Fix: use jquery `sibling` instead of `prev`
 
 = 1.0.8 =
 
-* Improve variation javascript to support ajax variation
-* Renamed tooltip attribute to resolve conflict
-* Renamed variation javascript class name
+* Update: Improve variation javascript to support ajax variation
+* Update: Renamed tooltip attribute to resolve conflict
+* Update: Renamed variation javascript class name
 
 = 1.0.7 =
 
-* Improving frontend CSS
-* Disable Bootstrap tooltip conflict
+* Update: Improving frontend CSS
+* Update: Disable Bootstrap tooltip conflict
 
 = 1.0.6 =
 
-* Update translation
+* Update: translation
 
 = 1.0.5 =
 
-* Fix backend js issue
+* Fix: backend js issue
 
 = 1.0.4 =
 
-* Fix Number Issue selection
+* Fix: Number Select Issue
 
 = 1.0.3 =
 
-* Added css class on body based on settings
-* tooltip and frontend css changed
-* `add_theme_support( 'woo-variation-swatches', array( 'tooltip' => FALSE, 'stylesheet' => FALSE ) );` for theme developer default setting control.
-* `wvs_clear_transient` to clear saved transient.
+* New: Css class on body based on settings
+* Update: tooltip and frontend css changed
+* New: `add_theme_support( 'woo-variation-swatches', array( 'tooltip' => FALSE, 'stylesheet' => FALSE ) );` for theme developer default setting control.
+* New: `wvs_clear_transient` to clear saved transient.
 
 = 1.0.2 =
 
-* Added tooltip
-* Default stylesheet enable/disable option
-* Display style added to show Rounded / Squared shaped style
+* New: attribute tooltip
+* New: Default stylesheet enable/disable option
+* New: Display style added to show Rounded / Squared shaped style
 
 = 1.0.1 =
 
-* Fix text type select list
+* Fix: text type select list
 
 = 1.0.0 =
 
