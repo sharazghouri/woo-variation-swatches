@@ -595,6 +595,96 @@
 	endif;
 	
 	//-------------------------------------------------------------------------------
+	// Radio Variation Attribute Options
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_radio_variation_attribute_options' ) ) :
+		function wvs_radio_variation_attribute_options( $args = array() ) {
+			
+			$args = wp_parse_args( $args, array(
+				'options'          => FALSE,
+				'attribute'        => FALSE,
+				'product'          => FALSE,
+				'selected'         => FALSE,
+				'name'             => '',
+				'id'               => '',
+				'class'            => '',
+				'show_option_none' => esc_html__( 'Choose an option', 'woo-variation-swatches' )
+			) );
+			
+			$options               = $args[ 'options' ];
+			$product               = $args[ 'product' ];
+			$attribute             = $args[ 'attribute' ];
+			$name                  = $args[ 'name' ] ? $args[ 'name' ] : wc_variation_attribute_name( $attribute );
+			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute ) . $product->get_id();
+			$class                 = $args[ 'class' ];
+			$show_option_none      = $args[ 'show_option_none' ] ? TRUE : FALSE;
+			$show_option_none_text = $args[ 'show_option_none' ] ? $args[ 'show_option_none' ] : esc_html__( 'Choose an option', 'woocommerce' ); // We'll do our best to hide the placeholder, but we'll need to show something when resetting options.
+			
+			if ( empty( $options ) && ! empty( $product ) && ! empty( $attribute ) ) {
+				$attributes = $product->get_variation_attributes();
+				$options    = $attributes[ $attribute ];
+			}
+			
+			if ( $product && taxonomy_exists( $attribute ) ) {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			} else {
+				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
+			}
+			
+			if ( $args[ 'show_option_none' ] ) {
+				echo '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
+			}
+			
+			if ( ! empty( $options ) ) {
+				if ( $product && taxonomy_exists( $attribute ) ) {
+					// Get terms if this is a taxonomy - ordered. We need the names too.
+					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
+					
+					foreach ( $terms as $term ) {
+						if ( in_array( $term->slug, $options ) ) {
+							echo '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args[ 'selected' ] ), $term->slug, FALSE ) . '>' . apply_filters( 'woocommerce_variation_option_name', $term->name ) . '</option>';
+						}
+					}
+				} else {
+					foreach ( $options as $option ) {
+						// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
+						$selected = sanitize_title( $args[ 'selected' ] ) === $args[ 'selected' ] ? selected( $args[ 'selected' ], sanitize_title( $option ), FALSE ) : selected( $args[ 'selected' ], $option, FALSE );
+						echo '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
+					}
+				}
+			}
+			
+			echo '</select>';
+			
+			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
+			$name            = uniqid( wc_variation_attribute_name( $attribute ) );
+			printf( '<ul class="list-inline variable-items-wrapper radio-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			
+			if ( ! empty( $options ) ) {
+				if ( $product && taxonomy_exists( $attribute ) ) {
+					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
+					
+					foreach ( $terms as $term ) {
+						if ( in_array( $term->slug, $options ) ) {
+							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
+							$tooltip        = apply_filters( 'wvs_radio_variable_item_tooltip', $term->name, $term, $args );
+							$id = uniqid($term->slug);
+							?>
+                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item radio-variable-item radio-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>">
+                                <input name="<?php echo esc_attr( $name ) ?>" id="<?php echo esc_attr( $id ) ?>" class="wvs-radio-variable-item" <?php checked( sanitize_title( $args[ 'selected' ] ) == $term->slug, TRUE ) ?> type="radio" value="<?php echo esc_attr( $term->slug ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>" />
+                                <label for="<?php echo esc_attr( $id ) ?>"><?php echo esc_html( $term->name ) ?></label>
+                            </li>
+							<?php
+						}
+					}
+				}
+			}
+			echo '</ul>';
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
 	// Generate Option HTML
 	//-------------------------------------------------------------------------------
 	
@@ -615,9 +705,6 @@
 						                  'product'   => $args[ 'product' ],
 						                  'selected'  => $args[ 'selected' ]
 					                  ) );
-					
-					// print_r( $args); die;
-					
 					$default = FALSE;
 				}
 			}

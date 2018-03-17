@@ -47,7 +47,6 @@
 				$attribute       = wvs_get_wc_attribute_taxonomy( $this->taxonomy );
 				$fields          = wvs_taxonomy_meta_fields( $attribute->attribute_type );
 				$available_types = wvs_available_attributes_types( $attribute->attribute_type );
-				
 				if ( is_callable( $available_types[ 'preview' ] ) ) {
 					call_user_func( $available_types[ 'preview' ], $term_id, $attribute, $fields );
 				}

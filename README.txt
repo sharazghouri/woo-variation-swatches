@@ -141,6 +141,10 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.16 =
+
+* Update: Improve JS Functionality
+
 = 1.0.15 =
 
 * New: Attribute deselect option

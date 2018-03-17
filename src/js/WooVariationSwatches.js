@@ -47,7 +47,7 @@ const WooVariationSwatches = (($) => {
                 }
 
                 if (reselect_clear) {
-                    $(this).on('click', 'li:not(.selected)', function (e) {
+                    $(this).on('click', 'li:not(.selected):not(.radio-variable-item)', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         let value = $(this).data('value');
@@ -57,7 +57,7 @@ const WooVariationSwatches = (($) => {
                         select.trigger('touchstart');
                     });
 
-                    $(this).on('click', 'li.selected', function (e) {
+                    $(this).on('click', 'li.selected:not(.radio-variable-item)', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         select.val('').trigger('change');
@@ -65,9 +65,37 @@ const WooVariationSwatches = (($) => {
                         select.trigger('focusin');
                         select.trigger('touchstart');
                     });
+
+                    // RADIO
+                    $(this).on('click', 'input.wvs-radio-variable-item:radio', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        $(this).trigger('change');
+                    });
+
+                    $(this).on('change', 'input.wvs-radio-variable-item:radio', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        let value = $(this).val();
+
+                        if ($(this).parent('.radio-variable-item').hasClass('selected')) {
+                            select.val('').trigger('change');
+                            _.delay(() => {
+                                $(this).prop('checked', false)
+                            }, 1)
+                        }
+                        else {
+                            select.val(value).trigger('change');
+                        }
+
+                        select.trigger('click');
+                        select.trigger('focusin');
+                        select.trigger('touchstart');
+                    });
                 }
                 else {
-                    $(this).on('click', 'li', function (e) {
+                    $(this).on('click', 'li:not(.radio-variable-item)', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         let value = $(this).data('value');
@@ -75,6 +103,21 @@ const WooVariationSwatches = (($) => {
                         select.trigger('click');
                         select.trigger('focusin');
                         select.trigger('touchstart');
+                    });
+
+                    // Radio
+                    $(this).on('change', 'input.wvs-radio-variable-item:radio', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        let value = $(this).val();
+
+                        select.val(value).trigger('change');
+                        select.trigger('click');
+                        select.trigger('focusin');
+                        select.trigger('touchstart');
+
+                        // Radio
+                        $(this).parent('li.radio-variable-item').removeClass('selected disabled').addClass('selected')
                     });
                 }
             });
@@ -115,6 +158,9 @@ const WooVariationSwatches = (($) => {
                             if (!_.isEmpty(attribute_values) && !attribute_values.includes(attribute_value)) {
                                 $(this).removeClass('selected');
                                 $(this).addClass('disabled');
+                                if ($(this).hasClass('radio-variable-item')) {
+                                    $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', true).prop('checked', false);
+                                }
                             }
                         });
                     });
@@ -124,12 +170,14 @@ const WooVariationSwatches = (($) => {
 
         reset(is_ajax) {
             this._element.on('reset_data', function (event) {
-                let isAjaxVariation = !$(this).data('product_variations');
                 $(this).find('ul.variable-items-wrapper').each(function () {
                     let li = $(this).find('li');
                     li.each(function () {
                         if (!is_ajax) {
                             $(this).removeClass('selected disabled');
+                            if ($(this).hasClass('radio-variable-item')) {
+                                $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false).prop('checked', false);
+                            }
                         }
                     });
                 });
@@ -167,6 +215,9 @@ const WooVariationSwatches = (($) => {
                                 $(this).removeClass('selected disabled');
                                 if (value === selected) {
                                     $(this).addClass('selected');
+                                    if ($(this).hasClass('radio-variable-item')) {
+                                        $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false).prop('checked', true);
+                                    }
                                 }
                             });
                         }, 1);
@@ -207,10 +258,16 @@ const WooVariationSwatches = (($) => {
                                 $(this).removeClass('disabled');
                                 if (value === selected) {
                                     $(this).addClass('selected');
+                                    if ($(this).hasClass('radio-variable-item')) {
+                                        $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false).prop('checked', true);
+                                    }
                                 }
                             }
                             else {
                                 $(this).addClass('disabled');
+                                if ($(this).hasClass('radio-variable-item')) {
+                                    $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', true).prop('checked', false);
+                                }
                             }
                         });
                     }, 1);
