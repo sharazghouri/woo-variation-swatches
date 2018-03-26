@@ -124,6 +124,10 @@ Yes, it's compatible with any woocommerce theme including Flatsome / X-Theme / A
 
 Yes, it supports any kinds of product quick view.
 
+= Does it work on multisite? =
+
+Yes, it is.
+
 = How to use it on ajax load more? =
 
 Just call this javascript function on ajax load event `$('.variations_form').wc_variation_form()`. And your are ready to go.
@@ -144,6 +148,7 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 = 1.0.16 =
 
 * Update: Improve JS Functionality
+* Update: Multisite Compatibility
 
 = 1.0.15 =
 

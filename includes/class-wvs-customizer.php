@@ -24,6 +24,7 @@
 			
 			public function includes() {
 				require_once $this->_plugin_class->include_path( 'class-wvs-customize-heading.php' );
+				require_once $this->_plugin_class->include_path( 'class-wvs-customize-alpha-color-control.php' );
 			}
 			
 			public function add_panel( $wp_customize ) {
@@ -79,6 +80,10 @@
 									break;
 							}
 							
+							if ( isset( $field[ 'customize_sanitize_callback' ] ) && is_callable( $field[ 'customize_sanitize_callback' ] ) ) {
+								$setting_options[ 'sanitize_callback' ] = $field[ 'customize_sanitize_callback' ];
+							}
+							
 							$wp_customize->add_setting( $setting_id, $setting_options );
 							
 							// Add Control
@@ -96,8 +101,13 @@
 									break;
 							}
 							
-							$wp_customize->add_control( $setting_id, $control_options );
-							
+							if ( isset( $field[ 'customize_control_class' ] ) && class_exists( $field[ 'customize_control_class' ] ) ) {
+								$class = $field[ 'customize_control_class' ];
+								unset( $control_options[ 'type' ] );
+								$wp_customize->add_control( new $class( $wp_customize, $setting_id, $control_options ) );
+							} else {
+								$wp_customize->add_control( $setting_id, $control_options );
+							}
 						}
 					}
 				}

@@ -11,5 +11,10 @@ jQuery($ => {
             PluginHelper.ImageUploader();
             PluginHelper.AttributeDialog();
         });
+
+        $(document.body).on('wvs_pro_product_swatches_variation_loaded', () => {
+            PluginHelper.ColorPicker();
+            PluginHelper.ImageUploader();
+        })
     });
 });  // end of jquery main wrapper

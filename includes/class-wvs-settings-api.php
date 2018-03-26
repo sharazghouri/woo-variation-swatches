@@ -102,6 +102,22 @@
 					)
 				);
 				$wp_admin_bar->add_menu( $args );
+				
+				if ( ! is_admin() && class_exists( 'WooCommerce' ) && ( is_singular( 'product' ) || is_shop() ) ) {
+					$wp_admin_bar->add_menu( array(
+						                         'id'     => 'wvs-clear-transient',
+						                         'title'  => esc_html__( 'Clear transient', 'woo-variation-swatches' ),
+						                         'href'   => esc_url( remove_query_arg( array( 'variation_id', 'remove_item', 'add-to-cart', 'added-to-cart' ), add_query_arg( 'wvs_clear_transient', '' ) ) ),
+						                         'parent' => $this->settings_name,
+						                         'meta'   => array(
+							                         'class' => sprintf( '%s-admin-toolbar-cache', $this->slug )
+						                         )
+					                         ) );
+					
+					
+				}
+				
+				do_action( 'wvs_admin_bar_menu', $wp_admin_bar, $this->settings_name );
 			}
 			
 			public function plugin_action_links( $links ) {
@@ -248,6 +264,10 @@
 						$this->number_field_callback( $field );
 						break;
 					
+					case 'color':
+						$this->color_field_callback( $field );
+						break;
+					
 					case 'post_select':
 						$this->post_select_field_callback( $field );
 						break;
@@ -325,6 +345,16 @@
 				$value = esc_attr( $this->get_option( $args[ 'id' ] ) );
 				$size  = isset( $args[ 'size' ] ) && ! is_null( $args[ 'size' ] ) ? $args[ 'size' ] : 'regular';
 				$html  = sprintf( '<input type="text" class="%1$s-text" id="%2$s-field" name="%4$s[%2$s]" value="%3$s"/>', $size, $args[ 'id' ], $value, $this->settings_name );
+				$html  .= $this->get_field_description( $args );
+				
+				echo $html;
+			}
+			
+			public function color_field_callback( $args ) {
+				$value = esc_attr( $this->get_option( $args[ 'id' ] ) );
+				// $size  = isset( $args[ 'size' ] ) && ! is_null( $args[ 'size' ] ) ? $args[ 'size' ] : 'regular';
+				$alpha = isset( $args[ 'alpha' ] ) && $args[ 'alpha' ] === TRUE ? ' data-alpha="true"' : '';
+				$html  = sprintf( '<input type="text" %1$s class="wvs-color-picker" id="%2$s-field" name="%4$s[%2$s]" value="%3$s"  data-default-color="%3$s" />', $alpha, $args[ 'id' ], $value, $this->settings_name );
 				$html  .= $this->get_field_description( $args );
 				
 				echo $html;

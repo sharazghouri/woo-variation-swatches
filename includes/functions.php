@@ -103,11 +103,11 @@
 			
 			do_action( 'before_wvs_settings', woo_variation_swatches() );
 			
-			woo_variation_swatches()->add_setting( 'general', esc_html__( 'General', 'woo-variation-swatches' ), array(
+			woo_variation_swatches()->add_setting( 'simple', esc_html__( 'Simple', 'woo-variation-swatches' ), array(
 				array(
-					'title'  => esc_html__( 'Display Section', 'woo-variation-swatches' ),
-					'desc'   => esc_html__( 'Simply change some visual styles', 'woo-variation-swatches' ),
-					'fields' => apply_filters( 'wvs_general_setting_fields', array(
+					'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches' ),
+					'desc'   => esc_html__( 'Simple change some visual styles', 'woo-variation-swatches' ),
+					'fields' => apply_filters( 'wvs_simple_setting_fields', array(
 						array(
 							'id'      => 'tooltip',
 							'type'    => 'checkbox',
@@ -122,6 +122,26 @@
 							'desc'    => esc_html__( 'Enable / Disable plugin default stylesheet', 'woo-variation-swatches' ),
 							'default' => TRUE
 						),
+						array(
+							'id'      => 'style',
+							'type'    => 'radio',
+							'title'   => esc_html__( 'Shape style', 'woo-variation-swatches' ),
+							'desc'    => esc_html__( 'Attribute Shape Style', 'woo-variation-swatches' ),
+							'options' => array(
+								'rounded' => esc_html__( 'Rounded Shape', 'woo-variation-swatches' ),
+								'squared' => esc_html__( 'Squared Shape', 'woo-variation-swatches' )
+							),
+							'default' => 'rounded'
+						),
+					) )
+				)
+			), apply_filters( 'wvs_simple_setting_default_active', TRUE ) );
+			
+			woo_variation_swatches()->add_setting( 'advanced', esc_html__( 'Advanced', 'woo-variation-swatches' ), array(
+				array(
+					'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches' ),
+					'desc'   => esc_html__( 'Advanced change some visual styles', 'woo-variation-swatches' ),
+					'fields' => apply_filters( 'wvs_advanced_setting_fields', array(
 						array(
 							'id'      => 'clear_on_reselect',
 							'type'    => 'checkbox',
@@ -139,17 +159,6 @@
 							'max'     => 100,
 						),
 						array(
-							'id'      => 'style',
-							'type'    => 'radio',
-							'title'   => esc_html__( 'Shape style', 'woo-variation-swatches' ),
-							'desc'    => esc_html__( 'Attribute Shape Style', 'woo-variation-swatches' ),
-							'options' => array(
-								'rounded' => esc_html__( 'Rounded Shape', 'woo-variation-swatches' ),
-								'squared' => esc_html__( 'Squared Shape', 'woo-variation-swatches' )
-							),
-							'default' => 'rounded'
-						),
-						array(
 							'id'      => 'attribute_image_size',
 							'type'    => 'select',
 							'title'   => esc_html__( 'Attribute image size', 'woo-variation-swatches' ),
@@ -164,7 +173,7 @@
 						),
 					) )
 				)
-			), apply_filters( 'wvs_general_setting_default_active', TRUE ) );
+			), apply_filters( 'wvs_advanced_setting_default_active', FALSE ) );
 			
 			do_action( 'after_wvs_settings', woo_variation_swatches() );
 		}
@@ -216,7 +225,7 @@
 		function wvs_add_product_taxonomy_meta() {
 			
 			$fields         = wvs_taxonomy_meta_fields();
-			$meta_added_for = apply_filters( 'wvs_product_taxonomy_meta_for', array( 'color', 'image' ) );
+			$meta_added_for = apply_filters( 'wvs_product_taxonomy_meta_for', array_keys( $fields ) );
 			
 			if ( function_exists( 'wc_get_attribute_taxonomies' ) ):
 				
@@ -346,14 +355,16 @@
 				'name'             => '',
 				'id'               => '',
 				'class'            => '',
+				'type'             => '',
 				'show_option_none' => esc_html__( 'Choose an option', 'woo-variation-swatches' )
 			) );
 			
+			$type                  = $args[ 'type' ];
 			$options               = $args[ 'options' ];
 			$product               = $args[ 'product' ];
 			$attribute             = $args[ 'attribute' ];
 			$name                  = $args[ 'name' ] ? $args[ 'name' ] : wc_variation_attribute_name( $attribute );
-			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute ) . $product->get_id();
+			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute );
 			$class                 = $args[ 'class' ];
 			$show_option_none      = $args[ 'show_option_none' ] ? TRUE : FALSE;
 			$show_option_none_text = $args[ 'show_option_none' ] ? $args[ 'show_option_none' ] : esc_html__( 'Choose an option', 'woocommerce' ); // We'll do our best to hide the placeholder, but we'll need to show something when resetting options.
@@ -396,7 +407,8 @@
 			echo '</select>';
 			
 			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
-			printf( '<ul class="list-inline variable-items-wrapper color-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			
+			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
 			
 			if ( ! empty( $options ) ) {
 				if ( $product && taxonomy_exists( $attribute ) ) {
@@ -408,12 +420,15 @@
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
 							$tooltip        = apply_filters( 'wvs_color_variable_item_tooltip', $term->name, $term, $args );
 							?>
-                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item color-variable-item color-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span style="background-color:<?php echo esc_attr( $get_term_meta ) ?>;"></span></li>
+                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item <?php echo $type ?>-variable-item <?php echo $type ?>-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>">
+                                <span style="background-color:<?php echo esc_attr( $get_term_meta ) ?>;"></span>
+                            </li>
 							<?php
 						}
 					}
 				}
 			}
+			
 			echo '</ul>';
 		}
 	endif;
@@ -433,14 +448,16 @@
 				'name'             => '',
 				'id'               => '',
 				'class'            => '',
+				'type'             => '',
 				'show_option_none' => esc_html__( 'Choose an option', 'woo-variation-swatches' )
 			) );
 			
+			$type                  = $args[ 'type' ];
 			$options               = $args[ 'options' ];
 			$product               = $args[ 'product' ];
 			$attribute             = $args[ 'attribute' ];
 			$name                  = $args[ 'name' ] ? $args[ 'name' ] : wc_variation_attribute_name( $attribute );
-			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute ) . $product->get_id();
+			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute );
 			$class                 = $args[ 'class' ];
 			$show_option_none      = $args[ 'show_option_none' ] ? TRUE : FALSE;
 			$show_option_none_text = $args[ 'show_option_none' ] ? $args[ 'show_option_none' ] : esc_html__( 'Choose an option', 'woocommerce' ); // We'll do our best to hide the placeholder, but we'll need to show something when resetting options.
@@ -484,7 +501,7 @@
 			echo '</select>';
 			
 			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
-			printf( '<ul class="list-inline variable-items-wrapper image-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
 			
 			if ( ! empty( $options ) ) {
 				if ( $product && taxonomy_exists( $attribute ) ) {
@@ -499,7 +516,7 @@
 							$tooltip        = apply_filters( 'wvs_image_variable_item_tooltip', $term->name, $term, $args );
 							
 							?>
-                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item image-variable-item image-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><img alt="<?php echo esc_html( $term->name ) ?>" src="<?php echo esc_url( $image ) ?>"></li>
+                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item <?php echo $type ?>-variable-item <?php echo $type ?>-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><img alt="<?php echo esc_html( $term->name ) ?>" src="<?php echo esc_url( $image ) ?>"></li>
 							<?php
 						}
 					}
@@ -524,14 +541,16 @@
 				'name'             => '',
 				'id'               => '',
 				'class'            => '',
+				'type'             => '',
 				'show_option_none' => esc_html__( 'Choose an option', 'woo-variation-swatches' )
 			) );
 			
+			$type                  = $args[ 'type' ];
 			$options               = $args[ 'options' ];
 			$product               = $args[ 'product' ];
 			$attribute             = $args[ 'attribute' ];
 			$name                  = $args[ 'name' ] ? $args[ 'name' ] : wc_variation_attribute_name( $attribute );
-			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute ) . $product->get_id();
+			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute );
 			$class                 = $args[ 'class' ];
 			$show_option_none      = $args[ 'show_option_none' ] ? TRUE : FALSE;
 			$show_option_none_text = $args[ 'show_option_none' ] ? $args[ 'show_option_none' ] : esc_html__( 'Choose an option', 'woocommerce' ); // We'll do our best to hide the placeholder, but we'll need to show something when resetting options.
@@ -573,7 +592,7 @@
 			echo '</select>';
 			
 			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
-			printf( '<ul class="list-inline variable-items-wrapper button-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
 			
 			if ( ! empty( $options ) ) {
 				if ( $product && taxonomy_exists( $attribute ) ) {
@@ -584,7 +603,7 @@
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
 							$tooltip        = apply_filters( 'wvs_button_variable_item_tooltip', $term->name, $term, $args );
 							?>
-                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item button-variable-item button-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span><?php echo esc_html( $term->name ) ?></span></li>
+                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item <?php echo $type ?>-variable-item <?php echo $type ?>-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span><?php echo esc_html( $term->name ) ?></span></li>
 							<?php
 						}
 					}
@@ -609,14 +628,16 @@
 				'name'             => '',
 				'id'               => '',
 				'class'            => '',
+				'type'             => '',
 				'show_option_none' => esc_html__( 'Choose an option', 'woo-variation-swatches' )
 			) );
 			
+			$type                  = $args[ 'type' ];
 			$options               = $args[ 'options' ];
 			$product               = $args[ 'product' ];
 			$attribute             = $args[ 'attribute' ];
 			$name                  = $args[ 'name' ] ? $args[ 'name' ] : wc_variation_attribute_name( $attribute );
-			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute ) . $product->get_id();
+			$id                    = $args[ 'id' ] ? $args[ 'id' ] : sanitize_title( $attribute );
 			$class                 = $args[ 'class' ];
 			$show_option_none      = $args[ 'show_option_none' ] ? TRUE : FALSE;
 			$show_option_none_text = $args[ 'show_option_none' ] ? $args[ 'show_option_none' ] : esc_html__( 'Choose an option', 'woocommerce' ); // We'll do our best to hide the placeholder, but we'll need to show something when resetting options.
@@ -658,8 +679,8 @@
 			echo '</select>';
 			
 			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
-			$name            = uniqid( wc_variation_attribute_name( $attribute ) );
-			printf( '<ul class="list-inline variable-items-wrapper radio-variable-wrapper %s" data-attribute_name="%s">', $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			$name              = uniqid( wc_variation_attribute_name( $attribute ) );
+			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
 			
 			if ( ! empty( $options ) ) {
 				if ( $product && taxonomy_exists( $attribute ) ) {
@@ -669,10 +690,10 @@
 						if ( in_array( $term->slug, $options ) ) {
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
 							$tooltip        = apply_filters( 'wvs_radio_variable_item_tooltip', $term->name, $term, $args );
-							$id = uniqid($term->slug);
+							$id             = uniqid( $term->slug );
 							?>
                             <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item radio-variable-item radio-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>">
-                                <input name="<?php echo esc_attr( $name ) ?>" id="<?php echo esc_attr( $id ) ?>" class="wvs-radio-variable-item" <?php checked( sanitize_title( $args[ 'selected' ] ) == $term->slug, TRUE ) ?> type="radio" value="<?php echo esc_attr( $term->slug ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>" />
+                                <input name="<?php echo esc_attr( $name ) ?>" id="<?php echo esc_attr( $id ) ?>" class="wvs-radio-variable-item-input" <?php checked( sanitize_title( $args[ 'selected' ] ) == $term->slug, TRUE ) ?> type="radio" value="<?php echo esc_attr( $term->slug ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"/>
                                 <label for="<?php echo esc_attr( $id ) ?>"><?php echo esc_html( $term->name ) ?></label>
                             </li>
 							<?php
@@ -698,12 +719,13 @@
 			
 			foreach ( $available_type_keys as $type ) {
 				if ( wvs_wc_product_has_attribute_type( $type, $args[ 'attribute' ] ) ) {
-					$output_callback = $available_types[ $type ][ 'output' ];
+					$output_callback = apply_filters( 'wvs_variation_attribute_options_html_output', $available_types[ $type ][ 'output' ], $available_types, $type, $args );
 					$output_callback( array(
 						                  'options'   => $args[ 'options' ],
 						                  'attribute' => $args[ 'attribute' ],
 						                  'product'   => $args[ 'product' ],
-						                  'selected'  => $args[ 'selected' ]
+						                  'selected'  => $args[ 'selected' ],
+						                  'type'      => $type
 					                  ) );
 					$default = FALSE;
 				}

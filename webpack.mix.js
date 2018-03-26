@@ -76,6 +76,8 @@ if (!Mix.inProduction()) {
 mix.js(`src/js/backend.js`, `assets/js/admin${min}.js`);
 mix.js(`src/js/frontend.js`, `assets/js/frontend${min}.js`);
 mix.babel(`src/js/FormFieldDependency.js`, `assets/js/form-field-dependency${min}.js`);
+mix.babel(`src/js/wp-color-picker-alpha.js`, `assets/js/wp-color-picker-alpha${min}.js`);
+mix.babel(`src/js/wvs-customize-alpha-color-control.js`, `assets/js/wvs-customize-alpha-color-control${min}.js`);
 mix.sass(`src/scss/backend.scss`, `assets/css/admin${min}.css`);
 mix.sass(`src/scss/frontend.scss`, `assets/css/frontend${min}.css`);
 mix.sass(`src/scss/tooltip.scss`, `assets/css/frontend-tooltip${min}.css`);

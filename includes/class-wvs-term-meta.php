@@ -162,7 +162,7 @@
 						case 'color':
 							ob_start();
 							?>
-                            <input name="<?php echo $field[ 'id' ] ?>" id="<?php echo $field[ 'id' ] ?>" type="text" class="wvs-color-picker" value="<?php echo $field[ 'value' ] ?>" size="<?php echo $field[ 'size' ] ?>" <?php echo $field[ 'required' ] . $field[ 'placeholder' ] ?>>
+                            <input name="<?php echo $field[ 'id' ] ?>" id="<?php echo $field[ 'id' ] ?>" type="text" class="wvs-color-picker" value="<?php echo $field[ 'value' ] ?>" data-default-color="<?php echo $field[ 'value' ] ?>" size="<?php echo $field[ 'size' ] ?>" <?php echo $field[ 'required' ] . $field[ 'placeholder' ] ?>>
 							<?php
 							echo ob_get_clean();
 							break;
@@ -231,6 +231,11 @@
 			}
 			
 			private static function field_start( $field, $term ) {
+				// Example:
+                // http://emranahmed.github.io/Form-Field-Dependency/
+				/*'dependency' => array(
+					array( '#show_tooltip' => array( 'type' => 'equal', 'value' => 'yes' ) )
+				)*/
 				
 				$depends = empty( $field[ 'dependency' ] ) ? '' : "data-depends='" . wp_json_encode( $field[ 'dependency' ] ) . "'";
 				

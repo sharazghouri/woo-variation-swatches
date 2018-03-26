@@ -142,6 +142,9 @@
 				
 				wp_enqueue_script( 'jquery-ui-dialog' );
 				
+				wp_enqueue_style( 'wp-color-picker' );
+				wp_enqueue_script( 'wp-color-picker-alpha', $this->assets_uri( "/js/wp-color-picker-alpha{$suffix}.js" ), array( 'wp-color-picker' ), '2.1.3', TRUE );
+				
 				wp_enqueue_script( 'form-field-dependency', $this->assets_uri( "/js/form-field-dependency{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
 				wp_enqueue_script( 'woo-variation-swatches-admin', $this->assets_uri( "/js/admin{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
 				wp_enqueue_style( 'woo-variation-swatches-admin', $this->assets_uri( "/css/admin{$suffix}.css" ), array(), $this->version() );
@@ -252,14 +255,22 @@
 			}
 			
 			public function wc_requirement_notice() {
+				
 				if ( ! $this->is_wc_active() ) {
+					
 					$class = 'notice notice-error';
 					
 					$text    = esc_html__( 'WooCommerce', 'woo-variation-swatches' );
-					$link    = esc_url( 'https://wordpress.org/plugins/woocommerce/' );
+					$link    = esc_url( add_query_arg( array(
+						                                   'tab'       => 'plugin-information',
+						                                   'plugin'    => 'woocommerce',
+						                                   'TB_iframe' => 'true',
+						                                   'width'     => '640',
+						                                   'height'    => '500',
+					                                   ), admin_url( 'plugin-install.php' ) ) );
 					$message = wp_kses( __( "<strong>WooCommerce Variation Swatches</strong> is an add-on of ", 'woo-variation-swatches' ), array( 'strong' => array() ) );
 					
-					printf( '<div class="%1$s"><p>%2$s <a target="_blank" href="%3$s"><strong>%4$s</strong></a></p></div>', $class, $message, $link, $text );
+					printf( '<div class="%1$s"><p>%2$s <a class="thickbox open-plugin-details-modal" href="%3$s"><strong>%4$s</strong></a></p></div>', $class, $message, $link, $text );
 				}
 			}
 			
@@ -268,7 +279,12 @@
 			}
 			
 			public function is_wc_active() {
-				return in_array( 'woocommerce/woocommerce.php', get_option( 'active_plugins' ) );
+				
+				if ( ! function_exists( 'is_plugin_active' ) ) {
+					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+				}
+				
+				return is_plugin_active( 'woocommerce/woocommerce.php' );
 			}
 			
 			public function basename() {
