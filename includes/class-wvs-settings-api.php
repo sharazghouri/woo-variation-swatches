@@ -65,6 +65,7 @@
                             var target = $(this).data('target');
                             $(this).addClass('nav-tab-active').siblings().removeClass('nav-tab-active');
                             $('#' + target).show().siblings().hide();
+                            $('#_last_active_tab').val(target)
                         });
                     });
                 </script>
@@ -398,7 +399,7 @@
 								if ( ! isset( $tab[ 'active' ] ) ) {
 									$tab[ 'active' ] = FALSE;
 								}
-								$is_active = $tab[ 'active' ];
+								$is_active = ( $this->get_last_active_tab() == $tab[ 'id' ] );
 								?>
 
                                 <div id="<?php echo $tab[ 'id' ] ?>"
@@ -412,6 +413,7 @@
 							<?php endforeach; ?>
                         </div>
 						<?php
+							$this->last_tab_input();
 							submit_button();
 						?>
                     </form>
@@ -419,16 +421,33 @@
 				<?php
 			}
 			
+			private function last_tab_input() {
+				printf( '<input type="hidden" id="_last_active_tab" name="%s[_last_active_tab]" value="%s">', $this->settings_name, $this->get_last_active_tab() );
+			}
+			
 			public function options_tabs() {
 				?>
                 <h2 class="nav-tab-wrapper wp-clearfix">
 					<?php foreach ( $this->fields as $tabs ): ?>
-                        <a data-target="<?php echo $tabs[ 'id' ] ?>"
-                           class="wvs-setting-nav-tab nav-tab <?php echo ( isset( $tabs[ 'active' ] ) and $tabs[ 'active' ] ) ? 'nav-tab-active' : '' ?> "
-                           href="#<?php echo $tabs[ 'id' ] ?>"><?php echo $tabs[ 'title' ] ?></a>
+                        <a data-target="<?php echo $tabs[ 'id' ] ?>" class="wvs-setting-nav-tab nav-tab <?php echo ( $this->get_last_active_tab() == $tabs[ 'id' ] ) ? 'nav-tab-active' : '' ?> " href="#<?php echo $tabs[ 'id' ] ?>"><?php echo $tabs[ 'title' ] ?></a>
 					<?php endforeach; ?>
                 </h2>
 				<?php
+			}
+			
+			private function get_last_active_tab() {
+				$last_tab = trim( $this->get_option( '_last_active_tab' ) );
+				
+				$default_tab = '';
+				foreach ( $this->fields as $tabs ) {
+					if ( isset( $tabs[ 'active' ] ) && $tabs[ 'active' ] ) {
+						$default_tab = $tabs[ 'id' ];
+						break;
+					}
+				}
+				
+				return ! empty( $last_tab ) ? $last_tab : $default_tab;
+				
 			}
 			
 			private function do_settings_sections( $page ) {
