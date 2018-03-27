@@ -113,7 +113,7 @@
 				}
 			}
 			
-			function sanitize_checkbox( $value ) {
+			public function sanitize_checkbox( $value ) {
 				$filter = filter_var( $value, FILTER_VALIDATE_BOOLEAN );
 				
 				return is_null( $filter ) ? 0 : $filter;

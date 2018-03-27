@@ -4,8 +4,9 @@
   margin    : 0;
 
   &.radio-variable-wrapper {
-    display        : inline-flex;
-    flex-direction : column;
+    /*display        : inline-flex;
+    flex-direction : column;*/
+    display : block;
     }
 
   .radio-variable-item {

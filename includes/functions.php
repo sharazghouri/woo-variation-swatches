@@ -3,6 +3,20 @@
 	defined( 'ABSPATH' ) or die( 'Keep Quit' );
 	
 	//-------------------------------------------------------------------------------
+	// Get All Image Sizes
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_get_all_image_sizes' ) ):
+		function wvs_get_all_image_sizes() {
+			return apply_filters( 'wvs_get_all_image_sizes', array_reduce( get_intermediate_image_sizes(), function ( $carry, $item ) {
+				$carry[ $item ] = ucwords( str_ireplace( array( '-', '_' ), ' ', $item ) );
+				
+				return $carry;
+			}, array() ) );
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
 	// Available Product Attribute Types
 	//-------------------------------------------------------------------------------
 	
@@ -163,12 +177,7 @@
 							'type'    => 'select',
 							'title'   => esc_html__( 'Attribute image size', 'woo-variation-swatches' ),
 							'desc'    => has_filter( 'wvs_product_attribute_image_size' ) ? __( '<span style="color: red">Attribute image size changed by <code>wvs_product_attribute_image_size</code> hook. So this option will not apply any effect.</span>', 'woo-variation-swatches' ) : esc_html__( 'Choose attribute image size', 'woo-variation-swatches' ),
-							'options' => array_reduce( get_intermediate_image_sizes(), function ( $carry, $item ) {
-								$carry[ $item ] = ucwords( str_ireplace( array( '-', '_' ), ' ', $item ) );
-								
-								return $carry;
-							}, array() ),
-							
+							'options' => wvs_get_all_image_sizes(),
 							'default' => 'thumbnail'
 						),
 					) )
@@ -336,7 +345,79 @@
 		function wvs_wc_product_has_attribute_type( $type, $attribute_name ) {
 			$attribute = wvs_get_wc_attribute_taxonomy( $attribute_name );
 			
-			return isset( $attribute->attribute_type ) && ( $attribute->attribute_type == $type );
+			return apply_filters( 'wvs_wc_product_has_attribute_type', ( isset( $attribute->attribute_type ) && ( $attribute->attribute_type == $type ) ), $type, $attribute_name, $attribute );
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Variation attribute options wrapper
+	//-------------------------------------------------------------------------------
+	if ( ! function_exists( 'wvs_variable_items_wrapper' ) ):
+		function wvs_variable_items_wrapper( $contents, $type, $attribute ) {
+			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
+			
+			$data = sprintf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">%s</ul>', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ), $contents );
+			
+			return apply_filters( 'wvs_variable_items_wrapper', $data, $contents, $type, $attribute );
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Variation variable item
+	//-------------------------------------------------------------------------------
+	if ( ! function_exists( 'wvs_variable_item' ) ):
+		function wvs_variable_item( $type, $options, $args ) {
+			
+			$product   = $args[ 'product' ];
+			$attribute = $args[ 'attribute' ];
+			$data      = '';
+			
+			if ( ! empty( $options ) ) {
+				if ( $product && taxonomy_exists( $attribute ) ) {
+					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
+					$name  = uniqid( wc_variation_attribute_name( $attribute ) );
+					foreach ( $terms as $term ) {
+						if ( in_array( $term->slug, $options ) ) {
+							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
+							$tooltip        = trim( apply_filters( 'wvs_color_variable_item_tooltip', $term->name, $term, $args ) );
+							
+							$tooltip_html_attr = ! empty( $tooltip ) ? sprintf( 'data-wvstooltip="%s"', esc_attr( $tooltip ) ) : '';
+							
+							$data .= sprintf( '<li %1$s class="variable-item %2$s-variable-item %2$s-variable-item-%3$s %4$s" title="%5$s" data-value="%3$s">', $tooltip_html_attr, esc_attr( $type ), esc_attr( $term->slug ), esc_attr( $selected_class ), esc_html( $term->name ) );
+							
+							switch ( $type ):
+								case 'color':
+									$color = sanitize_hex_color( get_term_meta( $term->term_id, 'product_attribute_color', TRUE ) );
+									$data  .= sprintf( '<span style="background-color:%s;"></span>', esc_attr( $color ) );
+									break;
+								
+								case 'image':
+									$attachment_id = absint( get_term_meta( $term->term_id, 'product_attribute_image', TRUE ) );
+									$image_size    = woo_variation_swatches()->get_option( 'attribute_image_size' );
+									$image_url     = wp_get_attachment_image_url( $attachment_id, apply_filters( 'wvs_product_attribute_image_size', $image_size ) );
+									$data          .= sprintf( '<img alt="%s" src="%s" />', esc_attr( $term->name ), esc_url( $image_url ) );
+									break;
+								
+								case 'button':
+									$data .= sprintf( '<span>%s</span>', esc_html( $term->name ) );
+									break;
+								
+								case 'radio':
+									$id   = uniqid( $term->slug );
+									$data .= sprintf( '<input name="%1$s" id="%2$s" class="wvs-radio-variable-item" %3$s  type="radio" value="%4$s" data-value="%4$s" /><label for="%2$s">%5$s</label>', $name, $id, checked( sanitize_title( $args[ 'selected' ] ), $term->slug, TRUE ), esc_attr( $term->slug ), esc_html( $term->name ) );
+									break;
+								
+								default:
+									$data .= apply_filters( 'wvs_variable_default_item_content', '', $term, $args );
+									break;
+							endswitch;
+							$data .= '</li>';
+						}
+					}
+				}
+			}
+			
+			return apply_filters( 'wvs_variable_item', $data, $type, $options, $args );
 		}
 	endif;
 	
@@ -376,7 +457,6 @@
 			
 			if ( $product && taxonomy_exists( $attribute ) ) {
 				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . ' hide woo-variation-raw-select" style="display:none" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
-				
 			} else {
 				echo '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="' . esc_attr( wc_variation_attribute_name( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
 			}
@@ -406,30 +486,10 @@
 			
 			echo '</select>';
 			
-			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
+			$content = wvs_variable_item( $type, $options, $args );
 			
-			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			echo wvs_variable_items_wrapper( $content, $type, $attribute );
 			
-			if ( ! empty( $options ) ) {
-				if ( $product && taxonomy_exists( $attribute ) ) {
-					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
-					
-					foreach ( $terms as $term ) {
-						if ( in_array( $term->slug, $options ) ) {
-							$get_term_meta  = sanitize_hex_color( get_term_meta( $term->term_id, 'product_attribute_color', TRUE ) );
-							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
-							$tooltip        = apply_filters( 'wvs_color_variable_item_tooltip', $term->name, $term, $args );
-							?>
-                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item <?php echo $type ?>-variable-item <?php echo $type ?>-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>">
-                                <span style="background-color:<?php echo esc_attr( $get_term_meta ) ?>;"></span>
-                            </li>
-							<?php
-						}
-					}
-				}
-			}
-			
-			echo '</ul>';
 		}
 	endif;
 	
@@ -500,29 +560,9 @@
 			
 			echo '</select>';
 			
-			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
-			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			$content = wvs_variable_item( $type, $options, $args );
 			
-			if ( ! empty( $options ) ) {
-				if ( $product && taxonomy_exists( $attribute ) ) {
-					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
-					
-					foreach ( $terms as $term ) {
-						if ( in_array( $term->slug, $options ) ) {
-							$attachment_id  = absint( get_term_meta( $term->term_id, 'product_attribute_image', TRUE ) );
-							$image_size     = woo_variation_swatches()->get_option( 'attribute_image_size' );
-							$image          = wp_get_attachment_image_url( $attachment_id, apply_filters( 'wvs_product_attribute_image_size', $image_size ) );
-							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
-							$tooltip        = apply_filters( 'wvs_image_variable_item_tooltip', $term->name, $term, $args );
-							
-							?>
-                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item <?php echo $type ?>-variable-item <?php echo $type ?>-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><img alt="<?php echo esc_html( $term->name ) ?>" src="<?php echo esc_url( $image ) ?>"></li>
-							<?php
-						}
-					}
-				}
-			}
-			echo '</ul>';
+			echo wvs_variable_items_wrapper( $content, $type, $attribute );
 		}
 	endif;
 	
@@ -591,25 +631,9 @@
 			
 			echo '</select>';
 			
-			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
-			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			$content = wvs_variable_item( $type, $options, $args );
 			
-			if ( ! empty( $options ) ) {
-				if ( $product && taxonomy_exists( $attribute ) ) {
-					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
-					
-					foreach ( $terms as $term ) {
-						if ( in_array( $term->slug, $options ) ) {
-							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
-							$tooltip        = apply_filters( 'wvs_button_variable_item_tooltip', $term->name, $term, $args );
-							?>
-                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item <?php echo $type ?>-variable-item <?php echo $type ?>-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"><span><?php echo esc_html( $term->name ) ?></span></li>
-							<?php
-						}
-					}
-				}
-			}
-			echo '</ul>';
+			echo wvs_variable_items_wrapper( $content, $type, $attribute );
 		}
 	endif;
 	
@@ -678,30 +702,9 @@
 			
 			echo '</select>';
 			
-			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
-			$name              = uniqid( wc_variation_attribute_name( $attribute ) );
-			printf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ) );
+			$content = wvs_variable_item( $type, $options, $args );
 			
-			if ( ! empty( $options ) ) {
-				if ( $product && taxonomy_exists( $attribute ) ) {
-					$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
-					
-					foreach ( $terms as $term ) {
-						if ( in_array( $term->slug, $options ) ) {
-							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
-							$tooltip        = apply_filters( 'wvs_radio_variable_item_tooltip', $term->name, $term, $args );
-							$id             = uniqid( $term->slug );
-							?>
-                            <li data-wvstooltip="<?php echo esc_attr( $tooltip ) ?>" class="variable-item radio-variable-item radio-variable-item-<?php echo $term->slug ?> <?php echo $selected_class ?>" title="<?php echo esc_html( $term->name ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>">
-                                <input name="<?php echo esc_attr( $name ) ?>" id="<?php echo esc_attr( $id ) ?>" class="wvs-radio-variable-item-input" <?php checked( sanitize_title( $args[ 'selected' ] ) == $term->slug, TRUE ) ?> type="radio" value="<?php echo esc_attr( $term->slug ) ?>" data-value="<?php echo esc_attr( $term->slug ) ?>"/>
-                                <label for="<?php echo esc_attr( $id ) ?>"><?php echo esc_html( $term->name ) ?></label>
-                            </li>
-							<?php
-						}
-					}
-				}
-			}
-			echo '</ul>';
+			echo wvs_variable_items_wrapper( $content, $type, $attribute );
 		}
 	endif;
 	
@@ -719,13 +722,14 @@
 			
 			foreach ( $available_type_keys as $type ) {
 				if ( wvs_wc_product_has_attribute_type( $type, $args[ 'attribute' ] ) ) {
-					$output_callback = apply_filters( 'wvs_variation_attribute_options_html_output', $available_types[ $type ][ 'output' ], $available_types, $type, $args );
+					$output_callback = apply_filters( 'wvs_variation_attribute_options_html_output', $available_types[ $type ][ 'output' ], $available_types, $type, $args, $html );
 					$output_callback( array(
-						                  'options'   => $args[ 'options' ],
-						                  'attribute' => $args[ 'attribute' ],
-						                  'product'   => $args[ 'product' ],
-						                  'selected'  => $args[ 'selected' ],
-						                  'type'      => $type
+						                  'options'    => $args[ 'options' ],
+						                  'attribute'  => $args[ 'attribute' ],
+						                  'product'    => $args[ 'product' ],
+						                  'selected'   => $args[ 'selected' ],
+						                  'type'       => $type,
+						                  'is_archive' => ( isset( $args[ 'is_archive' ] ) && $args[ 'is_archive' ] )
 					                  ) );
 					$default = FALSE;
 				}
