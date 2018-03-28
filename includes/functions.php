@@ -353,12 +353,19 @@
 	// Variation attribute options wrapper
 	//-------------------------------------------------------------------------------
 	if ( ! function_exists( 'wvs_variable_items_wrapper' ) ):
-		function wvs_variable_items_wrapper( $contents, $type, $attribute ) {
+		function wvs_variable_items_wrapper( $contents, $type, $args, $saved_attribute = array() ) {
+			
+			$attribute = $args[ 'attribute' ];
+			
+			$css_classes = apply_filters( 'wvs_variable_items_wrapper_class', array( "{$type}-variable-wrapper" ), $type, $args, $saved_attribute );
+			
 			$clear_on_reselect = woo_variation_swatches()->get_option( 'clear_on_reselect' ) ? 'reselect-clear' : '';
 			
-			$data = sprintf( '<ul class="list-inline variable-items-wrapper %s-variable-wrapper %s" data-attribute_name="%s">%s</ul>', $type, $clear_on_reselect, esc_attr( wc_variation_attribute_name( $attribute ) ), $contents );
+			array_push( $css_classes, $clear_on_reselect );
 			
-			return apply_filters( 'wvs_variable_items_wrapper', $data, $contents, $type, $attribute );
+			$data = sprintf( '<ul class="list-inline variable-items-wrapper %s" data-attribute_name="%s">%s</ul>', implode( ' ', $css_classes ), esc_attr( wc_variation_attribute_name( $attribute ) ), $contents );
+			
+			return apply_filters( 'wvs_variable_items_wrapper', $data, $contents, $type, $args, $saved_attribute );
 		}
 	endif;
 	
@@ -366,7 +373,7 @@
 	// Variation variable item
 	//-------------------------------------------------------------------------------
 	if ( ! function_exists( 'wvs_variable_item' ) ):
-		function wvs_variable_item( $type, $options, $args ) {
+		function wvs_variable_item( $type, $options, $args, $saved_attribute = array() ) {
 			
 			$product   = $args[ 'product' ];
 			$attribute = $args[ 'attribute' ];
@@ -408,7 +415,7 @@
 									break;
 								
 								default:
-									$data .= apply_filters( 'wvs_variable_default_item_content', '', $term, $args );
+									$data .= apply_filters( 'wvs_variable_default_item_content', '', $term, $args, $saved_attribute );
 									break;
 							endswitch;
 							$data .= '</li>';
@@ -417,7 +424,7 @@
 				}
 			}
 			
-			return apply_filters( 'wvs_variable_item', $data, $type, $options, $args );
+			return apply_filters( 'wvs_variable_item', $data, $type, $options, $args, $saved_attribute );
 		}
 	endif;
 	
@@ -488,7 +495,7 @@
 			
 			$content = wvs_variable_item( $type, $options, $args );
 			
-			echo wvs_variable_items_wrapper( $content, $type, $attribute );
+			echo wvs_variable_items_wrapper( $content, $type, $args );
 			
 		}
 	endif;
@@ -562,7 +569,7 @@
 			
 			$content = wvs_variable_item( $type, $options, $args );
 			
-			echo wvs_variable_items_wrapper( $content, $type, $attribute );
+			echo wvs_variable_items_wrapper( $content, $type, $args );
 		}
 	endif;
 	
@@ -633,7 +640,7 @@
 			
 			$content = wvs_variable_item( $type, $options, $args );
 			
-			echo wvs_variable_items_wrapper( $content, $type, $attribute );
+			echo wvs_variable_items_wrapper( $content, $type, $args );
 		}
 	endif;
 	
@@ -704,7 +711,7 @@
 			
 			$content = wvs_variable_item( $type, $options, $args );
 			
-			echo wvs_variable_items_wrapper( $content, $type, $attribute );
+			echo wvs_variable_items_wrapper( $content, $type, $args );
 		}
 	endif;
 	
@@ -722,15 +729,15 @@
 			
 			foreach ( $available_type_keys as $type ) {
 				if ( wvs_wc_product_has_attribute_type( $type, $args[ 'attribute' ] ) ) {
-					$output_callback = apply_filters( 'wvs_variation_attribute_options_html_output', $available_types[ $type ][ 'output' ], $available_types, $type, $args, $html );
-					$output_callback( array(
-						                  'options'    => $args[ 'options' ],
-						                  'attribute'  => $args[ 'attribute' ],
-						                  'product'    => $args[ 'product' ],
-						                  'selected'   => $args[ 'selected' ],
-						                  'type'       => $type,
-						                  'is_archive' => ( isset( $args[ 'is_archive' ] ) && $args[ 'is_archive' ] )
-					                  ) );
+					$output_callback = apply_filters( 'wvs_variation_attribute_options_callback', $available_types[ $type ][ 'output' ], $available_types, $type, $args, $html );
+					$output_callback( apply_filters( 'wvs_variation_attribute_options_args', array(
+						'options'    => $args[ 'options' ],
+						'attribute'  => $args[ 'attribute' ],
+						'product'    => $args[ 'product' ],
+						'selected'   => $args[ 'selected' ],
+						'type'       => $type,
+						'is_archive' => ( isset( $args[ 'is_archive' ] ) && $args[ 'is_archive' ] )
+					) ) );
 					$default = FALSE;
 				}
 			}
@@ -739,7 +746,9 @@
 				echo $html;
 			}
 			
-			return ob_get_clean();
+			$data = ob_get_clean();
+			
+			return apply_filters( 'wvs_variation_attribute_options_html', $data, $args );
 		}
 	endif;
 	
