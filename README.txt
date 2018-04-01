@@ -44,7 +44,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 <blockquote>
 <ul>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-04">gimp3d.com</a> | Built With: Flatsome Theme | Niche: 3D Printing Parts Store </li>
-<li><a target="_blank" href="http://bit.ly/woovs-demo-02">loja2passos.com.br</a> | Built With: Flatsome Theme | Niche: Shoe Store </li>
+<li><a target="_blank" href="http://bit.ly/woovs-demo-avada">wonkybot.com</a> | Built With: Avada Theme | Niche: Clothing Store </li>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-01">plotnikoff.ru</a> Built With: Uncode Theme | Niche: Furniture and Home Appliances Store </li>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-03">robinsongarden.co.uk</a> Built With: Labomba Theme | Niche: Bespoke Furniture Store</li>
 </ul>
@@ -141,7 +141,8 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 5. Attribute Color Type Preview
 6. Attribute Button / Label Type Preview
 7. Variation Product Edit view
-8. Settings Panel
+8. Multisite Compatible
+9. Settings Panel
 
 == Changelog ==
 
