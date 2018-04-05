@@ -51,9 +51,13 @@
 						'panel' => $this->_settings_name,
 					) );
 					
+					
 					foreach ( $panel[ 'sections' ] as $section ) {
 						
-						new WVS_Customize_Heading( $wp_customize, $section_id, $section[ 'title' ] );
+						if ( ! isset( $section[ 'customize_hidden' ] ) || ! $section[ 'customize_hidden' ] ) {
+							new WVS_Customize_Heading( $wp_customize, $section_id, $section[ 'title' ] );
+						}
+						
 						
 						foreach ( $section[ 'fields' ] as $field ) {
 							
@@ -71,7 +75,7 @@
 								'default'           => $default_value,
 								'type'              => 'option',
 								'capability'        => 'manage_woocommerce',
-								'sanitize_callback' => 'sanitize_key',
+								'sanitize_callback' => 'sanitize_key', //
 							);
 							
 							switch ( $field[ 'type' ] ) {
@@ -100,6 +104,16 @@
 									$control_options[ 'choices' ] = $field[ 'options' ];
 									break;
 							}
+							
+							// active_callback
+							if ( isset( $field[ 'customize_hidden' ] ) && $field[ 'customize_hidden' ] ) {
+								$control_options[ 'active_callback' ] = '__return_false';
+							}
+							
+							if ( isset( $section[ 'customize_hidden' ] ) && $section[ 'customize_hidden' ] ) {
+								$control_options[ 'active_callback' ] = '__return_false';
+							}
+							
 							
 							if ( isset( $field[ 'customize_control_class' ] ) && class_exists( $field[ 'customize_control_class' ] ) ) {
 								$class = $field[ 'customize_control_class' ];
