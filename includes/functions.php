@@ -167,11 +167,24 @@
 							'id'      => 'threshold',
 							'type'    => 'number',
 							'title'   => esc_html__( 'Ajax variation threshold', 'woo-variation-swatches' ),
-							'desc'    => __( 'Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>', 'woo-variation-swatches' ),
+							'desc'    => __( 'Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>, <br>Note: Enabling ajax variation threshold doesn\'t disable variation "out of stock" item.', 'woo-variation-swatches' ),
 							'default' => 30,
 							'min'     => 1,
-							'max'     => 100,
+							'max'     => 40,
 						),
+						
+						array(
+							'id'      => 'attribute-behavior',
+							'type'    => 'radio',
+							'title'   => esc_html__( 'Attribute behavior', 'woo-variation-swatches' ),
+							'desc'    => __( 'Disabled attribute will be hide / blur. <br>Note: Please remember that ajax variation doesn\'t apply this feature.', 'woo-variation-swatches' ),
+							'options' => array(
+								'blur' => esc_html__( 'Blur', 'woo-variation-swatches' ),
+								'hide' => esc_html__( 'Hide', 'woo-variation-swatches' ),
+							),
+							'default' => 'blur'
+						),
+						
 						array(
 							'id'      => 'attribute_image_size',
 							'type'    => 'select',
@@ -411,7 +424,7 @@
 								
 								case 'radio':
 									$id   = uniqid( $term->slug );
-									$data .= sprintf( '<input name="%1$s" id="%2$s" class="wvs-radio-variable-item" %3$s  type="radio" value="%4$s" data-value="%4$s" /><label for="%2$s">%5$s</label>', $name, $id, checked( sanitize_title( $args[ 'selected' ] ), $term->slug, false ), esc_attr( $term->slug ), esc_html( $term->name ) );
+									$data .= sprintf( '<input name="%1$s" id="%2$s" class="wvs-radio-variable-item" %3$s  type="radio" value="%4$s" data-value="%4$s" /><label for="%2$s">%5$s</label>', $name, $id, checked( sanitize_title( $args[ 'selected' ] ), $term->slug, FALSE ), esc_attr( $term->slug ), esc_html( $term->name ) );
 									break;
 								
 								default:

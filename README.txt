@@ -148,6 +148,10 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 = 1.0.17 =
 
+* Update: CSS
+
+= 1.0.17 =
+
 * Fix: Visual CSS Issue
 
 = 1.0.16 =

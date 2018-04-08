@@ -298,6 +298,7 @@
 				$html    .= implode( '<br />', array_map( function ( $key, $option ) use ( $size, $args, $value ) {
 					return sprintf( '<label><input type="radio" id="%2$s-field" name="%4$s[%2$s]" value="%3$s" %5$s/> %6$s</label>', $size, $args[ 'id' ], $key, $this->settings_name, checked( $value, $key, FALSE ), $option );
 				}, array_keys( $options ), $options ) );
+				$html    .= $this->get_field_description( $args );
 				$html    .= '</fieldset>';
 				
 				echo $html;
