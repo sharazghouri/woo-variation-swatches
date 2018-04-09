@@ -44,7 +44,12 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 <blockquote>
 <ul>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-04">gimp3d.com</a> | Built With: Flatsome Theme | Niche: 3D Printing Parts Store </li>
+<li><a target="_blank" href="http://bit.ly/woovs-demo-flatsome-02">makromass.pl</a> | Built With: Flatsome Theme | Niche: Supplements for athletes</li>
+<li><a target="_blank" href="http://bit.ly/woovs-flatsome-03">cellularizeme.com</a> | Built With: Flatsome Theme | Niche: Electronices Store </li>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-avada">wonkybot.com</a> | Built With: Avada Theme | Niche: Clothing Store </li>
+<li><a target="_blank" href="http://bit.ly/woovs-demo-avada-01">luckyonebijoux.com</a> | Built With: Avada Theme | Niche: Jewelry Shop </li>
+<li><a target="_blank" href="http://bit.ly/woovs-avada-02">polymaker.metricdesign.net</a> | Built With: Avada Theme | Niche: 3d Parts Shop </li>
+<li><a target="_blank" href="http://bit.ly/woovs-demo-nitro">sethsoldtimes.com</a> | Built With: Nitro Theme | Niche: Dise Golf Store</li>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-01">plotnikoff.ru</a> Built With: Uncode Theme | Niche: Furniture and Home Appliances Store </li>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-03">robinsongarden.co.uk</a> Built With: Labomba Theme | Niche: Bespoke Furniture Store</li>
 </ul>
