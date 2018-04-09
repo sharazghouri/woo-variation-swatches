@@ -151,9 +151,10 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
-= 1.0.17 =
+= 1.0.18 =
 
 * Update: CSS
+* New: Attribute behaviour
 
 = 1.0.17 =
 
