@@ -2,7 +2,7 @@
 	/**
 	 * Plugin Name: WooCommerce Variation Swatches
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
-	 * Description: WooCommerce Product Variation Swatches
+	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
 	 * Version: 1.0.18
 	 * Domain Path: /languages
@@ -44,6 +44,8 @@
 				$this->define( 'WVS_PLUGIN_URI', plugin_dir_url( __FILE__ ) );
 				$this->define( 'WVS_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 				
+				$this->define( 'WVS_VERSION', $this->version() );
+				
 				$this->define( 'WVS_PLUGIN_INCLUDE_PATH', trailingslashit( plugin_dir_path( __FILE__ ) . 'includes' ) );
 				$this->define( 'WVS_PLUGIN_TEMPLATES_PATH', trailingslashit( plugin_dir_path( __FILE__ ) . 'templates' ) );
 				$this->define( 'WVS_PLUGIN_TEMPLATES_URI', trailingslashit( plugin_dir_url( __FILE__ ) . 'templates' ) );
@@ -81,6 +83,7 @@
 				add_action( 'init', array( $this, 'language' ) );
 				add_action( 'admin_notices', array( $this, 'php_requirement_notice' ) );
 				add_action( 'admin_notices', array( $this, 'wc_requirement_notice' ) );
+				add_action( 'admin_notices', array( $this, 'wc_version_requirement_notice' ) );
 				add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 				
 				if ( $this->is_required_php_version() ) {
@@ -216,12 +219,10 @@
 			
 			public function plugin_row_meta( $links, $file ) {
 				if ( $file == $this->basename() ) {
-					//$review_url                  = "https://wordpress.org/support/plugin/woo-variation-swatches/reviews/?rate=5#new-post";
-					$report_url                  = "https://wordpress.org/support/plugin/woo-variation-swatches/reviews/?rate=5#new-post";
-					$row_meta[ 'documentation' ] = '<a href="' . esc_url( apply_filters( 'wvs_documentation_url', '#' ) ) . '" title="' . esc_attr( esc_html__( 'View Documentation', 'woo-variation-swatches' ) ) . '">' . esc_html__( 'Documentation', 'woo-variation-swatches' ) . '</a>';
-					$row_meta[ 'support' ]       = '<a href="' . esc_url( apply_filters( 'wvs_support_url', 'https://wordpress.org/support/plugin/woo-variation-swatches/#new-post' ) ) . '" title="' . esc_attr( esc_html__( 'Support', 'woo-variation-swatches' ) ) . '">' . esc_html__( 'Support', 'woo-variation-swatches' ) . '</a>';
+					$report_url                  = "https://wordpress.org/support/plugin/woo-variation-swatches/#new-post";
+					$row_meta[ 'documentation' ] = '<a target="_blank" href="' . esc_url( apply_filters( 'wvs_documentation_url', 'https://getwooplugins.com/documentation/woocommerce-variation-swatches/' ) ) . '" title="' . esc_attr( esc_html__( 'Read Documentation', 'woo-variation-swatches' ) ) . '">' . esc_html__( 'Read Documentation', 'woo-variation-swatches' ) . '</a>';
 					// $row_meta[ 'rating' ]        = sprintf( '<a target="_blank" href="%1$s">%3$s</a> <span class="gwp-rate-stars"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg></span>', esc_url( $review_url ), esc_html__( 'Review', 'woo-variation-swatches' ), esc_html__( 'Please Rate Us', 'woo-variation-swatches' ) );
-					$row_meta[ 'issues' ] = sprintf( '%2$s <a target="_blank" href="%1$s">%3$s</a>', esc_url( $report_url ), esc_html__( 'Facing issue?', 'woo-variation-swatches' ), '<span style="color: red">' . esc_html__( 'Please report here.', 'woo-variation-swatches' ) . '</span>' );
+					$row_meta[ 'issues' ] = sprintf( '%2$s <a target="_blank" href="%1$s">%3$s</a>', esc_url( $report_url ), esc_html__( 'Facing issue?', 'woo-variation-swatches' ), '<span style="color: red">' . esc_html__( 'Please report here to fix it immediately.', 'woo-variation-swatches' ) . '</span>' );
 					
 					return array_merge( $links, $row_meta );
 				}
@@ -276,6 +277,18 @@
 					$message = wp_kses( __( "<strong>WooCommerce Variation Swatches</strong> is an add-on of ", 'woo-variation-swatches' ), array( 'strong' => array() ) );
 					
 					printf( '<div class="%1$s"><p>%2$s <a class="thickbox open-plugin-details-modal" href="%3$s"><strong>%4$s</strong></a></p></div>', $class, $message, $link, $text );
+				}
+			}
+			
+			public function is_required_wc_version() {
+				return version_compare( WC_VERSION, '3.2', '>' );
+			}
+			
+			public function wc_version_requirement_notice() {
+				if ( $this->is_wc_active() && ! $this->is_required_wc_version() ) {
+					$class   = 'notice notice-error';
+					$message = sprintf( esc_html__( "Currently, you are using older version of WooCommerce. It's recommended to use latest version of WooCommerce to work with %s.", 'woo-variation-swatches' ), esc_html__( 'WooCommerce Variation Swatches', 'woo-variation-swatches' ) );
+					printf( '<div class="%1$s"><p><strong>%2$s</strong></p></div>', $class, $message );
 				}
 			}
 			

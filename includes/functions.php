@@ -167,7 +167,7 @@
 							'id'      => 'threshold',
 							'type'    => 'number',
 							'title'   => esc_html__( 'Ajax variation threshold', 'woo-variation-swatches' ),
-							'desc'    => __( 'Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>, <br>Note: Enabling ajax variation threshold doesn\'t disable variation "out of stock" item.', 'woo-variation-swatches' ),
+							'desc'    => __( 'Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>, <br><span style="color: red">Note: Product variation loaded via ajax doesn\'t follow attribute behaviour.</span>', 'woo-variation-swatches' ),
 							'default' => 30,
 							'min'     => 1,
 							'max'     => 40,
@@ -177,7 +177,7 @@
 							'id'      => 'attribute-behavior',
 							'type'    => 'radio',
 							'title'   => esc_html__( 'Attribute behavior', 'woo-variation-swatches' ),
-							'desc'    => __( 'Disabled attribute will be hide / blur. <br>Note: Please remember that ajax variation doesn\'t apply this feature.', 'woo-variation-swatches' ),
+							'desc'    => __( 'Disabled attribute will be hide / blur. <br><span style="color: red">Note: Product variation loaded via ajax doesn\'t apply this feature.</span>', 'woo-variation-swatches' ),
 							'options' => array(
 								'blur' => esc_html__( 'Blur', 'woo-variation-swatches' ),
 								'hide' => esc_html__( 'Hide', 'woo-variation-swatches' ),

@@ -48,7 +48,7 @@ const WooVariationSwatches = (($) => {
                 }
 
                 if (reselect_clear) {
-                    $(this).on('click', 'li:not(.selected):not(.radio-variable-item)', function (e) {
+                    $(this).on('touchstart click', 'li:not(.selected):not(.radio-variable-item)', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         let value = $(this).data('value');
@@ -58,7 +58,7 @@ const WooVariationSwatches = (($) => {
                         select.trigger('touchstart');
                     });
 
-                    $(this).on('click', 'li.selected:not(.radio-variable-item)', function (e) {
+                    $(this).on('touchstart click', 'li.selected:not(.radio-variable-item)', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         select.val('').trigger('change');
@@ -68,7 +68,7 @@ const WooVariationSwatches = (($) => {
                     });
 
                     // RADIO
-                    $(this).on('click', 'input.wvs-radio-variable-item:radio', function (e) {
+                    $(this).on('touchstart click', 'input.wvs-radio-variable-item:radio', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         $(this).trigger('change');
@@ -96,7 +96,7 @@ const WooVariationSwatches = (($) => {
                     });
                 }
                 else {
-                    $(this).on('click', 'li:not(.radio-variable-item)', function (e) {
+                    $(this).on('touchstart click', 'li:not(.radio-variable-item)', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
                         let value = $(this).data('value');
