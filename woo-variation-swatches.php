@@ -127,6 +127,10 @@
 				array_push( $classes, sprintf( 'woo-variation-swatches-tooltip-%s', $this->get_option( 'tooltip' ) ? 'enabled' : 'disabled' ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-stylesheet-%s', $this->get_option( 'stylesheet' ) ? 'enabled' : 'disabled' ) );
 				
+				if ( class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+					array_push( $classes, 'woo-variation-swatches-pro' );
+				}
+				
 				return $classes;
 			}
 			
