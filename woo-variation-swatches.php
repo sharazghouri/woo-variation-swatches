@@ -145,6 +145,26 @@
 				if ( $this->get_option( 'tooltip' ) ) {
 					wp_enqueue_style( 'woo-variation-swatches-tooltip', $this->assets_uri( "/css/frontend-tooltip{$suffix}.css" ), array(), $this->version() );
 				}
+				
+				
+				wp_add_inline_style( 'woo-variation-swatches', $this->inline_style() );
+			}
+			
+			public function inline_style() {
+				$width      = $this->get_option( 'width' );
+				$height     = $this->get_option( 'height' );
+				$min_width = $this->get_option( 'min-width' );
+				$css        = sprintf("
+			      .variable-item:not(.radio-variable-item){
+			      width: %dpx;
+			      height: %dpx;
+			      }
+			      .woo-variation-swatches-style-squared .button-variable-item{
+			      min-width: %dpx;
+			      }
+				", absint( $width),  absint( $height), absint( $min_width));
+				
+				return $css;
 			}
 			
 			public function admin_enqueue_scripts() {

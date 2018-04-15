@@ -147,6 +147,36 @@
 							),
 							'default' => 'rounded'
 						),
+						array(
+							'id'      => 'min-width',
+							'type'    => 'number',
+							'title'   => esc_html__( 'Minimum Width', 'woo-variation-swatches' ),
+							'desc'    => __( 'Variation item minimum width, For button item', 'woo-variation-swatches' ),
+							'default' => 30,
+							'min'     => 20,
+							'max'     => 200,
+							'suffix'  => 'px'
+						),
+						array(
+							'id'      => 'width',
+							'type'    => 'number',
+							'title'   => esc_html__( 'Width', 'woo-variation-swatches' ),
+							'desc'    => __( 'Variation item width', 'woo-variation-swatches' ),
+							'default' => 30,
+							'min'     => 20,
+							'max'     => 200,
+							'suffix'  => 'px'
+						),
+						array(
+							'id'      => 'height',
+							'type'    => 'number',
+							'title'   => esc_html__( 'Height', 'woo-variation-swatches' ),
+							'desc'    => __( 'Variation item height', 'woo-variation-swatches' ),
+							'default' => 30,
+							'min'     => 20,
+							'max'     => 200,
+							'suffix'  => 'px'
+						),
 					) )
 				)
 			), apply_filters( 'wvs_simple_setting_default_active', TRUE ) );
