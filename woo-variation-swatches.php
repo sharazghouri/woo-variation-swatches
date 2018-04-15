@@ -151,18 +151,17 @@
 			}
 			
 			public function inline_style() {
-				$width      = $this->get_option( 'width' );
-				$height     = $this->get_option( 'height' );
-				$min_width = $this->get_option( 'min-width' );
-				$css        = sprintf("
+				$width  = $this->get_option( 'width' );
+				$height = $this->get_option( 'height' );
+				$css    = sprintf( '
 			      .variable-item:not(.radio-variable-item){
-			      width: %dpx;
-			      height: %dpx;
+			      width: %1$dpx;
+			      height: %2$dpx;
 			      }
 			      .woo-variation-swatches-style-squared .button-variable-item{
-			      min-width: %dpx;
+			      min-width: %1$dpx;
 			      }
-				", absint( $width),  absint( $height), absint( $min_width));
+				', absint( $width ), absint( $height ) );
 				
 				return $css;
 			}
