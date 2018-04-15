@@ -148,7 +148,7 @@
   //--------------------------------
   &.woo-variation-swatches-attribute-behavior {
     &-blur {
-      .variable-item {
+      .variable-item:not(.radio-variable-item) {
         &.disabled,
         &.disabled:hover {
           cursor  : not-allowed;
@@ -156,10 +156,6 @@
           pointer-events: none;
           position: relative;
           overflow: hidden;
-          label, input {
-            cursor          : not-allowed;
-            text-decoration : line-through;
-            }
 
           img,span{
             opacity: .3;
@@ -194,11 +190,26 @@
 
           }
         }
+
+      .radio-variable-item{
+        &.disabled,
+        &.disabled:hover{
+          label, input {
+            cursor          : not-allowed;
+            text-decoration : line-through;
+            opacity: .5;
+            }
+
+          &::before,
+          &::after{
+            display: none;
+            }
+          }
+        }
       }
     &-hide {
       .variable-item {
         &.disabled {
-
           &.radio-variable-item {
             width : auto !important;
             }
@@ -206,11 +217,12 @@
           opacity    : 0;
           visibility : hidden;
           transform  : scale(0);
+          transform-origin: center;
           width      : 0 !important;
           height     : 0 !important;
           padding    : 0 !important;
           margin     : 0 !important;
-          /*display : none;*/
+          //display : none;
           }
         }
       }
