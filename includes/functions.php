@@ -153,7 +153,7 @@
 							'title'   => esc_html__( 'Width', 'woo-variation-swatches' ),
 							'desc'    => __( 'Variation item width', 'woo-variation-swatches' ),
 							'default' => 30,
-							'min'     => 20,
+							'min'     => 10,
 							'max'     => 200,
 							'suffix'  => 'px'
 						),
@@ -163,7 +163,7 @@
 							'title'   => esc_html__( 'Height', 'woo-variation-swatches' ),
 							'desc'    => __( 'Variation item height', 'woo-variation-swatches' ),
 							'default' => 30,
-							'min'     => 20,
+							'min'     => 10,
 							'max'     => 200,
 							'suffix'  => 'px'
 						),

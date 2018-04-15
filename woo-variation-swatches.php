@@ -146,11 +146,11 @@
 					wp_enqueue_style( 'woo-variation-swatches-tooltip', $this->assets_uri( "/css/frontend-tooltip{$suffix}.css" ), array(), $this->version() );
 				}
 				
+				$this->add_inline_style();
 				
-				wp_add_inline_style( 'woo-variation-swatches', $this->inline_style() );
 			}
 			
-			public function inline_style() {
+			public function add_inline_style() {
 				$width  = $this->get_option( 'width' );
 				$height = $this->get_option( 'height' );
 				$css    = sprintf( '
@@ -163,7 +163,8 @@
 			      }
 				', absint( $width ), absint( $height ) );
 				
-				return $css;
+				$css = apply_filters( 'wvs_inline_style', $css );
+				wp_add_inline_style( 'woo-variation-swatches', $css );
 			}
 			
 			public function admin_enqueue_scripts() {
