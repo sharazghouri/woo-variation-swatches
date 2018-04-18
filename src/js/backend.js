@@ -16,5 +16,17 @@ jQuery($ => {
             PluginHelper.ColorPicker();
             PluginHelper.ImageUploader();
         })
+
+        $('.gwp-live-feed-close').on('click', function (e) {
+            e.preventDefault();
+            let id = $(this).data('feed_id');
+            wp.ajax.send('gwp_live_feed_close', {
+                data : {id}
+            });
+
+            $(this).parent().fadeOut('fast', function () {
+                $(this).remove()
+            })
+        });
     });
 });  // end of jquery main wrapper

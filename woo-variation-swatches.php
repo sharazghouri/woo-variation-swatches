@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.18
+	 * Version: 1.0.19
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.18';
+			protected $_version = '1.0.19';
 			
 			protected static $_instance = NULL;
 			private          $_settings_api;
@@ -87,11 +87,13 @@
 				add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 				
 				if ( $this->is_required_php_version() ) {
+					add_action( 'admin_notices', array( $this, 'feed' ) );
 					add_action( 'init', array( $this, 'settings_api' ), 5 );
 					add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 					add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 					add_filter( 'body_class', array( $this, 'body_class' ) );
 					
+					add_filter( 'plugin_action_links_' . $this->basename(), array( $this, 'plugin_action_links' ) );
 					add_action( 'after_wvs_product_option_terms_button', array( $this, 'add_product_attribute_dialog' ), 10, 2 );
 				}
 			}
@@ -113,6 +115,54 @@
 					?>
                 </div>
 				<?php
+			}
+			
+			public function feed() {
+				
+				$api_url = 'https://getwooplugins.com/wp-json/getwooplugins/v1/fetch-feed';
+				
+				if ( apply_filters( 'stop_gwp_live_feed', FALSE ) ) {
+					return;
+				}
+				
+				if ( isset( $_GET[ 'raw_gwp_com_live_feed' ] ) ) {
+					delete_transient( "gwp_com_live_feed" );
+				}
+				
+				if ( FALSE === ( $body = get_transient( 'gwp_com_live_feed' ) ) ) {
+					$response = wp_remote_get( $api_url, $args = array(
+						'sslverify' => FALSE,
+						'timeout'   => 45,
+						'body'      => array( 'item' => 'woo-variation-swatches', 'version' => $this->version() ),
+					) );
+					
+					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
+						$body = json_decode( wp_remote_retrieve_body( $response ), TRUE );
+						set_transient( "gwp_com_live_feed", $body, 6 * HOUR_IN_SECONDS );
+						
+						if ( isset( $_GET[ 'raw_gwp_com_live_feed' ] ) && isset( $body[ 'id' ] ) ) {
+							delete_transient( "gwp_com_live_feed_seen_{$body[ 'id' ]}" );
+						}
+					}
+				}
+				
+				if ( isset( $body[ 'id' ] ) && FALSE !== get_transient( "gwp_com_live_feed_seen_{$body[ 'id' ]}" ) ) {
+					return;
+				}
+				
+				if ( isset( $body[ 'message' ] ) && ! empty( $body[ 'message' ] ) ) {
+					$user    = wp_get_current_user();
+					$message = str_ireplace( array( '{user_login}', '{user_email}', '{user_firstname}', '{user_lastname}', '{display_name}', '{nickname}' ), array(
+						$user->user_login,
+						$user->user_email,
+						$user->user_firstname,
+						$user->user_lastname,
+						$user->display_name,
+						$user->nickname,
+					), $body[ 'message' ] );
+					
+					echo $message;
+				}
 			}
 			
 			public function body_class( $classes ) {
@@ -244,7 +294,8 @@
 			public function plugin_row_meta( $links, $file ) {
 				if ( $file == $this->basename() ) {
 					$report_url                  = "https://getwooplugins.com/tickets/";
-					$row_meta[ 'documentation' ] = '<a target="_blank" href="' . esc_url( apply_filters( 'wvs_documentation_url', 'https://getwooplugins.com/documentation/woocommerce-variation-swatches/' ) ) . '" title="' . esc_attr( esc_html__( 'Read Documentation', 'woo-variation-swatches' ) ) . '">' . esc_html__( 'Read Documentation', 'woo-variation-swatches' ) . '</a>';
+					$documentation_url           = "https://getwooplugins.com/documentation/woocommerce-variation-swatches/";
+					$row_meta[ 'documentation' ] = '<a target="_blank" href="' . esc_url( $documentation_url ) . '" title="' . esc_attr( esc_html__( 'Read Documentation', 'woo-variation-swatches' ) ) . '">' . esc_html__( 'Read Documentation', 'woo-variation-swatches' ) . '</a>';
 					// $row_meta[ 'rating' ]        = sprintf( '<a target="_blank" href="%1$s">%3$s</a> <span class="gwp-rate-stars"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg></span>', esc_url( $review_url ), esc_html__( 'Review', 'woo-variation-swatches' ), esc_html__( 'Please Rate Us', 'woo-variation-swatches' ) );
 					$row_meta[ 'issues' ] = sprintf( '%2$s <a target="_blank" href="%1$s">%3$s</a>', esc_url( $report_url ), esc_html__( 'Facing issue?', 'woo-variation-swatches' ), '<span style="color: red">' . esc_html__( 'Please open a ticket.', 'woo-variation-swatches' ) . '</span>' );
 					
@@ -255,14 +306,30 @@
 			}
 			
 			public function plugin_action_links( $links ) {
-				$action_links = array(//    'settings' => '<a href="' . admin_url( 'admin.php?page=upb-settings' ) . '" title="' . esc_attr__( 'View Settings', 'woo-variation-swatches' ) . '">' . esc_html__( 'Settings', 'woo-variation-swatches' ) . '</a>',
-				);
 				
-				return array_merge( $action_links, $links );
+				
+				$new_links = array();
+				
+				$pro_link = esc_url( add_query_arg( array(
+					                                    'utm_source'   => 'wp-admin-plugins',
+					                                    'utm_campaign' => 'go-pro',
+					                                    'utm_term'     => sanitize_title( $this->get_parent_theme_name() )
+				                                    ), 'https://getwooplugins.com/plugins/woocommerce-variation-swatches/' ) );
+				
+				
+				if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ):
+					$new_links[ 'go-pro' ] = sprintf( '<a target="_blank" style="color: #45b450; font-weight: bold;" href="%1$s" title="%2$s">%2$s</a>', $pro_link, esc_attr__( 'Go Pro', 'woo-variation-swatches' ) );
+				endif;
+				
+				return array_merge( $links, $new_links );
 			}
 			
 			public function get_theme_name() {
 				return wp_get_theme()->get( 'Name' );
+			}
+			
+			public function get_parent_theme_name() {
+				return wp_get_theme( get_template() )->get( 'Name' );
 			}
 			
 			public function get_theme_version() {

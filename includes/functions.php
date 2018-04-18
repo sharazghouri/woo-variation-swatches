@@ -209,7 +209,7 @@
 							'id'      => 'attribute_image_size',
 							'type'    => 'select',
 							'title'   => esc_html__( 'Attribute image size', 'woo-variation-swatches' ),
-							'desc'    => has_filter( 'wvs_product_attribute_image_size' ) ? __( '<span style="color: red">Attribute image size changed by <code>wvs_product_attribute_image_size</code> hook. So this option will not apply any effect.</span>', 'woo-variation-swatches' ) : esc_html__( 'Choose attribute image size', 'woo-variation-swatches' ),
+							'desc'    => has_filter( 'wvs_product_attribute_image_size' ) ? __( '<span style="color: red">Attribute image size changed by <code>wvs_product_attribute_image_size</code> hook. So this option will not apply any effect.</span>', 'woo-variation-swatches' ) : __( sprintf( 'Choose attribute image size. <a target="_blank" href="%s">Media Settings</a>', esc_url( admin_url( 'options-media.php' ) ) ), 'woo-variation-swatches' ),
 							'options' => wvs_get_all_image_sizes(),
 							'default' => 'thumbnail'
 						),

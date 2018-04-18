@@ -64,17 +64,21 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 = Forum and Feature Request =
 
 <blockquote>
+<h4>Detailed Documentation</h4>
+<ul>
+<li><a target="_blank" href="https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_campaign=WooCommerce+Variation+Swatches">Documentation</a></li>
+</ul>
 <h4>For Quick Support, feature request and bug reporting</h4>
 <ul>
 <li><a target="_blank" href="http://bit.ly/getwoopluginsgroup">Join Our Facebook Group</a></li>
 </ul>
 <h4>For contribution</h4>
 <ul>
-<li><a target="_blank" href="https://github.com/EmranAhmed/woo-variation-swatches/?utm_source=wordpress.org&utm_campaign=Woo+Variation+Swatches">Join Project in Github</a></li>
+<li><a target="_blank" href="https://github.com/EmranAhmed/woo-variation-swatches/?utm_source=wordpress.org&utm_campaign=WooCommerce+Variation+Swatches">Join Project in Github</a></li>
 </ul>
 <h4>For more information</h4>
 <ul>
-<li><a target="_blank" href="https://getwooplugins.com/?utm_source=wordpress.org&utm_campaign=Woo+Variation+Swatches">Visit Our Official Website</a></li>
+<li><a target="_blank" href="https://getwooplugins.com/?utm_source=wordpress.org&utm_campaign=WooCommerce+Variation+Swatches">Visit Our Official Website</a></li>
 </ul>
 </blockquote>
 
@@ -123,7 +127,7 @@ Even this plugin has been installed and activated on your site, variable product
 
 = Is it compatible with any kinds of WooCommerce Theme? =
 
-Yes, it's compatible with any woocommerce theme including Flatsome / X-Theme / Avada / Uncode / Storefront / Labomba. But sometimes it may require small css tweak.
+Yes, it's compatible with any woocommerce theme including Flatsome / X-Theme / Avada / Uncode / Storefront / Labomba / WR Nitro / Divi / BeTheme. But sometimes it may require small css tweak.
 
 = Does it show in product QuickView? =
 
@@ -150,6 +154,11 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 9. Settings Panel
 
 == Changelog ==
+
+= 1.0.19 =
+
+* New: Size settings
+* Improve: Visual Appearance
 
 = 1.0.18 =
 
