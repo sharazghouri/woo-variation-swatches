@@ -146,27 +146,8 @@
 								'squared' => esc_html__( 'Squared Shape', 'woo-variation-swatches' )
 							),
 							'default' => 'rounded'
-						),
-						array(
-							'id'      => 'width',
-							'type'    => 'number',
-							'title'   => esc_html__( 'Width', 'woo-variation-swatches' ),
-							'desc'    => __( 'Variation item width', 'woo-variation-swatches' ),
-							'default' => 30,
-							'min'     => 10,
-							'max'     => 200,
-							'suffix'  => 'px'
-						),
-						array(
-							'id'      => 'height',
-							'type'    => 'number',
-							'title'   => esc_html__( 'Height', 'woo-variation-swatches' ),
-							'desc'    => __( 'Variation item height', 'woo-variation-swatches' ),
-							'default' => 30,
-							'min'     => 10,
-							'max'     => 200,
-							'suffix'  => 'px'
-						),
+						)
+					
 					) )
 				)
 			), apply_filters( 'wvs_simple_setting_default_active', TRUE ) );
@@ -192,7 +173,6 @@
 							'min'     => 1,
 							'max'     => 40,
 						),
-						
 						array(
 							'id'      => 'attribute-behavior',
 							'type'    => 'radio',
@@ -204,7 +184,6 @@
 							),
 							'default' => 'blur'
 						),
-						
 						array(
 							'id'      => 'attribute_image_size',
 							'type'    => 'select',
@@ -213,6 +192,36 @@
 							'options' => wvs_get_all_image_sizes(),
 							'default' => 'thumbnail'
 						),
+						array(
+							'id'      => 'width',
+							'type'    => 'number',
+							'title'   => esc_html__( 'Width', 'woo-variation-swatches' ),
+							'desc'    => __( 'Variation item width', 'woo-variation-swatches' ),
+							'default' => 30,
+							'min'     => 10,
+							'max'     => 200,
+							'suffix'  => 'px'
+						),
+						array(
+							'id'      => 'height',
+							'type'    => 'number',
+							'title'   => esc_html__( 'Height', 'woo-variation-swatches' ),
+							'desc'    => __( 'Variation item height', 'woo-variation-swatches' ),
+							'default' => 30,
+							'min'     => 10,
+							'max'     => 200,
+							'suffix'  => 'px'
+						),
+						array(
+							'id'      => 'single-font-size',
+							'type'    => 'number',
+							'title'   => esc_html__( 'Font Size', 'woo-variation-swatches' ),
+							'desc'    => __( 'Single product variation item font size', 'woo-variation-swatches' ),
+							'default' => 16,
+							'min'     => 8,
+							'max'     => 24,
+							'suffix'  => 'px'
+						)
 					) )
 				)
 			), apply_filters( 'wvs_advanced_setting_default_active', FALSE ) );

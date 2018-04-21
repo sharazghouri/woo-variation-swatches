@@ -1,4 +1,4 @@
-.woo-variation-swatches-stylesheet-enabled{
+.woo-variation-swatches-stylesheet-enabled {
 
   // Swatches global style
   //----------------------
@@ -27,20 +27,18 @@
           cursor : pointer;
           }
 
-        input{
-          width: auto;
-          margin-right: 5px;
+        input {
+          width        : auto;
+          margin-right : 5px;
           }
 
-        label{
-          font-weight: normal;
-          font-size: 14px;
-          display: inline-block;
+        label {
+          font-weight : normal;
+          font-size   : 14px;
+          display     : inline-block;
           }
         }
-
       }
-
 
     .variable-item:not(.radio-variable-item) {
       box-sizing      : border-box;
@@ -48,10 +46,10 @@
       display         : flex;
       justify-content : center;
       align-items     : center;
-      background: #fff;
-      box-shadow: 0 0 0 1px rgba(#000, .30%);
-      padding : 2px;
-      margin  : 4px 8px 4px 0;
+      background      : #FFFFFF;
+      box-shadow      : 0 0 0 1px rgba(#000, .30%);
+      padding         : 2px;
+      margin          : 4px 8px 4px 0;
 
       // last item margin reset
       &:last-of-type {
@@ -59,16 +57,15 @@
         }
 
       //variable hover style
-      &:hover{
-        box-shadow: 0 0 0 3px rgba(#000, .10%);
+      &:hover {
+        box-shadow : 0 0 0 3px rgba(#000, .10%);
         }
 
       //variable selected item
       &.selected,
-      &.selected:hover{
-        box-shadow: 0 0 0 2px rgba(#000, .90%);
+      &.selected:hover {
+        box-shadow : 0 0 0 2px rgba(#000, .90%);
         }
-
 
       // color variable item style
       &.color-variable-item {
@@ -90,16 +87,11 @@
         }
 
       // Button variable item style
-      &.button-variable-item{
-        text-align: center;
-        span{
-          font-size: 1rem;
-          }
+      &.button-variable-item {
+        text-align : center;
         }
-
       }
     }
-
 
   // Swatches square and rounded shape style
   //----------------------------------------
@@ -110,18 +102,13 @@
         span, img, span::after {
           border-radius : 100%;
           }
-        &.button-variable-item {
-          span{
-            font-size: .8rem;
-            }
-          }
         }
       }
     &-squared {
       .variable-item {
         border-radius : 2px;
         &.button-variable-item {
-          width  : auto !important;
+          width : auto !important;
           span {
             padding : 0 5px;
             }
@@ -135,7 +122,6 @@
       }
     }
 
-
   // Swatches variation behavior
   //--------------------------------
   &.woo-variation-swatches-attribute-behavior {
@@ -143,58 +129,58 @@
       .variable-item:not(.radio-variable-item) {
         &.disabled,
         &.disabled:hover {
-          cursor  : not-allowed;
-          box-shadow: 0 0 0 1px rgba(#000, .05%);
-          pointer-events: none;
-          position: relative;
-          overflow: hidden;
+          cursor         : not-allowed;
+          box-shadow     : 0 0 0 1px rgba(#000, .05%);
+          pointer-events : none;
+          position       : relative;
+          overflow       : hidden;
 
-          img,span{
-            opacity: .3;
+          img, span {
+            opacity : .3;
             }
 
           &::before,
-          &::after{
-            content: " " !important;
-            width: 100%;
-            height: 1px;
-            background: #f00 !important;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            top: 50%;
-            visibility: visible;
-            opacity: 1;
-            border: 0;
-            margin: 0 !important;
-            padding: 0 !important;
-            min-width: auto;
-            transform-origin: center;
+          &::after {
+            content          : " " !important;
+            width            : 100%;
+            height           : 1px;
+            background       : #FF0000 !important;
+            left             : 0;
+            right            : 0;
+            bottom           : 0;
+            top              : 50%;
+            visibility       : visible;
+            opacity          : 1;
+            border           : 0;
+            margin           : 0 !important;
+            padding          : 0 !important;
+            min-width        : auto;
+            transform-origin : center;
             }
 
-          &::before{
-            transform: rotate(45deg);
+          &::before {
+            transform : rotate(45deg);
             }
 
-          &::after{
-            transform: rotate(-45deg);
+          &::after {
+            transform : rotate(-45deg);
             }
 
           }
         }
 
-      .radio-variable-item{
+      .radio-variable-item {
         &.disabled,
-        &.disabled:hover{
+        &.disabled:hover {
           label, input {
             cursor          : not-allowed;
             text-decoration : line-through;
-            opacity: .5;
+            opacity         : .5;
             }
 
           &::before,
-          &::after{
-            display: none;
+          &::after {
+            display : none;
             }
           }
         }
@@ -206,14 +192,14 @@
             width : auto !important;
             }
 
-          opacity    : 0;
-          visibility : hidden;
-          transform  : scale(0);
-          transform-origin: center;
-          width      : 0 !important;
-          height     : 0 !important;
-          padding    : 0 !important;
-          margin     : 0 !important;
+          opacity          : 0;
+          visibility       : hidden;
+          transform        : scale(0);
+          transform-origin : center;
+          width            : 0 !important;
+          height           : 0 !important;
+          padding          : 0 !important;
+          margin           : 0 !important;
           //display : none;
           }
         }
@@ -221,12 +207,12 @@
     }
 
   // tool tips
-  &.woo-variation-swatches-tooltip-enabled{
-    .radio-variable-item[data-wvstooltip]{
+  &.woo-variation-swatches-tooltip-enabled {
+    .radio-variable-item[data-wvstooltip] {
       &::before,
-      &::after{
-        left: 10px;
-        bottom: 100%;
+      &::after {
+        left   : 10px;
+        bottom : 100%;
         }
       }
     }

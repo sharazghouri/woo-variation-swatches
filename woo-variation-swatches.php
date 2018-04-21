@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.19
+	 * Version: 1.0.20
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.19';
+			protected $_version = '1.0.20';
 			
 			protected static $_instance = NULL;
 			private          $_settings_api;
@@ -201,9 +201,10 @@
 			}
 			
 			public function add_inline_style() {
-				$width  = $this->get_option( 'width' );
-				$height = $this->get_option( 'height' );
-				$css    = sprintf( '
+				$width    = $this->get_option( 'width' );
+				$height   = $this->get_option( 'height' );
+				$fontsize = $this->get_option( 'single-font-size' );
+				$css      = sprintf( '
 			      .variable-item:not(.radio-variable-item){
 			      width: %1$dpx;
 			      height: %2$dpx;
@@ -211,7 +212,10 @@
 			      .woo-variation-swatches-style-squared .button-variable-item{
 			      min-width: %1$dpx;
 			      }
-				', absint( $width ), absint( $height ) );
+			      .button-variable-item span{
+			      font-size: %3$dpx;
+			      }
+				', absint( $width ), absint( $height ), absint( $fontsize ) );
 				
 				$css = apply_filters( 'wvs_inline_style', $css );
 				wp_add_inline_style( 'woo-variation-swatches', $css );

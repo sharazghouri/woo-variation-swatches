@@ -155,6 +155,11 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.20 =
+
+* New: Font Size settings
+* Improve: Frontend Visual Appearance
+
 = 1.0.19 =
 
 * New: Size settings
