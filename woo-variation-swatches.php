@@ -170,8 +170,8 @@
 				if ( wp_is_mobile() ) {
 					array_push( $classes, 'woo-variation-swatches-on-mobile' );
 				}
-				array_push( $classes, sprintf( 'woo-variation-swatches-theme-%s', basename( get_template_directory() ) ) );
-				array_push( $classes, sprintf( 'woo-variation-swatches-theme-child-%s', basename( get_stylesheet_directory() ) ) );
+				array_push( $classes, sprintf( 'woo-variation-swatches-theme-%s', strtolower( basename( get_template_directory() ) ) ) );
+				array_push( $classes, sprintf( 'woo-variation-swatches-theme-child-%s', strtolower( basename( get_stylesheet_directory() ) ) ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-style-%s', $this->get_option( 'style' ) ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-attribute-behavior-%s', $this->get_option( 'attribute-behavior' ) ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-tooltip-%s', $this->get_option( 'tooltip' ) ? 'enabled' : 'disabled' ) );
