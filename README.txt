@@ -40,6 +40,18 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Option to disable default plugin stylesheet for theme developer.
 * No extra option and no conclusion.
 
+= Premium Feature WOOCOMMERCE  VARIATION SWATCHES =
+
+* Individual Product Basis Swatches Customization 
+* Enable Attributes Swatch In Archive / Store Pages
+* Control Swatches Width and Height on Archive Page.
+* Archive Swatches Position Define 
+* Tooltip Display Setting on Archive Page.
+* Variation Clear Button Display Setting
+* Enable Attributes into Radio Button
+* Customize Tooltip Text and Background Color
+
+
 = Sites Built With WooCommerce Variation Swatches Plugin =
 <blockquote>
 <ul>
