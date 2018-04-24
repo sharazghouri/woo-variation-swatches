@@ -96,7 +96,7 @@
   // Swatches square and rounded shape style
   //----------------------------------------
   &.woo-variation-swatches-style {
-    &-rounded {
+    &-rounded .variable-items-wrapper{
       .variable-item {
         border-radius : 100%;
         span, img, span::after {
@@ -104,11 +104,11 @@
           }
         }
       }
-    &-squared {
+    &-squared .variable-items-wrapper{
       .variable-item {
         border-radius : 2px;
         &.button-variable-item {
-          width : auto !important;
+          width : auto;
           span {
             padding : 0 5px;
             }
