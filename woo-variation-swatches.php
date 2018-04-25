@@ -297,8 +297,22 @@
 			
 			public function plugin_row_meta( $links, $file ) {
 				if ( $file == $this->basename() ) {
-					$report_url                  = "https://getwooplugins.com/tickets/";
-					$documentation_url           = "https://getwooplugins.com/documentation/woocommerce-variation-swatches/";
+					
+					$report_url = esc_url( add_query_arg( array(
+						                                      'utm_source'   => 'wp-admin-plugins',
+						                                      'utm_medium'   => 'row-meta-link',
+						                                      'utm_campaign' => 'woo-variation-swatches',
+						                                      'utm_term'     => sanitize_title( $this->get_parent_theme_name() )
+					                                      ), 'https://getwooplugins.com/tickets/' ) );
+					
+					$documentation_url = esc_url( add_query_arg( array(
+						                                             'utm_source'   => 'wp-admin-plugins',
+						                                             'utm_medium'   => 'row-meta-link',
+						                                             'utm_campaign' => 'woo-variation-swatches',
+						                                             'utm_term'     => sanitize_title( $this->get_parent_theme_name() )
+					                                             ), 'https://getwooplugins.com/documentation/woocommerce-variation-swatches/' ) );
+					
+					
 					$row_meta[ 'documentation' ] = '<a target="_blank" href="' . esc_url( $documentation_url ) . '" title="' . esc_attr( esc_html__( 'Read Documentation', 'woo-variation-swatches' ) ) . '">' . esc_html__( 'Read Documentation', 'woo-variation-swatches' ) . '</a>';
 					// $row_meta[ 'rating' ]        = sprintf( '<a target="_blank" href="%1$s">%3$s</a> <span class="gwp-rate-stars"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><a xlink:href="%1$s" title="%2$s" target="_blank"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></a></svg></span>', esc_url( $review_url ), esc_html__( 'Review', 'woo-variation-swatches' ), esc_html__( 'Please Rate Us', 'woo-variation-swatches' ) );
 					$row_meta[ 'issues' ] = sprintf( '%2$s <a target="_blank" href="%1$s">%3$s</a>', esc_url( $report_url ), esc_html__( 'Facing issue?', 'woo-variation-swatches' ), '<span style="color: red">' . esc_html__( 'Please open a ticket.', 'woo-variation-swatches' ) . '</span>' );
@@ -311,12 +325,12 @@
 			
 			public function plugin_action_links( $links ) {
 				
-				
 				$new_links = array();
 				
 				$pro_link = esc_url( add_query_arg( array(
 					                                    'utm_source'   => 'wp-admin-plugins',
-					                                    'utm_campaign' => 'go-pro',
+					                                    'utm_medium'   => 'go-pro',
+					                                    'utm_campaign' => 'woo-variation-swatches',
 					                                    'utm_term'     => sanitize_title( $this->get_parent_theme_name() )
 				                                    ), 'https://getwooplugins.com/plugins/woocommerce-variation-swatches/' ) );
 				
