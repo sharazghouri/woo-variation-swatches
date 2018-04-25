@@ -42,7 +42,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 = PREMIUM FEATURES OF WOOCOMMERCE VARIATION SWATCHES =
 
-[ Live Demo](https://demo.getwooplugins.com/woocommerce-variation-swatches?utm_source=wordpress.org&utm_medium=readme&utm_campaign=woocommerce-swatch-plugin&utm_term=live-demo&utm_content=demo%20link%20from%20WordPress.org%20landing%20page) | [Upgrade to PRO](https://getwooplugins.com/plugins/woocommerce-variation-swatches?utm_source=wordpress.org&utm_medium=readme&utm_campaign=woocommerce-swatch-plugin&utm_term=upgrade%20to%20pro&utm_content=upgrade%20to%20pro%20link%20from%20WordPress.org%20landing%20page) | [Documentation](https://getwooplugins.com/documentation/woocommerce-variation-swatches?utm_source=wordpress.org&utm_medium=readme&utm_campaign=woocommerce-swatch-plugin&utm_term=documentation&utm_content=documentation%20link%20from%20WordPress.org%20landing%20page) | [Support](https://getwooplugins.com/tickets?utm_source=wordpress.org&utm_medium=readme&utm_campaign=woocommerce-swatch-plugin&utm_term=support-ticket&utm_content=support%20ticket%20link%20from%20WordPress.org%20landing%20page) 
+[Live Demo](https://demo.getwooplugins.com/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Upgrade to PRO](https://getwooplugins.com/plugins/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Documentation](https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Support](https://getwooplugins.com/tickets/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches)
 
 * Individual Product Basis Swatches Customization 
 * Enable Attributes Swatch In Archive / Store Pages
@@ -78,9 +78,12 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 = Forum and Feature Request =
 
 <blockquote>
-<h4>Detailed Documentation</h4>
+<h4>Pro Version</h4>
 <ul>
-<li><a target="_blank" href="https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_campaign=WooCommerce+Variation+Swatches">Documentation</a></li>
+<li><a target="_blank" href="https://getwooplugins.com/plugins/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches">Pro Version</a></li>
+</ul>
+<ul>
+<li><a target="_blank" href="https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches">Documentation</a></li>
 </ul>
 <h4>For Quick Support, feature request and bug reporting</h4>
 <ul>
@@ -88,11 +91,11 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 </ul>
 <h4>For contribution</h4>
 <ul>
-<li><a target="_blank" href="https://github.com/EmranAhmed/woo-variation-swatches/?utm_source=wordpress.org&utm_campaign=WooCommerce+Variation+Swatches">Join Project in Github</a></li>
+<li><a target="_blank" href="https://github.com/EmranAhmed/woo-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches">Github Repo</a></li>
 </ul>
 <h4>For more information</h4>
 <ul>
-<li><a target="_blank" href="https://getwooplugins.com/?utm_source=wordpress.org&utm_campaign=WooCommerce+Variation+Swatches">Visit Our Official Website</a></li>
+<li><a target="_blank" href="https://getwooplugins.com/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches">Visit Our Official Website</a></li>
 </ul>
 </blockquote>
 
@@ -157,15 +160,17 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Screenshots ==
 
-1. Single Product variation page
+1. Single Product Variation page
 2. Product QuickView
 3. Available Attribute Options
-4. Attribute Image Type Preview
-5. Attribute Color Type Preview
+4. Attribute Color Type Preview
+5. Attribute Image Type Preview
 6. Attribute Button / Label Type Preview
-7. Variation Product Edit view
-8. Multisite Compatible
-9. Settings Panel
+7. Single Variation Product Edit View
+8. Simple Settings Panel
+9. Advanced Settings Panel
+10. Customizer Panel
+11. Single Variation Product New attribute term
 
 == Changelog ==
 
