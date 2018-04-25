@@ -38,9 +38,9 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Option to select ROUNDED and SQUARED variation shape.
 * Flexible tooltip insert and display settings
 * Option to disable default plugin stylesheet for theme developer.
-* No extra option and no conclusion.
+* No extra option and no confusion.
 
-= Premium Feature WOOCOMMERCE  VARIATION SWATCHES =
+= PREMIUM FEATURES OF WOOCOMMERCE VARIATION SWATCHES =
 
 [ Live Demo](https://demo.getwooplugins.com/woocommerce-variation-swatches?utm_source=wordpress.org&utm_medium=demo-link&utm_term=live%20demo&utm_content=purchase%20link%20from%20WordPress.org%20landing%20page) | [Upgrade to PRO](https://getwooplugins.com/plugins/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=purchase-link&utm_term=upgrade%20to%20pro&utm_content=purchase%20link%20from%20WordPress.org%20landing%20page) | [Documentation](https://getwooplugins.com/documentation/woocommerce-variation-swatches?utm_source=wordpress.org&utm_medium=documentation-link&utm_term=documentation&utm_content=purchase%20link%20from%20WordPress.org%20landing%20page) | [Support](https://getwooplugins.com/tickets/?utm_source=wordpress.org&utm_medium=support-link&utm_term=support&utm_content=purchase%20link%20from%20WordPress.org%20landing%20page) 
 
