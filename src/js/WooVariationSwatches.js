@@ -266,20 +266,23 @@ const WooVariationSwatches = (($) => {
                         li.each(function () {
                             let value = $(this).attr('data-value');
                             $(this).removeClass('selected disabled').addClass('disabled');
+
                             if (hidden_behaviour) {
                                 //$(this).stop().fadeIn('fast');
                             }
+
                             if (_.contains(selects, value)) {
                                 $(this).removeClass('disabled');
+                                $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false);
                                 if (value === selected) {
                                     $(this).addClass('selected');
                                     if ($(this).hasClass('radio-variable-item')) {
-                                        $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false).prop('checked', true);
+                                        $(this).find('input.wvs-radio-variable-item:radio').prop('checked', true);
                                     }
                                 }
                             }
                             else {
-                                //$(this).addClass('disabled');
+
                                 if (hidden_behaviour) {
                                     //$(this).stop().fadeOut('fast');
                                 }

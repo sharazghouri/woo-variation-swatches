@@ -174,6 +174,11 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.21 =
+
+* Fix: Known JS Issue
+* Add: Filter for referral link
+
 = 1.0.20 =
 
 * New: Font Size settings

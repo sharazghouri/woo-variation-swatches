@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.20
+	 * Version: 1.0.21
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.20';
+			protected $_version = '1.0.21';
 			
 			protected static $_instance = NULL;
 			private          $_settings_api;
@@ -327,16 +327,23 @@
 				
 				$new_links = array();
 				
-				$pro_link = esc_url( add_query_arg( array(
-					                                    'utm_source'   => 'wp-admin-plugins',
-					                                    'utm_medium'   => 'go-pro',
-					                                    'utm_campaign' => 'woo-variation-swatches',
-					                                    'utm_term'     => sanitize_title( $this->get_parent_theme_name() )
-				                                    ), 'https://getwooplugins.com/plugins/woocommerce-variation-swatches/' ) );
+				$ref_id = apply_filters( 'gwp_ref_id', 0 );
 				
+				$link_args = array(
+					'utm_source'   => 'wp-admin-plugins',
+					'utm_medium'   => 'go-pro',
+					'utm_campaign' => 'woo-variation-swatches',
+					'utm_term'     => sanitize_title( $this->get_parent_theme_name() )
+				);
+				
+				if ( $ref_id ) {
+					$link_args[ 'ref' ] = absint( $ref_id );
+				}
+				
+				$pro_link = add_query_arg( $link_args, 'https://getwooplugins.com/plugins/woocommerce-variation-swatches/' );
 				
 				if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ):
-					$new_links[ 'go-pro' ] = sprintf( '<a target="_blank" style="color: #45b450; font-weight: bold;" href="%1$s" title="%2$s">%2$s</a>', $pro_link, esc_attr__( 'Go Pro', 'woo-variation-swatches' ) );
+					$new_links[ 'go-pro' ] = sprintf( '<a target="_blank" style="color: #45b450; font-weight: bold;" href="%1$s" title="%2$s">%2$s</a>', esc_url( $pro_link ), esc_attr__( 'Go Pro', 'woo-variation-swatches' ) );
 				endif;
 				
 				return array_merge( $links, $new_links );
