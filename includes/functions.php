@@ -405,7 +405,7 @@
 			
 			array_push( $css_classes, $clear_on_reselect );
 			
-			$data = sprintf( '<ul class="list-inline variable-items-wrapper %s" data-attribute_name="%s">%s</ul>', implode( ' ', $css_classes ), esc_attr( wc_variation_attribute_name( $attribute ) ), $contents );
+			$data = sprintf( '<ul class="variable-items-wrapper %s" data-attribute_name="%s">%s</ul>', implode( ' ', $css_classes ), esc_attr( wc_variation_attribute_name( $attribute ) ), $contents );
 			
 			return apply_filters( 'wvs_variable_items_wrapper', $data, $contents, $type, $args, $saved_attribute );
 		}
