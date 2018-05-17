@@ -141,6 +141,7 @@
 
           &::before,
           &::after {
+            position: absolute;
             content          : " " !important;
             width            : 100%;
             height           : 1px;
@@ -210,10 +211,16 @@
 
   // tool tips
   &.woo-variation-swatches-tooltip-enabled {
-    .radio-variable-item[data-wvstooltip] {
+    &.woo-variation-swatches-archive-align-left .radio-variable-item[data-wvstooltip]{
       &::before,
       &::after {
         left   : 10px;
+        }
+      }
+
+    .radio-variable-item[data-wvstooltip] {
+      &::before,
+      &::after {
         bottom : 100%;
         }
       }
