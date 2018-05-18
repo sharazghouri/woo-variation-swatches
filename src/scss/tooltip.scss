@@ -45,7 +45,11 @@
     }
 
   [data-wvstooltip]:hover:before,
-  [data-wvstooltip]:hover:after {
+  [data-wvstooltip]:hover:after,
+  [data-wvstooltip]:focus:before,
+  [data-wvstooltip]:focus:after,
+  [data-wvstooltip]:active:before,
+  [data-wvstooltip]:active:after{
     visibility : visible;
     opacity    : 1;
     }
