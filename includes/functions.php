@@ -432,6 +432,10 @@
 							
 							$tooltip_html_attr = ! empty( $tooltip ) ? sprintf( 'data-wvstooltip="%s"', esc_attr( $tooltip ) ) : '';
 							
+							if ( wp_is_mobile() ) {
+								$tooltip_html_attr .= ! empty( $tooltip ) ? ' tabindex="2"' : '';
+							}
+							
 							$data .= sprintf( '<li %1$s class="variable-item %2$s-variable-item %2$s-variable-item-%3$s %4$s" title="%5$s" data-value="%3$s">', $tooltip_html_attr, esc_attr( $type ), esc_attr( $term->slug ), esc_attr( $selected_class ), esc_html( $term->name ) );
 							
 							switch ( $type ):

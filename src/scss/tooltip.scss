@@ -2,6 +2,7 @@
   [data-wvstooltip] {
     position : relative;
     cursor   : pointer;
+    outline  : none;
     }
 
   [data-wvstooltip]:before,
@@ -49,7 +50,7 @@
   [data-wvstooltip]:focus:before,
   [data-wvstooltip]:focus:after,
   [data-wvstooltip]:active:before,
-  [data-wvstooltip]:active:after{
+  [data-wvstooltip]:active:after {
     visibility : visible;
     opacity    : 1;
     }

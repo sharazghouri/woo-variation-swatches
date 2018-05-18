@@ -56,6 +56,8 @@ const WooVariationSwatches = (($) => {
                         select.trigger('click');
                         select.trigger('focusin');
                         select.trigger('touchstart');
+
+                        $(this).trigger('focus'); // Mobile tooltip
                     });
 
                     $(this).on('touchstart click', 'li.selected:not(.radio-variable-item)', function (e) {
@@ -65,6 +67,8 @@ const WooVariationSwatches = (($) => {
                         select.trigger('click');
                         select.trigger('focusin');
                         select.trigger('touchstart');
+
+                        $(this).trigger('focus'); // Mobile tooltip
                     });
 
                     // RADIO
@@ -104,6 +108,8 @@ const WooVariationSwatches = (($) => {
                         select.trigger('click');
                         select.trigger('focusin');
                         select.trigger('touchstart');
+
+                        $(this).trigger('focus'); // Mobile tooltip
                     });
 
                     // Radio
