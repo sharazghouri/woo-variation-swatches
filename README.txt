@@ -177,6 +177,7 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 = 1.0.21 =
 
 * Fix: Known JS Issue
+* Fix: Tooltip disable item disable issue
 * Add: Filter for referral link
 
 = 1.0.20 =
