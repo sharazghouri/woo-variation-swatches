@@ -1,5 +1,9 @@
 .woo-variation-swatches-stylesheet-enabled {
 
+  .woo-variation-raw-select {
+    display : none !important;
+    }
+
   // Swatches global style
   //----------------------
   .variable-items-wrapper {
@@ -13,6 +17,9 @@
       padding    : 0;
       list-style : none;
       transition : all 200ms ease;
+      img {
+        margin : 0; /** Storefront FIX */
+        }
       }
 
     &.radio-variable-wrapper {
@@ -20,6 +27,7 @@
 
       .radio-variable-item {
         box-sizing : border-box;
+        display    : block;
         list-style : none;
         cursor     : pointer;
         margin     : 0;
@@ -141,7 +149,7 @@
 
           &::before,
           &::after {
-            position: absolute;
+            position         : absolute;
             content          : " " !important;
             width            : 100%;
             height           : 1px;
@@ -211,22 +219,29 @@
 
   // tool tips
   &.woo-variation-swatches-tooltip-enabled {
-    &.woo-variation-swatches-archive-align-left .radio-variable-item[data-wvstooltip]{
-      &::before,
-      &::after {
-        left   : 10px;
-        }
-      }
 
+    // Default
     .radio-variable-item[data-wvstooltip] {
       &::before,
       &::after {
+        left   : 10px;
         bottom : 100%;
         }
       }
+
+    &.woo-variation-swatches-archive-align-center .wvs-archive-variation-wrapper .radio-variable-item[data-wvstooltip] {
+      &::before,
+      &::after {
+        left : 50%;
+        }
+      }
+
+    &.woo-variation-swatches-archive-align-right .wvs-archive-variation-wrapper .radio-variable-item[data-wvstooltip] {
+      &::before,
+      &::after {
+        left : 90%;
+        }
+      }
+
     }
   }
-
-
-
-

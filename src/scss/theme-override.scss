@@ -1,0 +1,93 @@
+.woo-variation-swatches-theme-sober {
+
+  // Item page
+  //================
+  .product form.cart {
+    .variations {
+      div {
+        margin-bottom   : 20px;
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+        }
+
+      .label {
+        display      : block;
+        text-align   : right;
+        margin-right : 10px;
+        }
+
+      .value {
+        flex-grow : unset;
+        }
+
+      select {
+        border             : 1px solid #E4E6EB;
+        padding            : .5em 1em;
+        text-align         : left;
+        text-align-last    : left;
+        -webkit-appearance : menulist-button;
+        }
+
+      }
+
+    .radio-variable-item {
+      margin     : 5px;
+      text-align : left;
+      &:last-child {
+        margin-right : 0;
+        }
+      label {
+        padding-left : 30px;
+        margin       : 0;
+        &::before {
+          top           : 0;
+          border-radius : 100%;
+          }
+
+        &::after {
+          top : 8px;
+          }
+        }
+      }
+
+    }
+
+  // Item style 4
+  &.product-style-4 .product form.cart {
+    .variations {
+      div {
+        display : block;
+        }
+
+      .label {
+        display       : block;
+        text-align    : center;
+        margin-bottom : 10px;
+
+        label {
+          border-bottom : 1px solid #EEEEEE;
+          }
+        }
+
+      .variable-items-wrapper {
+        justify-content : center;
+        }
+      }
+    }
+  }
+
+.woo-variation-swatches-theme-shophistic-lite {
+  &.woocommerce #main .entry-summary .variations {
+    display : block !important;
+    }
+
+  .ql_custom_variations {
+    display : none !important;
+    }
+
+  .radio-variable-item input[type="radio"] {
+    display : inline-block;
+    margin  : 0;
+    }
+  }
