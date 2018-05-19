@@ -174,12 +174,18 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.23 =
+
+* Improve: Frontend Visual Appearance
+* Add: **Flatsome** Theme shortcode override
+
+
 = 1.0.22 =
 
-* Add: *OceanWP* Theme Compatibility
-* Add: *Sober* Theme Compatibility
-* Add: *Shophistic Lite* Theme Compatibility
-* Add: *Old Haven* Theme Compatibility
+* Add: **OceanWP** Theme Compatibility
+* Add: **Sober** Theme Compatibility
+* Add: **Shophistic Lite** Theme Compatibility
+* Add: **Old Haven** Theme Compatibility
 
 = 1.0.21 =
 
