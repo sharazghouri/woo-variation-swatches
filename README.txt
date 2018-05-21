@@ -174,6 +174,10 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.25 =
+
+* Add: `gwp_affiliate_id` Filter for Affiliate link ID in more place.
+
 = 1.0.24 =
 
 * Improve: Frontend Visual Appearance
@@ -195,7 +199,7 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 * Fix: Known JS Issue
 * Fix: Tooltip disable item disable issue
-* Add: `gwp_ref_id` Filter for referral link
+* Add: `gwp_affiliate_id` Filter to add affiliate referral link
 
 = 1.0.20 =
 

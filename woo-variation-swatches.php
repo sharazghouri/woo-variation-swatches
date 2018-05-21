@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.24
+	 * Version: 1.0.25
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.24';
+			protected $_version = '1.0.25';
 			
 			protected static $_instance = NULL;
 			private          $_settings_api;
@@ -125,41 +125,45 @@
 					return;
 				}
 				
-				if ( isset( $_GET[ 'raw_gwp_com_live_feed' ] ) ) {
-					delete_transient( "gwp_com_live_feed" );
+				if ( isset( $_GET[ 'raw_gwp_live_feed' ] ) ) {
+					delete_transient( "gwp_live_feed" );
 				}
 				
-				if ( FALSE === ( $body = get_transient( 'gwp_com_live_feed' ) ) ) {
+				if ( FALSE === ( $body = get_transient( 'gwp_live_feed' ) ) ) {
 					$response = wp_remote_get( $api_url, $args = array(
 						'sslverify' => FALSE,
-						'timeout'   => 45,
+						'timeout'   => 60,
 						'body'      => array( 'item' => 'woo-variation-swatches', 'version' => $this->version() ),
 					) );
 					
 					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
 						$body = json_decode( wp_remote_retrieve_body( $response ), TRUE );
-						set_transient( "gwp_com_live_feed", $body, 6 * HOUR_IN_SECONDS );
+						set_transient( "gwp_live_feed", $body, 6 * HOUR_IN_SECONDS );
 						
-						if ( isset( $_GET[ 'raw_gwp_com_live_feed' ] ) && isset( $body[ 'id' ] ) ) {
-							delete_transient( "gwp_com_live_feed_seen_{$body[ 'id' ]}" );
+						if ( isset( $_GET[ 'raw_gwp_live_feed' ] ) && isset( $body[ 'id' ] ) ) {
+							delete_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" );
 						}
 					}
 				}
 				
-				if ( isset( $body[ 'id' ] ) && FALSE !== get_transient( "gwp_com_live_feed_seen_{$body[ 'id' ]}" ) ) {
+				if ( isset( $body[ 'id' ] ) && FALSE !== get_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" ) ) {
 					return;
 				}
 				
 				if ( isset( $body[ 'message' ] ) && ! empty( $body[ 'message' ] ) ) {
 					$user    = wp_get_current_user();
-					$message = str_ireplace( array( '{user_login}', '{user_email}', '{user_firstname}', '{user_lastname}', '{display_name}', '{nickname}' ), array(
+					$search  = array( '{pro_link}', '{user_login}', '{user_email}', '{user_firstname}', '{user_lastname}', '{display_name}', '{nickname}' );
+					$replace = array(
+						esc_url( woo_variation_swatches()->get_pro_link( 'product-feed' ) ),
 						$user->user_login,
 						$user->user_email,
 						$user->user_firstname,
 						$user->user_lastname,
 						$user->display_name,
 						$user->nickname,
-					), $body[ 'message' ] );
+					);
+					
+					$message = str_ireplace( $search, $replace, $body[ 'message' ] );
 					
 					echo $message;
 				}
@@ -328,26 +332,33 @@
 				
 				$new_links = array();
 				
-				$ref_id = apply_filters( 'gwp_ref_id', 0 );
-				
-				$link_args = array(
-					'utm_source'   => 'wp-admin-plugins',
-					'utm_medium'   => 'go-pro',
-					'utm_campaign' => 'woo-variation-swatches',
-					'utm_term'     => sanitize_title( $this->get_parent_theme_name() )
-				);
-				
-				if ( $ref_id ) {
-					$link_args[ 'ref' ] = absint( $ref_id );
-				}
-				
-				$pro_link = add_query_arg( $link_args, 'https://getwooplugins.com/plugins/woocommerce-variation-swatches/' );
+				$pro_link = $this->get_pro_link();
 				
 				if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ):
 					$new_links[ 'go-pro' ] = sprintf( '<a target="_blank" style="color: #45b450; font-weight: bold;" href="%1$s" title="%2$s">%2$s</a>', esc_url( $pro_link ), esc_attr__( 'Go Pro', 'woo-variation-swatches' ) );
 				endif;
 				
 				return array_merge( $links, $new_links );
+			}
+			
+			public function get_pro_link( $medium = 'go-pro' ) {
+				
+				$affiliate_id = apply_filters( 'gwp_affiliate_id', 0 );
+				
+				$link_args = array();
+				
+				if ( ! empty( $affiliate_id ) ) {
+					$link_args[ 'ref' ] = esc_html( $affiliate_id );
+				}
+				
+				$link_args[ 'utm_source' ]   = 'wp-admin-plugins';
+				$link_args[ 'utm_medium' ]   = esc_attr( $medium );
+				$link_args[ 'utm_campaign' ] = 'woo-variation-swatches';
+				$link_args[ 'utm_term' ]     = sanitize_title( $this->get_parent_theme_name() );
+				
+				$link_args = apply_filters( 'wvs_get_pro_link_args', $link_args );
+				
+				return add_query_arg( $link_args, 'https://getwooplugins.com/plugins/woocommerce-variation-swatches/' );
 			}
 			
 			public function get_theme_name() {

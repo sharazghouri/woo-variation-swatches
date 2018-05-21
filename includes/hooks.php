@@ -3,7 +3,7 @@
 	
 	add_action( 'wp_ajax_gwp_live_feed_close', function () {
 		$id = absint( $_POST[ 'id' ] );
-		set_transient( "gwp_com_live_feed_seen_{$id}", TRUE, 1 * WEEK_IN_SECONDS );
+		set_transient( "gwp_live_feed_seen_{$id}", TRUE, 1 * WEEK_IN_SECONDS );
 	} );
 	
 	add_filter( 'product_attributes_type_selector', 'wvs_product_attributes_types' );

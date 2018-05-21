@@ -226,7 +226,7 @@
 							'pro'          => TRUE,
 							'width'        => '41%',
 							'screen_shot'  => woo_variation_swatches()->images_uri( 'advanced-screenshot.png' ),
-							'product_link' => 'http://bit.ly/woos-settings',
+							'product_link' => woo_variation_swatches()->get_pro_link( 'advanced-tab' ),
 						)
 					) )
 				)
@@ -243,7 +243,7 @@
 								'pro'          => TRUE,
 								'width'        => '45%',
 								'screen_shot'  => woo_variation_swatches()->images_uri( 'archive-pro.png' ),
-								'product_link' => 'http://bit.ly/woos-settings',
+								'product_link' => woo_variation_swatches()->get_pro_link( 'archive-tab' ),
 							),
 						) )
 					)
@@ -848,8 +848,8 @@
                     color : #15ce5c;
                     }
 
-                .gwp-pro-features-wrapper p,  .gwp-pro-features-wrapper ul {
-                    padding: 10px 0;
+                .gwp-pro-features-wrapper p, .gwp-pro-features-wrapper ul {
+                    padding : 10px 0;
                     }
 
                 .gwp-pro-button span {
@@ -873,7 +873,7 @@
                     <li><span class="dashicons dashicons-yes"></span> Customize swatches colors.</li>
                     <li><span class="dashicons dashicons-yes"></span> Automatic updates and exclusive technical support.</li>
                 </ul>
-                <a class="button button-primary button-hero gwp-pro-button" href="http://bit.ly/woos-settings">Okay, I need the features! <span class="dashicons dashicons-external"></span></a>
+                <a target="_blank" class="button button-primary button-hero gwp-pro-button" href="<?php echo esc_url( woo_variation_swatches()->get_pro_link( 'product-edit' ) ); ?>">Okay, I need the features! <span class="dashicons dashicons-external"></span></a>
             </div>
         </div>
 		<?php
