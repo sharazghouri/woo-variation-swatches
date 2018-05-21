@@ -54,12 +54,20 @@
 					
 					foreach ( $panel[ 'sections' ] as $section ) {
 						
+						if ( isset( $section[ 'pro' ] ) ) {
+							continue;
+						}
+						
 						if ( ! isset( $section[ 'customize_hidden' ] ) || ! $section[ 'customize_hidden' ] ) {
 							new WVS_Customize_Heading( $wp_customize, $section_id, $section[ 'title' ] );
 						}
 						
 						
 						foreach ( $section[ 'fields' ] as $field ) {
+							
+							if ( isset( $field[ 'pro' ] ) ) {
+								continue;
+							}
 							
 							$setting_id = sprintf( '%s[%s]', $this->_settings_name, $field[ 'id' ] );
 							

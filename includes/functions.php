@@ -221,11 +221,34 @@
 							'min'     => 8,
 							'max'     => 24,
 							'suffix'  => 'px'
+						),
+						'advanced-pro' => array(
+							'pro'          => TRUE,
+							'width'        => '41%',
+							'screen_shot'  => woo_variation_swatches()->images_uri( 'advanced-screenshot.png' ),
+							'product_link' => 'http://bit.ly/woos-settings',
 						)
 					) )
 				)
 			), apply_filters( 'wvs_advanced_setting_default_active', FALSE ) );
 			
+			if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+				woo_variation_swatches()->add_setting( 'archive', esc_html__( 'Archive / Shop', 'woo-variation-swatches-pro' ), array(
+					array(
+						'pro'    => TRUE,
+						'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches-pro' ),
+						'desc'   => esc_html__( 'Advanced change some visual styles', 'woo-variation-swatches-pro' ),
+						'fields' => apply_filters( 'wvs_pro_archive_setting_fields', array(
+							array(
+								'pro'          => TRUE,
+								'width'        => '45%',
+								'screen_shot'  => woo_variation_swatches()->images_uri( 'archive-pro.png' ),
+								'product_link' => 'http://bit.ly/woos-settings',
+							),
+						) )
+					)
+				), apply_filters( 'wvs_pro_archive_setting_default_active', FALSE ) );
+			}
 			do_action( 'after_wvs_settings', woo_variation_swatches() );
 		}
 	endif;
@@ -797,4 +820,66 @@
 			return apply_filters( 'wvs_variation_attribute_options_html', $data, $args );
 		}
 	endif;
+	
+	
+	function add_wvs_pro_preview_tab( $tabs ) {
+		$tabs[ 'woo-variation-swatches-pro' ] = array(
+			'label'    => __( 'Swatches Settings', 'woo-variation-swatches-pro' ),
+			'target'   => 'wvs-pro-product-variable-swatches-options',
+			'class'    => array( 'show_if_variable', 'variations_tab' ),
+			'priority' => 65,
+		);
+		
+		return $tabs;
+	}
+	
+	function add_wvs_pro_preview_tab_panel() {
+		ob_start();
+		?>
+        <div id="wvs-pro-product-variable-swatches-options" class="panel wc-metaboxes-wrapper hidden">
+            <style type="text/css">
+                .gwp-pro-features-wrapper {
+                    padding          : 20px;
+                    margin           : 10px;
+                    background-color : #f1f1f1;
+                    }
+
+                .gwp-pro-features-wrapper li span {
+                    color : #15ce5c;
+                    }
+
+                .gwp-pro-features-wrapper p,  .gwp-pro-features-wrapper ul {
+                    padding: 10px 0;
+                    }
+
+                .gwp-pro-button span {
+                    padding-top : 10px;
+                    }
+            </style>
+            <div class="gwp-pro-features-wrapper">
+                <h3>Upgrade to Woocommerce Variation Swatches - Pro</h3>
+                <p>With the premium version of Woocommerce Variation Swatches, you can do:</p>
+                <ul>
+                    <li><span class="dashicons dashicons-yes"></span> Enable attribute variations into radio button.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Individual product basis swatches customization.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Enable attributes swatch in archives / shop page.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Control swatches width and height on archive page.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Archive swatches positioning.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Archive swatches alignment.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Tooltip display setting on archive page.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Variation clear button display setting.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Customize tooltip text and background color.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Customize font size, swatches height and width.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Customize swatches colors.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Automatic updates and exclusive technical support.</li>
+                </ul>
+                <a class="button button-primary button-hero gwp-pro-button" href="http://bit.ly/woos-settings">Okay, I need the features! <span class="dashicons dashicons-external"></span></a>
+            </div>
+        </div>
+		<?php
+		
+		echo ob_get_clean();
+		
+		
+	}
 	

@@ -158,6 +158,9 @@
 						$section[ 'fields' ] = apply_filters( 'wvs_settings_fields', $section[ 'fields' ], $section, $tab );
 						
 						foreach ( $section[ 'fields' ] as $field ) {
+							if ( isset( $field[ 'pro' ] ) ) {
+								continue;
+							}
 							$field[ 'default' ] = isset( $field[ 'default' ] ) ? $field[ 'default' ] : NULL;
 							$this->set_default( $field[ 'id' ], $field[ 'type' ], $field[ 'default' ] );
 						}
@@ -230,6 +233,12 @@
 						
 						foreach ( $section[ 'fields' ] as $field ) {
 							
+							if ( isset( $field[ 'pro' ] ) ) {
+								$field[ 'id' ]    = uniqid( 'pro' );
+								$field[ 'type' ]  = '';
+								$field[ 'title' ] = '';
+							}
+							
 							//$field[ 'label_for' ] = $this->settings_name . '[' . $field[ 'id' ] . ']';
 							$field[ 'label_for' ] = $field[ 'id' ] . '-field';
 							$field[ 'default' ]   = isset( $field[ 'default' ] ) ? $field[ 'default' ] : NULL;
@@ -241,6 +250,7 @@
 							}
 							
 							add_settings_field( $this->settings_name . '[' . $field[ 'id' ] . ']', $field[ 'title' ], array( $this, 'field_callback' ), $tab[ 'id' ] . $section[ 'id' ], $tab[ 'id' ] . $section[ 'id' ], $field );
+							
 						}
 					}
 				}
@@ -271,6 +281,10 @@
 					
 					case 'post_select':
 						$this->post_select_field_callback( $field );
+						break;
+					
+					case 'pro':
+						$this->pro_field_callback( $field );
 						break;
 					
 					default:
@@ -348,6 +362,18 @@
 				$size  = isset( $args[ 'size' ] ) && ! is_null( $args[ 'size' ] ) ? $args[ 'size' ] : 'regular';
 				$html  = sprintf( '<input type="text" class="%1$s-text" id="%2$s-field" name="%4$s[%2$s]" value="%3$s"/>', $size, $args[ 'id' ], $value, $this->settings_name );
 				$html  .= $this->get_field_description( $args );
+				
+				echo $html;
+			}
+			
+			public function pro_field_callback( $args ) {
+				
+				$image = esc_url( $args[ 'screen_shot' ] );
+				$link  = esc_url( $args[ 'product_link' ] );
+				$width = isset( $args[ 'width' ] ) ? $args[ 'width' ] : '70%';
+				
+				$html = sprintf( '<a target="_blank" href="%s"><img style="width: %s" src="%s" /></a>', $link, $width, $image );
+				$html .= $this->get_field_description( $args );
 				
 				echo $html;
 			}
@@ -534,15 +560,23 @@
 					
 					printf( '<tr id="%s" %s %s>', $wrapper_id, $custom_attributes, $dependency );
 					
-					if ( ! empty( $field[ 'args' ][ 'label_for' ] ) ) {
-						echo '<th scope="row"><label for="' . esc_attr( $field[ 'args' ][ 'label_for' ] ) . '">' . $field[ 'title' ] . '</label></th>';
+					if ( isset( $field[ 'args' ][ 'pro' ] ) ) {
+						echo '<td colspan="2" style="padding: 0; margin: 0">';
+						$this->pro_field_callback( $field[ 'args' ] );
+						echo '</td>';
 					} else {
-						echo '<th scope="row">' . $field[ 'title' ] . '</th>';
+						
+						if ( ! empty( $field[ 'args' ][ 'label_for' ] ) ) {
+							echo '<th scope="row"><label for="' . esc_attr( $field[ 'args' ][ 'label_for' ] ) . '">' . $field[ 'title' ] . '</label></th>';
+						} else {
+							echo '<th scope="row">' . $field[ 'title' ] . '</th>';
+						}
+						
+						echo '<td>';
+						call_user_func( $field[ 'callback' ], $field[ 'args' ] );
+						echo '</td>';
 					}
 					
-					echo '<td>';
-					call_user_func( $field[ 'callback' ], $field[ 'args' ] );
-					echo '</td>';
 					echo '</tr>';
 				}
 			}

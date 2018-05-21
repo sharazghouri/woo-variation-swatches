@@ -174,11 +174,15 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.24 =
+
+* Improve: Frontend Visual Appearance
+* Fix: Some known issues
+
 = 1.0.23 =
 
 * Improve: Frontend Visual Appearance
 * Add: **Flatsome** Theme shortcode override
-
 
 = 1.0.22 =
 

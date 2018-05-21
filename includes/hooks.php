@@ -17,3 +17,10 @@
 	add_filter( 'woocommerce_ajax_variation_threshold', 'wvs_ajax_variation_threshold', 8 );
 	
 	add_filter( 'woocommerce_dropdown_variation_attribute_options_html', 'wvs_variation_attribute_options_html', 200, 2 );
+	
+	if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+		add_filter( 'woocommerce_product_data_tabs', 'add_wvs_pro_preview_tab' );
+		
+		add_filter( 'woocommerce_product_data_panels', 'add_wvs_pro_preview_tab_panel' );
+	}
+	

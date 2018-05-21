@@ -44,11 +44,11 @@ msgstr ""
 msgid "Remove image"
 msgstr ""
 
-#: ../includes/functions.php:28, ../includes/functions.php:244
+#: ../includes/functions.php:28, ../includes/functions.php:267
 msgid "Color"
 msgstr ""
 
-#: ../includes/functions.php:34, ../includes/functions.php:253
+#: ../includes/functions.php:34, ../includes/functions.php:276
 msgid "Image"
 msgstr ""
 
@@ -175,35 +175,35 @@ msgstr ""
 msgid "Single product variation item font size"
 msgstr ""
 
-#: ../includes/functions.php:245
+#: ../includes/functions.php:268
 msgid "Choose a color"
 msgstr ""
 
-#: ../includes/functions.php:254, ../woo-variation-swatches.php:242
+#: ../includes/functions.php:277, ../woo-variation-swatches.php:242
 msgid "Choose an Image"
 msgstr ""
 
-#: ../includes/functions.php:315
+#: ../includes/functions.php:338
 msgid "Select terms"
 msgstr ""
 
-#: ../includes/functions.php:326
+#: ../includes/functions.php:349
 msgid "Select all"
 msgstr ""
 
-#: ../includes/functions.php:327
+#: ../includes/functions.php:350
 msgid "Select none"
 msgstr ""
 
-#: ../includes/functions.php:332
+#: ../includes/functions.php:355
 msgid "Add new %s"
 msgstr ""
 
-#: ../includes/functions.php:332, ../includes/functions.php:334
+#: ../includes/functions.php:355, ../includes/functions.php:357
 msgid "Add new"
 msgstr ""
 
-#: ../includes/functions.php:493, ../includes/functions.php:565, ../includes/functions.php:638, ../includes/functions.php:709
+#: ../includes/functions.php:516, ../includes/functions.php:588, ../includes/functions.php:661, ../includes/functions.php:732
 msgid "Choose an option"
 msgstr ""
 
