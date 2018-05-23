@@ -159,6 +159,10 @@
 					return;
 				}
 				
+				if ( isset( $body[ 'skip_pro' ] ) && ! empty( $body[ 'skip_pro' ] ) && class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+					return;
+				}
+				
 				if ( isset( $body[ 'theme' ] ) && ! empty( $body[ 'theme' ] ) && $body[ 'theme' ] != sanitize_title( strtolower( $this->get_parent_theme_name() ) ) ) {
 					return;
 				}
