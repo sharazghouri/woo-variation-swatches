@@ -155,6 +155,14 @@
 					return;
 				}
 				
+				if ( isset( $body[ 'version' ] ) && ! empty( $body[ 'version' ] ) && $body[ 'version' ] != $this->version() ) {
+					return;
+				}
+				
+				if ( isset( $body[ 'theme' ] ) && ! empty( $body[ 'theme' ] ) && $body[ 'theme' ] != sanitize_title( strtolower( $this->get_parent_theme_name() ) ) ) {
+					return;
+				}
+				
 				if ( isset( $body[ 'message' ] ) && ! empty( $body[ 'message' ] ) ) {
 					$user    = wp_get_current_user();
 					$search  = array( '{pro_link}', '{user_login}', '{user_email}', '{user_firstname}', '{user_lastname}', '{display_name}', '{nickname}' );
