@@ -463,7 +463,12 @@
 			}
 			
 			private function get_last_active_tab() {
+				
 				$last_tab = trim( $this->get_option( '_last_active_tab' ) );
+				
+				if ( isset( $_GET[ 'tab' ] ) && ! empty( $_GET[ 'tab' ] ) ) {
+					$last_tab = trim( $_GET[ 'tab' ] );
+				}
 				
 				$default_tab = '';
 				foreach ( $this->fields as $tabs ) {

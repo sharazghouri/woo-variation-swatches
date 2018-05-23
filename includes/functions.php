@@ -221,16 +221,28 @@
 							'min'     => 8,
 							'max'     => 24,
 							'suffix'  => 'px'
-						),
-						'advanced-pro' => array(
-							'pro'          => TRUE,
-							'width'        => '41%',
-							'screen_shot'  => woo_variation_swatches()->images_uri( 'advanced-screenshot.png' ),
-							'product_link' => woo_variation_swatches()->get_pro_link( 'advanced-tab' ),
 						)
 					) )
 				)
 			), apply_filters( 'wvs_advanced_setting_default_active', FALSE ) );
+			
+			if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+				woo_variation_swatches()->add_setting( 'style', esc_html__( 'Style', 'woo-variation-swatches' ), array(
+					array(
+						'pro'    => TRUE,
+						'title'  => esc_html__( 'Visual Styling', 'woo-variation-swatches-pro' ),
+						'desc'   => esc_html__( 'Change some visual styles', 'woo-variation-swatches-pro' ),
+						'fields' => apply_filters( 'wvs_pro_style_setting_fields', array(
+							array(
+								'pro'          => TRUE,
+								'width'        => '45%',
+								'screen_shot'  => woo_variation_swatches()->images_uri( 'style-preview.png' ),
+								'product_link' => woo_variation_swatches()->get_pro_link( 'style-tab' ),
+							),
+						) )
+					)
+				), apply_filters( 'wvs_pro_style_setting_default_active', FALSE ) );
+			}
 			
 			if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
 				woo_variation_swatches()->add_setting( 'archive', esc_html__( 'Archive / Shop', 'woo-variation-swatches-pro' ), array(
@@ -242,13 +254,14 @@
 							array(
 								'pro'          => TRUE,
 								'width'        => '45%',
-								'screen_shot'  => woo_variation_swatches()->images_uri( 'archive-pro.png' ),
+								'screen_shot'  => woo_variation_swatches()->images_uri( 'archive-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'archive-tab' ),
 							),
 						) )
 					)
 				), apply_filters( 'wvs_pro_archive_setting_default_active', FALSE ) );
 			}
+			
 			do_action( 'after_wvs_settings', woo_variation_swatches() );
 		}
 	endif;
@@ -288,6 +301,104 @@
 			
 			return $fields;
 			
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Is Color Attribute
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_is_color_attribute' ) ):
+		function wvs_is_color_attribute( $attribute ) {
+			if ( ! is_object( $attribute ) ) {
+				return FALSE;
+			}
+			
+			return $attribute->attribute_type == 'color';
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Is Image Attribute
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_is_image_attribute' ) ):
+		function wvs_is_image_attribute( $attribute ) {
+			if ( ! is_object( $attribute ) ) {
+				return FALSE;
+			}
+			
+			return $attribute->attribute_type == 'image';
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Is Button Attribute
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_is_button_attribute' ) ):
+		function wvs_is_button_attribute( $attribute ) {
+			if ( ! is_object( $attribute ) ) {
+				return FALSE;
+			}
+			
+			return $attribute->attribute_type == 'button';
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Is Radio Attribute
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_is_radio_attribute' ) ):
+		function wvs_is_radio_attribute( $attribute ) {
+			if ( ! is_object( $attribute ) ) {
+				return FALSE;
+			}
+			
+			return $attribute->attribute_type == 'radio';
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Is Select Attribute
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_is_select_attribute' ) ):
+		function wvs_is_select_attribute( $attribute ) {
+			if ( ! is_object( $attribute ) ) {
+				return FALSE;
+			}
+			
+			return $attribute->attribute_type == 'select';
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Get Color Attribute Value
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_get_product_attribute_color' ) ):
+		function wvs_get_product_attribute_color( $term ) {
+			if ( ! is_object( $term ) ) {
+				return FALSE;
+			}
+			
+			return get_term_meta( $term->term_id, 'product_attribute_color', TRUE );
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Get Image Attribute Value
+	//-------------------------------------------------------------------------------
+	
+	if ( ! function_exists( 'wvs_get_product_attribute_image' ) ):
+		function wvs_get_product_attribute_image( $term ) {
+			if ( ! is_object( $term ) ) {
+				return FALSE;
+			}
+			
+			return get_term_meta( $term->term_id, 'product_attribute_image', TRUE );
 		}
 	endif;
 	
@@ -821,10 +932,9 @@
 		}
 	endif;
 	
-	
 	function add_wvs_pro_preview_tab( $tabs ) {
 		$tabs[ 'woo-variation-swatches-pro' ] = array(
-			'label'    => __( 'Swatches Settings', 'woo-variation-swatches-pro' ),
+			'label'    => esc_html__( 'Swatches Settings', 'woo-variation-swatches' ),
 			'target'   => 'wvs-pro-product-variable-swatches-options',
 			'class'    => array( 'show_if_variable', 'variations_tab' ),
 			'priority' => 65,
@@ -860,17 +970,17 @@
                 <h3>Upgrade to Woocommerce Variation Swatches - Pro</h3>
                 <p>With the premium version of Woocommerce Variation Swatches, you can do:</p>
                 <ul>
-                    <li><span class="dashicons dashicons-yes"></span> Enable attribute variations into radio button.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Convert attribute variations into radio button.</li>
                     <li><span class="dashicons dashicons-yes"></span> Individual product basis swatches customization.</li>
                     <li><span class="dashicons dashicons-yes"></span> Enable attributes swatch in archives / shop page.</li>
                     <li><span class="dashicons dashicons-yes"></span> Control swatches width and height on archive page.</li>
-                    <li><span class="dashicons dashicons-yes"></span> Archive swatches positioning.</li>
-                    <li><span class="dashicons dashicons-yes"></span> Archive swatches alignment.</li>
-                    <li><span class="dashicons dashicons-yes"></span> Tooltip display setting on archive page.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Archive page swatches positioning.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Archive page swatches alignment.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Tooltip display setting on archive/shop page.</li>
                     <li><span class="dashicons dashicons-yes"></span> Variation clear button display setting.</li>
                     <li><span class="dashicons dashicons-yes"></span> Customize tooltip text and background color.</li>
                     <li><span class="dashicons dashicons-yes"></span> Customize font size, swatches height and width.</li>
-                    <li><span class="dashicons dashicons-yes"></span> Customize swatches colors.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Customize swatches colors and border sizes.</li>
                     <li><span class="dashicons dashicons-yes"></span> Automatic updates and exclusive technical support.</li>
                 </ul>
                 <a target="_blank" class="button button-primary button-hero gwp-pro-button" href="<?php echo esc_url( woo_variation_swatches()->get_pro_link( 'product-edit' ) ); ?>">Okay, I need the features! <span class="dashicons dashicons-external"></span></a>
