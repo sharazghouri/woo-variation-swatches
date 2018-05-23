@@ -165,7 +165,7 @@
 					return;
 				}
 				
-				if ( isset( $body[ 'theme' ] ) && ! empty( $body[ 'theme' ] ) && $body[ 'theme' ] != sanitize_title( strtolower( $this->get_parent_theme_name() ) ) ) {
+				if ( isset( $body[ 'theme' ] ) && ! empty( $body[ 'theme' ] ) && $body[ 'theme' ] != $this->get_parent_theme_dir() ) {
 					return;
 				}
 				
@@ -193,8 +193,8 @@
 				if ( wp_is_mobile() ) {
 					array_push( $classes, 'woo-variation-swatches-on-mobile' );
 				}
-				array_push( $classes, sprintf( 'woo-variation-swatches-theme-%s', strtolower( basename( get_template_directory() ) ) ) );
-				array_push( $classes, sprintf( 'woo-variation-swatches-theme-child-%s', strtolower( basename( get_stylesheet_directory() ) ) ) );
+				array_push( $classes, sprintf( 'woo-variation-swatches-theme-%s', $this->get_parent_theme_dir() ) );
+				array_push( $classes, sprintf( 'woo-variation-swatches-theme-child-%s', $this->get_theme_dir() ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-style-%s', $this->get_option( 'style' ) ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-attribute-behavior-%s', $this->get_option( 'attribute-behavior' ) ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-tooltip-%s', $this->get_option( 'tooltip' ) ? 'enabled' : 'disabled' ) );
@@ -384,8 +384,16 @@
 				return wp_get_theme()->get( 'Name' );
 			}
 			
+			public function get_theme_dir() {
+				return strtolower( basename( get_template_directory() ) );
+			}
+			
 			public function get_parent_theme_name() {
 				return wp_get_theme( get_template() )->get( 'Name' );
+			}
+			
+			public function get_parent_theme_dir() {
+				return strtolower( basename( get_stylesheet_directory() ) );
 			}
 			
 			public function get_theme_version() {
