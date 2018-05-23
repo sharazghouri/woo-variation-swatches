@@ -135,10 +135,8 @@
 						'sslverify' => FALSE,
 						'timeout'   => 60,
 						'body'      => array(
-							'item'    => 'woo-variation-swatches',
-							'version' => $this->version(),
-							'theme'   => sanitize_title( strtolower( $this->get_parent_theme_name() ) )
-						),
+							'item' => 'woo-variation-swatches',
+						)
 					) );
 					
 					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
