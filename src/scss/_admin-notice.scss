@@ -1,7 +1,84 @@
 .gwp-live-feed-contents {
-  padding-right : 38px;
   position      : relative;
+  clear: both;
+  overflow: auto;
+
+  &.notice-info:before{
+      content: "\f348";
+      background: #41a1d3;
+    }
+
+  &.notice-success:before{
+    content: "\f147";
+    background: #46b450;
+    }
+
+  &.notice-error:before{
+    content: "\f158";
+    background: #dc3232;
+    }
+
+  &.notice-warning:before{
+    content: "\f534";
+    background: #f6ba33;
+    }
+
+
+
+  &.notice-info,
+  &.notice-success,
+  &.notice-error,
+  &.notice-warning{
+    border: 0;
+    display: flex;
+    align-items: stretch;
+    padding: 0;
+    border-radius: 4px;
+
+    &:before{
+      font-family: dashicons;
+      font-size: 30px;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      }
+
+    // message
+    .feed-message-wrapper{
+      padding: 10px 60px 10px 20px;
+      }
+    }
+
+
+  // Notice
+  &.notic{
+    border-radius: 5px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    // thumbnail image
+    .feed-thumbnail-wrapper{
+      .attachment-thumbnail{
+        display: block;
+        }
+      }
+
+    // message
+    .feed-message-wrapper{
+      padding: 20px 60px 20px 20px;
+      }
+    }
+
+
   .gwp-live-feed-close {
+    display: flex;
+    right: 0;
     text-decoration : none;
+    padding: 10px 10px 10px 25px;
+
+    &:before{
+      display: inline-block;
+      }
     }
   }
