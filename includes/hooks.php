@@ -6,6 +6,10 @@
 		set_transient( "gwp_live_feed_seen_{$id}", TRUE, 1 * WEEK_IN_SECONDS );
 	} );
 	
+	add_action( 'wp_ajax_nopriv_wvs_get_available_variations', 'wvs_get_available_product_variations' );
+	
+	add_action( 'wp_ajax_wvs_get_available_variations', 'wvs_get_available_product_variations' );
+	
 	add_filter( 'product_attributes_type_selector', 'wvs_product_attributes_types' );
 	
 	add_action( 'init', 'wvs_settings', 2 );

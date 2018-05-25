@@ -16,6 +16,7 @@ const WooVariationSwatches = (($) => {
             this._generated         = {};
             this.product_variations = this._element.data('product_variations');
             this.is_ajax_variation  = !this.product_variations;
+            this.product_id         = this._element.data('product_id');
             this.hidden_behaviour   = $('body').hasClass('woo-variation-swatches-attribute-behavior-hide');
 
             // Call
@@ -132,7 +133,7 @@ const WooVariationSwatches = (($) => {
             _.delay(() => {
                 this._element.trigger('woo_variation_swatches_init', [this, this.product_variations])
                 $(document).trigger('woo_variation_swatches_loaded', [this._element, this.product_variations])
-            }, 1)
+            }, 2)
         }
 
         loaded(is_ajax, hidden_behaviour) {
@@ -192,6 +193,11 @@ const WooVariationSwatches = (($) => {
                             }
                             if ($(this).hasClass('radio-variable-item')) {
                                 $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false).prop('checked', false);
+                            }
+                        }
+                        else {
+                            if ($(this).hasClass('radio-variable-item')) {
+                                //    $(this).find('input.wvs-radio-variable-item:radio').prop('checked', false);
                             }
                         }
                     });

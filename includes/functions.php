@@ -106,6 +106,19 @@
 		}
 	endif;
 	
+	
+	function wvs_get_available_product_variations() {
+		if ( is_ajax() && isset( $_GET[ 'product_id' ] ) ) {
+			$product_id           = absint( $_GET[ 'product_id' ] );
+			$product              = wc_get_product( $product_id );
+			$available_variations = $product->get_available_variations();
+			
+			wp_send_json_success( wp_json_encode( $available_variations ) );
+		} else {
+			wp_send_json_error();
+		}
+	}
+	
 	//-------------------------------------------------------------------------------
 	// Add settings
 	// Add Theme Support:

@@ -7,7 +7,9 @@ jQuery($ => {
 
         // Support for Jetpack's Infinite Scroll,
         $(document.body).on('post-load', function () {
-            $('.variations_form').wc_variation_form();
+            $('.variations_form').each(function () {
+                $(this).wc_variation_form();
+            })
         });
 
     });
