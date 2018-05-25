@@ -588,7 +588,7 @@
 							switch ( $type ):
 								case 'color':
 									$color = sanitize_hex_color( get_term_meta( $term->term_id, 'product_attribute_color', TRUE ) );
-									$data  .= sprintf( '<span style="background-color:%s;"></span>', esc_attr( $color ) );
+									$data  .= sprintf( '<span class="variable-item-span variable-item-span-%s" style="background-color:%s;"></span>', esc_attr( $type ), esc_attr( $color ) );
 									break;
 								
 								case 'image':
@@ -599,7 +599,7 @@
 									break;
 								
 								case 'button':
-									$data .= sprintf( '<span>%s</span>', esc_html( $term->name ) );
+									$data .= sprintf( '<span class="variable-item-span variable-item-span-%s">%s</span>', esc_attr( $type ), esc_html( $term->name ) );
 									break;
 								
 								case 'radio':
