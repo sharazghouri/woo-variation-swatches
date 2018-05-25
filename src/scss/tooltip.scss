@@ -62,7 +62,7 @@
   .image-tooltip-wrapper{
     position: absolute;
     bottom: 140%;
-    width: 200%;
+    width: 100px;
     border: 2px solid #fff;
     background: #fff;
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
@@ -92,9 +92,6 @@
 
     }
 
-  .radio-variable-item .image-tooltip-wrapper{
-    width: auto;
-    }
 
   .variable-item:hover,
   .variable-item:active,
