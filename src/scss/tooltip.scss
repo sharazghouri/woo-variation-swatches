@@ -12,10 +12,11 @@
     pointer-events : none;
     box-sizing     : inherit;
     position       : absolute;
-    bottom         : 120%;
+    bottom         : 130%;
     left           : 50%;
     z-index        : 99;
     transform      : translateZ(0);
+    transition: all .2s linear;
     }
 
   [data-wvstooltip]:before {
@@ -51,6 +52,7 @@
   [data-wvstooltip]:focus:after,
   [data-wvstooltip]:active:before,
   [data-wvstooltip]:active:after {
+    bottom         : 120%;
     visibility : visible;
     opacity    : 1;
     }
