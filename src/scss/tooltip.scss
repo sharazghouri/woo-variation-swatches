@@ -57,6 +57,51 @@
 
   // Image tooltips
 
-  .image-tooltip-wrapper{}
+  .image-tooltip-wrapper{
+    position: absolute;
+    bottom: 140%;
+    width: 200%;
+    border: 2px solid #fff;
+    background: #fff;
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+    line-height: 0;
+    border-radius: 0 !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .2s linear;
+    img{
+      border-radius: 0 !important;
+      }
+
+    &:after{
+      content: "";
+      width: 16px;
+      height: 8px;
+      bottom: -16px;
+      display: block;
+      position: absolute;
+      border-radius: 0 !important;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top: 8px solid #fff;
+      }
+
+    }
+
+  .radio-variable-item .image-tooltip-wrapper{
+    width: auto;
+    }
+
+  .variable-item:hover,
+  .variable-item:active,
+  .variable-item:focus{
+    .image-tooltip-wrapper{
+      bottom: 120%;
+      visibility: visible;
+      opacity: 1;
+      }
+    }
 
   }
