@@ -1,7 +1,7 @@
 .gwp-live-feed-contents {
   position      : relative;
   clear: both;
-  overflow: auto;
+  overflow: hidden;
 
   &.notice-info:before{
       content: "\f348";
@@ -23,12 +23,26 @@
     background: #f6ba33;
     }
 
+  &.gwp-notice-required:before{
+    content: "\f463";
+    background: #ce3100;
+    text-shadow: 0 -1px 1px #ce3100;
+    }
+
+  &.gwp-notice-recommended:before{
+    content: "\f529";
+    background: #3d4046;
+    text-shadow: 0 -1px 1px #3d4046;
+    }
+
 
 
   &.notice-info,
   &.notice-success,
   &.notice-error,
-  &.notice-warning{
+  &.notice-warning,
+  &.gwp-notice-required,
+  &.gwp-notice-recommended{
     border: 0;
     display: flex;
     align-items: stretch;
@@ -37,9 +51,9 @@
 
     &:before{
       font-family: dashicons;
-      font-size: 30px;
+      font-size: 20px;
       color: #fff;
-      padding: 20px;
+      padding: 10px;
       display: flex;
       align-items: center;
       }
@@ -51,12 +65,18 @@
     }
 
 
-  // Notice
-  &.notic{
+  //Discount Notice
+  &.gwp-notice-discount{
     border-radius: 5px;
     border: 0;
     display: flex;
     align-items: center;
+    padding: 0;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #594679;
+
     // thumbnail image
     .feed-thumbnail-wrapper{
       .attachment-thumbnail{
@@ -66,11 +86,182 @@
 
     // message
     .feed-message-wrapper{
-      padding: 20px 60px 20px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      color: #fff;
+      text-shadow: 0 -1px 1px  #594679;
+      padding: 20px 30px 20px 20px;
+      p{
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        }
+
+      span.big{
+        font-weight: 400;
+        font-size: 18px;
+        }
+
+      strong{
+        font-weight: 800;
+        }
+
+
+      .button-primary{
+        font-size: 16px;
+        border-radius: 30px;
+        padding: 0 25px;
+        border: 0;
+        height: 40px;
+        line-height: 40px;
+        }
       }
+
+    .gwp-live-feed-close{
+      color: #fff;
+      opacity: .5;
+      font-size: 12px;
+      &:hover{
+        opacity: 1;
+        }
+      &:before{
+        color: #fff;
+        }
+      }
+
+    }
+
+  //Discount Notice
+  &.gwp-notice-pro{
+    border-radius: 5px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #2196F3;
+
+
+    // message
+    .feed-message-wrapper{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      color: #fff;
+      text-shadow: 0 -1px 1px  #2196F3;
+      padding: 20px;
+      p{
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        }
+
+      span.big{
+        font-weight: 400;
+        font-size: 18px;
+        }
+
+      strong{
+        font-weight: 800;
+        }
+
+      .button-upgrade{
+        font-size: 16px;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 25px;
+        display: block;
+        margin: -20px;
+        background: #3f51b5;
+        text-shadow: 0 -1px 1px  #3f51b5;
+
+        small{
+          font-weight: 300;
+          display: block;
+          }
+
+        &:hover{
+          background: #305af3;
+          text-shadow: 0 -1px 1px  #305af3;
+          }
+
+        }
+      }
+
+    .gwp-live-feed-close{
+      color: #fff;
+      opacity: .5;
+      font-size: 12px;
+      &:hover{
+        opacity: 1;
+        }
+      &:before{
+        color: #fff;
+        }
+      }
+
+    }
+
+  &.gwp-notice-new{
+    border: 0;
+    padding: 0;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent;
+    box-shadow: none;
+
+
+    // message
+    .feed-message-wrapper{
+      padding: 0;
+      margin: 0;
+      p{
+        margin: 0;
+        padding: 0;
+        }
+
+      img{
+        padding: 0;
+        margin: 0;
+        }
+      }
+
+    .gwp-live-feed-close{
+      color: rgba(0,0,0,.5);
+      opacity: .5;
+      font-size: 12px;
+      &:hover{
+        opacity: 1;
+        }
+      &:before{
+        color: rgba(0,0,0,.5);
+        }
+      }
+
     }
 
 
+  //global button
+  .button-primary{
+    background: #56bfd4;
+    border-color: #3a9db1;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 -1px 1px #238ea5;
+
+    &:hover{
+      background: #39b1ca;
+      border-color: #3a9db1;
+      }
+    }
+
+  //close button
   .gwp-live-feed-close {
     display: flex;
     right: 0;
