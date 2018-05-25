@@ -174,12 +174,12 @@
 					$search  = array( '{pro_link}', '{user_login}', '{user_email}', '{user_firstname}', '{user_lastname}', '{display_name}', '{nickname}' );
 					$replace = array(
 						esc_url( woo_variation_swatches()->get_pro_link( 'product-feed' ) ),
-						$user->user_login,
+						$user->user_login ? $user->user_login : 'there',
 						$user->user_email,
-						$user->user_firstname,
-						$user->user_lastname,
-						$user->display_name,
-						$user->nickname,
+						$user->user_firstname ? $user->user_firstname : 'there',
+						$user->user_lastname ? $user->user_lastname : 'there',
+						$user->display_name ? $user->display_name : 'there',
+						$user->nickname ? $user->nickname : 'there',
 					);
 					
 					$message = str_ireplace( $search, $replace, $body[ 'message' ] );
