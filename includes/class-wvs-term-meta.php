@@ -47,7 +47,7 @@
 				$attribute       = wvs_get_wc_attribute_taxonomy( $this->taxonomy );
 				$fields          = wvs_taxonomy_meta_fields( $attribute->attribute_type );
 				$available_types = wvs_available_attributes_types( $attribute->attribute_type );
-				if ( is_callable( $available_types[ 'preview' ] ) ) {
+				if ( isset( $available_types[ 'preview' ] ) && is_callable( $available_types[ 'preview' ] ) ) {
 					call_user_func( $available_types[ 'preview' ], $term_id, $attribute, $fields );
 				}
 			}
@@ -232,7 +232,7 @@
 			
 			private static function field_start( $field, $term ) {
 				// Example:
-                // http://emranahmed.github.io/Form-Field-Dependency/
+				// http://emranahmed.github.io/Form-Field-Dependency/
 				/*'dependency' => array(
 					array( '#show_tooltip' => array( 'type' => 'equal', 'value' => 'yes' ) )
 				)*/
