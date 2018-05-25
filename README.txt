@@ -144,7 +144,7 @@ Even this plugin has been installed and activated on your site, variable product
 
 = Is it compatible with any kinds of WooCommerce Theme? =
 
-Yes, it's compatible with any woocommerce theme including Flatsome / X-Theme / Avada / Uncode / Storefront / Labomba / WR Nitro / Divi / BeTheme. But sometimes it may require small css tweak.
+Yes, it's compatible with any woocommerce theme including OceanWP / Astra / Flatsome / X-Theme / Avada / Uncode / Storefront / Labomba / WR Nitro / Divi / BeTheme. But sometimes it may require small css tweak.
 
 = Does it show in product QuickView? =
 
