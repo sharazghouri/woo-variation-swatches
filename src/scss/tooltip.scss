@@ -16,7 +16,6 @@
     left           : 50%;
     z-index        : 99;
     transform      : translateZ(0);
-    transition: all .2s linear;
     }
 
   [data-wvstooltip]:before {
@@ -62,11 +61,10 @@
   .image-tooltip-wrapper{
     position: absolute;
     bottom: 140%;
-    border: 2px solid #fff;
-    background: #fff;
+    border-width: 2px;
+    border-style: solid;
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
     line-height: 0;
-    border-radius: 0 !important;
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
@@ -86,7 +84,6 @@
       left: 50%;
       transform: translateX(-50%);
       border: 8px solid transparent;
-      border-top: 8px solid #fff;
       }
 
     }
@@ -96,7 +93,7 @@
   .variable-item:active,
   .variable-item:focus{
     .image-tooltip-wrapper{
-      bottom: 120%;
+      bottom: 130%;
       visibility: visible;
       opacity: 1;
       }

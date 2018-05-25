@@ -108,7 +108,7 @@
     &-rounded .variable-items-wrapper {
       .variable-item {
         border-radius : 100%;
-        span, img, span::after {
+        .variable-item-span, img, .variable-item-span::after {
           border-radius : 100%;
           }
         }
@@ -118,7 +118,7 @@
         border-radius : 2px;
         &.button-variable-item {
           width : auto;
-          span {
+          .variable-item-span {
             padding : 0 5px;
             }
           }
@@ -224,25 +224,44 @@
 
     // Default
     .radio-variable-item[data-wvstooltip] {
+      position: relative;
       &::before,
       &::after {
-        left   : 10px;
+        left   : 8px;
         bottom : 100%;
         }
       }
 
-    &.woo-variation-swatches-archive-align-center .wvs-archive-variation-wrapper .radio-variable-item[data-wvstooltip] {
-      &::before,
-      &::after {
-        left : 50%;
-        }
+    // image variable tooltips
+    .radio-variable-item .image-tooltip-wrapper{
+      transform: translateX(-50%);
+      left: 8px;
       }
 
-    &.woo-variation-swatches-archive-align-right .wvs-archive-variation-wrapper .radio-variable-item[data-wvstooltip] {
-      &::before,
-      &::after {
-        left : 90%;
+    &.woo-variation-swatches-archive-align-center .wvs-archive-variation-wrapper .radio-variable-item {
+      &[data-wvstooltip]::before,
+      &[data-wvstooltip]::after {
+        left : 50%;
         }
+
+      .image-tooltip-wrapper{
+        transform: translateX(-50%);
+        left: 50%;
+        }
+
+      }
+
+    &.woo-variation-swatches-archive-align-right .wvs-archive-variation-wrapper .radio-variable-item {
+      &[data-wvstooltip]::before,
+      &[data-wvstooltip]::after {
+        left : 100%;
+        }
+
+      .image-tooltip-wrapper{
+        transform: translateX(-50%);
+        left: 100%;
+        }
+
       }
 
     }
