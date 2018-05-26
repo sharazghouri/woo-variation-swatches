@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../includes/class-wvs-customizer.php:34, ../woo-variation-swatches.php:407
+#: ../includes/class-wvs-customizer.php:34, ../woo-variation-swatches.php:445
 msgid "WooCommerce Variation Swatches"
 msgstr ""
 
@@ -24,7 +24,7 @@ msgstr ""
 msgid "WooCommerce Variation Swatches Settings"
 msgstr ""
 
-#: ../includes/class-wvs-settings-api.php:82, ../includes/class-wvs-settings-api.php:95
+#: ../includes/class-wvs-settings-api.php:82, ../includes/class-wvs-settings-api.php:95, ../includes/functions.php:950
 msgid "Swatches Settings"
 msgstr ""
 
@@ -44,11 +44,11 @@ msgstr ""
 msgid "Remove image"
 msgstr ""
 
-#: ../includes/functions.php:28, ../includes/functions.php:267
+#: ../includes/functions.php:28, ../includes/functions.php:293
 msgid "Color"
 msgstr ""
 
-#: ../includes/functions.php:34, ../includes/functions.php:276
+#: ../includes/functions.php:34, ../includes/functions.php:302
 msgid "Image"
 msgstr ""
 
@@ -56,213 +56,217 @@ msgstr ""
 msgid "Button"
 msgstr ""
 
-#: ../includes/functions.php:120
+#: ../includes/functions.php:133
 msgid "Simple"
 msgstr ""
 
-#: ../includes/functions.php:122, ../includes/functions.php:157
+#: ../includes/functions.php:135, ../includes/functions.php:170
 msgid "Visual Section"
 msgstr ""
 
-#: ../includes/functions.php:123
+#: ../includes/functions.php:136
 msgid "Simple change some visual styles"
 msgstr ""
 
-#: ../includes/functions.php:128
+#: ../includes/functions.php:141
 msgid "Enable Tooltip"
 msgstr ""
 
-#: ../includes/functions.php:129
+#: ../includes/functions.php:142
 msgid "Enable / Disable plugin default tooltip on each product attribute."
 msgstr ""
 
-#: ../includes/functions.php:135
+#: ../includes/functions.php:148
 msgid "Enable Stylesheet"
 msgstr ""
 
-#: ../includes/functions.php:136
+#: ../includes/functions.php:149
 msgid "Enable / Disable plugin default stylesheet"
 msgstr ""
 
-#: ../includes/functions.php:142
+#: ../includes/functions.php:155
 msgid "Shape style"
 msgstr ""
 
-#: ../includes/functions.php:143
+#: ../includes/functions.php:156
 msgid "Attribute Shape Style"
 msgstr ""
 
-#: ../includes/functions.php:145
+#: ../includes/functions.php:158
 msgid "Rounded Shape"
 msgstr ""
 
-#: ../includes/functions.php:146
+#: ../includes/functions.php:159
 msgid "Squared Shape"
 msgstr ""
 
-#: ../includes/functions.php:155
+#: ../includes/functions.php:168
 msgid "Advanced"
 msgstr ""
 
-#: ../includes/functions.php:158
+#: ../includes/functions.php:171
 msgid "Advanced change some visual styles"
 msgstr ""
 
-#: ../includes/functions.php:163
+#: ../includes/functions.php:176
 msgid "Clear on Reselect"
 msgstr ""
 
-#: ../includes/functions.php:164
+#: ../includes/functions.php:177
 msgid "Clear selected attribute on select again"
 msgstr ""
 
-#: ../includes/functions.php:170
+#: ../includes/functions.php:183
 msgid "Ajax variation threshold"
 msgstr ""
 
-#: ../includes/functions.php:171
+#: ../includes/functions.php:184
 msgid "Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>, <br><span style=\"color: red\">Note: Product variation loaded via ajax doesn't follow attribute behaviour.</span>"
 msgstr ""
 
-#: ../includes/functions.php:179
+#: ../includes/functions.php:192
 msgid "Attribute behavior"
 msgstr ""
 
-#: ../includes/functions.php:180
+#: ../includes/functions.php:193
 msgid "Disabled attribute will be hide / blur. <br><span style=\"color: red\">Note: Product variation loaded via ajax doesn't apply this feature.</span>"
 msgstr ""
 
-#: ../includes/functions.php:182
+#: ../includes/functions.php:195
 msgid "Blur"
 msgstr ""
 
-#: ../includes/functions.php:183
+#: ../includes/functions.php:196
 msgid "Hide"
 msgstr ""
 
-#: ../includes/functions.php:190
+#: ../includes/functions.php:203
 msgid "Attribute image size"
 msgstr ""
 
-#: ../includes/functions.php:191
+#: ../includes/functions.php:204
 msgid "<span style=\"color: red\">Attribute image size changed by <code>wvs_product_attribute_image_size</code> hook. So this option will not apply any effect.</span>"
 msgstr ""
 
-#: ../includes/functions.php:191
+#: ../includes/functions.php:204
 msgstr ""
 
-#: ../includes/functions.php:198
+#: ../includes/functions.php:211
 msgid "Width"
 msgstr ""
 
-#: ../includes/functions.php:199
+#: ../includes/functions.php:212
 msgid "Variation item width"
 msgstr ""
 
-#: ../includes/functions.php:208
+#: ../includes/functions.php:221
 msgid "Height"
 msgstr ""
 
-#: ../includes/functions.php:209
+#: ../includes/functions.php:222
 msgid "Variation item height"
 msgstr ""
 
-#: ../includes/functions.php:218
+#: ../includes/functions.php:231
 msgid "Font Size"
 msgstr ""
 
-#: ../includes/functions.php:219
+#: ../includes/functions.php:232
 msgid "Single product variation item font size"
 msgstr ""
 
-#: ../includes/functions.php:268
+#: ../includes/functions.php:243
+msgid "Style"
+msgstr ""
+
+#: ../includes/functions.php:294
 msgid "Choose a color"
 msgstr ""
 
-#: ../includes/functions.php:277, ../woo-variation-swatches.php:242
+#: ../includes/functions.php:303, ../woo-variation-swatches.php:265
 msgid "Choose an Image"
 msgstr ""
 
-#: ../includes/functions.php:338
+#: ../includes/functions.php:462
 msgid "Select terms"
 msgstr ""
 
-#: ../includes/functions.php:349
+#: ../includes/functions.php:473
 msgid "Select all"
 msgstr ""
 
-#: ../includes/functions.php:350
+#: ../includes/functions.php:474
 msgid "Select none"
 msgstr ""
 
-#: ../includes/functions.php:355
+#: ../includes/functions.php:479
 msgid "Add new %s"
 msgstr ""
 
-#: ../includes/functions.php:355, ../includes/functions.php:357
+#: ../includes/functions.php:479, ../includes/functions.php:481
 msgid "Add new"
 msgstr ""
 
-#: ../includes/functions.php:516, ../includes/functions.php:588, ../includes/functions.php:661, ../includes/functions.php:732
+#: ../includes/functions.php:640, ../includes/functions.php:712, ../includes/functions.php:785, ../includes/functions.php:856
 msgid "Choose an option"
 msgstr ""
 
-#: ../woo-variation-swatches.php:243
+#: ../woo-variation-swatches.php:266
 msgid "Add Attribute"
 msgstr ""
 
-#: ../woo-variation-swatches.php:244
+#: ../woo-variation-swatches.php:267
 msgid "Add"
 msgstr ""
 
-#: ../woo-variation-swatches.php:245
+#: ../woo-variation-swatches.php:268
 msgid "Cancel"
 msgstr ""
 
-#: ../woo-variation-swatches.php:246
+#: ../woo-variation-swatches.php:269
 msgid "Use Image"
 msgstr ""
 
-#: ../woo-variation-swatches.php:247
+#: ../woo-variation-swatches.php:270
 msgid "Add Media"
 msgstr ""
 
-#: ../woo-variation-swatches.php:317, ../woo-variation-swatches.php:317
+#: ../woo-variation-swatches.php:340, ../woo-variation-swatches.php:340
 msgid "Read Documentation"
 msgstr ""
 
-#: ../woo-variation-swatches.php:319
+#: ../woo-variation-swatches.php:342
 msgid "Facing issue?"
 msgstr ""
 
-#: ../woo-variation-swatches.php:319
+#: ../woo-variation-swatches.php:342
 msgid "Please open a ticket."
 msgstr ""
 
-#: ../woo-variation-swatches.php:347
+#: ../woo-variation-swatches.php:357
 msgid "Go Pro"
 msgstr ""
 
-#: ../woo-variation-swatches.php:372
+#: ../woo-variation-swatches.php:410
 msgid "Please check PHP version requirement."
 msgstr ""
 
-#: ../woo-variation-swatches.php:374
+#: ../woo-variation-swatches.php:412
 msgid "It's required to use latest version of PHP to use <strong>WooCommerce Variation Swatches</strong>."
 msgstr ""
 
-#: ../woo-variation-swatches.php:386
+#: ../woo-variation-swatches.php:424
 msgid "WooCommerce"
 msgstr ""
 
-#: ../woo-variation-swatches.php:394
+#: ../woo-variation-swatches.php:432
 msgid "<strong>WooCommerce Variation Swatches</strong> is an add-on of "
 msgstr ""
 
-#: ../woo-variation-swatches.php:407
+#: ../woo-variation-swatches.php:445
 msgid "Currently, you are using older version of WooCommerce. It's recommended to use latest version of WooCommerce to work with %s."
 msgstr ""
 
-#: ../woo-variation-swatches.php:507
+#: ../woo-variation-swatches.php:545
 msgid "WooCommerce Variation Swatches Plugin try to load \"%s\" but template \"%s\" was not found."
 msgstr ""
