@@ -120,7 +120,6 @@
 			public function feed() {
 				
 				$api_url = 'https://getwooplugins.com/wp-json/getwooplugins/v1/fetch-feed';
-				$api_url = 'http://getwooplugins.local/wp-json/getwooplugins/v1/fetch-feed';
 				
 				if ( apply_filters( 'stop_gwp_live_feed', FALSE ) ) {
 					return;
