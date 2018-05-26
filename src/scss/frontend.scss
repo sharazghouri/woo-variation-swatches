@@ -109,7 +109,9 @@
     &-rounded .variable-items-wrapper {
       .variable-item {
         border-radius : 100%;
-        .variable-item-span, img, .variable-item-span::after {
+        .variable-item-span,
+        img,
+        .variable-item-span::after {
           border-radius : 100%;
           }
         }
