@@ -992,8 +992,9 @@
                     <li><span class="dashicons dashicons-yes"></span> Tooltip display setting on archive/shop page.</li>
                     <li><span class="dashicons dashicons-yes"></span> Variation clear button display setting.</li>
                     <li><span class="dashicons dashicons-yes"></span> Customize tooltip text and background color.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Customize tooltip image and image size.</li>
                     <li><span class="dashicons dashicons-yes"></span> Customize font size, swatches height and width.</li>
-                    <li><span class="dashicons dashicons-yes"></span> Customize swatches colors and border sizes.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Customize swatches colors, background and border sizes.</li>
                     <li><span class="dashicons dashicons-yes"></span> Automatic updates and exclusive technical support.</li>
                 </ul>
                 <a target="_blank" class="button button-primary button-hero gwp-pro-button" href="<?php echo esc_url( woo_variation_swatches()->get_pro_link( 'product-edit' ) ); ?>">Okay, I need the features! <span class="dashicons dashicons-external"></span></a>

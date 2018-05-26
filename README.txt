@@ -44,14 +44,18 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 [Live Demo](https://demo.getwooplugins.com/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Upgrade to PRO](https://getwooplugins.com/plugins/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Documentation](https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Support](https://getwooplugins.com/tickets/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches)
 
-* Individual Product Basis Swatches Customization 
+* Convert attribute variations into radio button
+* Individual Product Basis Swatches Customization
 * Enable Attributes Swatch In Archive / Store Pages
 * Control Swatches Width and Height on Archive Page.
-* Archive Swatches Position Define 
-* Tooltip Display Setting on Archive Page.
-* Variation Clear Button Display Setting
-* Enable Attributes into Radio Button
+* Archive page swatches positioning
+* Archive page swatches alignment
+* Tooltip display setting on archive/shop page
+* Variation clear button display setting.
 * Customize Tooltip Text and Background Color
+* Customize font size, swatches height and width
+* Customize swatches colors, background and border sizes
+* Automatic updates and exclusive technical support
 
 
 = Sites Built With WooCommerce Variation Swatches Plugin =
