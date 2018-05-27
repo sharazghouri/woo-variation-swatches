@@ -148,13 +148,13 @@ Even this plugin has been installed and activated on your site, variable product
 
 = Is it compatible with any kinds of WooCommerce Theme? =
 
-Yes, it's compatible with any woocommerce theme including OceanWP / Astra / Flatsome / X-Theme / Avada / Uncode / Storefront / Labomba / WR Nitro / Divi / BeTheme. But sometimes it may require small css tweak.
+Yes, it's compatible with any WooCommerce theme including OceanWP / Astra / Flatsome / X-Theme / Avada / Uncode / Storefront / Labomba / WR Nitro / Divi / BeTheme. But sometimes it may require small css tweak.
 
 = Does it show in product QuickView? =
 
 Yes, it supports any kinds of product quick view.
 
-= Does it work on multisite? =
+= Does it work on MultiSite? =
 
 Yes, it is.
 
@@ -177,6 +177,11 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 11. Single Variation Product New attribute term
 
 == Changelog ==
+
+= 1.0.26 =
+
+* Improve: Tooltip
+* Add: **Enfold** Theme Compatibility
 
 = 1.0.25 =
 
