@@ -61,6 +61,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 = Sites Built With WooCommerce Variation Swatches Plugin =
 <blockquote>
 <ul>
+<li><a target="_blank" href="http://bit.ly/wvs-flatsome-01">muliomulio.com</a> | Built With: Flatsome Theme | Niche: Leather Bag Store </li>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-04">gimp3d.com</a> | Built With: Flatsome Theme | Niche: 3D Printing Parts Store </li>
 <li><a target="_blank" href="http://bit.ly/woovs-demo-flatsome-02">makromass.pl</a> | Built With: Flatsome Theme | Niche: Supplements for athletes</li>
 <li><a target="_blank" href="http://bit.ly/woovs-flatsome-03">cellularizeme.com</a> | Built With: Flatsome Theme | Niche: Electronices Store </li>
