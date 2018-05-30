@@ -1,24 +1,24 @@
 .woo-variation-swatches-stylesheet-enabled {
 
-  .woo-variation-raw-select {
+  .woo-variation-raw-select, .woo-variation-raw-select + .select2 {
     display : none !important;
     }
 
   // Swatches global style
   //----------------------
   .variable-items-wrapper {
-    display   : flex;
-    flex-wrap : wrap;
-    margin    : 0;
-    padding   : 0;
-    list-style: none;
+    display    : flex;
+    flex-wrap  : wrap;
+    margin     : 0;
+    padding    : 0;
+    list-style : none;
 
     .variable-item {
       margin     : 0;
       padding    : 0;
       list-style : none;
       transition : all 200ms ease;
-      position: relative;
+      position   : relative;
       img {
         margin : 0; /** Storefront FIX */
         }
@@ -51,15 +51,15 @@
       }
 
     .variable-item:not(.radio-variable-item) {
-      box-sizing      : border-box;
-      cursor          : pointer;
-      display         : flex;
-      justify-content : center;
-      align-items     : center;
-      background-color: #fff;
-      box-shadow      : 0 0 0 1px rgba(#000, .30%);
-      padding         : 2px;
-      margin          : 4px 8px 4px 0;
+      box-sizing       : border-box;
+      cursor           : pointer;
+      display          : flex;
+      justify-content  : center;
+      align-items      : center;
+      background-color : #FFFFFF;
+      box-shadow       : 0 0 0 1px rgba(#000, .30%);
+      padding          : 2px;
+      margin           : 4px 8px 4px 0;
 
       // last item margin reset
       &:last-of-type {
@@ -169,7 +169,7 @@
             padding          : 0 !important;
             min-width        : auto;
             transform-origin : center;
-            z-index: 0;
+            z-index          : 0;
             }
 
           &::before {
@@ -227,7 +227,7 @@
 
     // Default
     .radio-variable-item[data-wvstooltip] {
-      position: relative;
+      position : relative;
       &::before,
       &::after {
         left   : 8px;
@@ -236,9 +236,9 @@
       }
 
     // image variable tooltips
-    .radio-variable-item .image-tooltip-wrapper{
-      transform: translateX(-50%);
-      left: 8px;
+    .radio-variable-item .image-tooltip-wrapper {
+      transform : translateX(-50%);
+      left      : 8px;
       }
 
     &.woo-variation-swatches-archive-align-center .wvs-archive-variation-wrapper .radio-variable-item {
@@ -247,9 +247,9 @@
         left : 50%;
         }
 
-      .image-tooltip-wrapper{
-        transform: translateX(-50%);
-        left: 50%;
+      .image-tooltip-wrapper {
+        transform : translateX(-50%);
+        left      : 50%;
         }
 
       }
@@ -260,9 +260,9 @@
         left : 100%;
         }
 
-      .image-tooltip-wrapper{
-        transform: translateX(-50%);
-        left: 100%;
+      .image-tooltip-wrapper {
+        transform : translateX(-50%);
+        left      : 100%;
         }
 
       }

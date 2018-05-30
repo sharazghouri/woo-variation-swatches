@@ -179,6 +179,11 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.27 =
+
+* Add: SelectBox class for more control
+* Add: **StockHolm** Theme Compatibility
+
 = 1.0.26 =
 
 * Improve: Tooltip
