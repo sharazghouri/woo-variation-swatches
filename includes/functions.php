@@ -239,7 +239,7 @@
 				)
 			), apply_filters( 'wvs_advanced_setting_default_active', FALSE ) );
 			
-			if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+			if ( ! woo_variation_swatches()->is_pro_active() ) {
 				woo_variation_swatches()->add_setting( 'style', esc_html__( 'Style', 'woo-variation-swatches' ), array(
 					array(
 						'pro'    => TRUE,
@@ -257,7 +257,7 @@
 				), apply_filters( 'wvs_pro_style_setting_default_active', FALSE ) );
 			}
 			
-			if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+			if ( ! woo_variation_swatches()->is_pro_active() ) {
 				woo_variation_swatches()->add_setting( 'archive', esc_html__( 'Archive / Shop', 'woo-variation-swatches-pro' ), array(
 					array(
 						'pro'    => TRUE,

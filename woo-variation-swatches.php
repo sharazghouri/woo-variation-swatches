@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.27
+	 * Version: 1.0.28
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.27';
+			protected $_version = '1.0.28';
 			
 			protected static $_instance = NULL;
 			private          $_settings_api;
@@ -117,6 +117,11 @@
 				<?php
 			}
 			
+			// Use it under hook. Don't use it on top level file like: hooks.php
+			public function is_pro_active() {
+				return class_exists( 'Woo_Variation_Swatches_Pro' );
+			}
+			
 			public function feed() {
 				
 				$api_url = 'https://getwooplugins.com/wp-json/getwooplugins/v1/fetch-feed';
@@ -156,11 +161,11 @@
 					return;
 				}
 				
-				if ( isset( $body[ 'skip_pro' ] ) && ! empty( $body[ 'skip_pro' ] ) && class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+				if ( isset( $body[ 'skip_pro' ] ) && ! empty( $body[ 'skip_pro' ] ) && $this->is_pro_active() ) {
 					return;
 				}
 				
-				if ( isset( $body[ 'only_pro' ] ) && ! empty( $body[ 'only_pro' ] ) && ! class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+				if ( isset( $body[ 'only_pro' ] ) && ! empty( $body[ 'only_pro' ] ) && ! $this->is_pro_active() ) {
 					return;
 				}
 				
@@ -187,6 +192,32 @@
 				}
 			}
 			
+			public function feed_css_uri() {
+				
+				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+				
+				$api_url = "https://api.github.com/repos/EmranAhmed/gwp-admin-notice/commits/master";
+				
+				if ( isset( $_GET[ 'raw_gwp_feed_css' ] ) ) {
+					delete_transient( "gwp_feed_css" );
+				}
+				
+				if ( FALSE === ( $sha = get_transient( 'gwp_feed_css' ) ) ) {
+					$response = wp_remote_get( $api_url, $args = array(
+						'sslverify' => FALSE,
+						'timeout'   => 60
+					) );
+					
+					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
+						$body = json_decode( wp_remote_retrieve_body( $response ) );
+						$sha  = $body->sha;
+						set_transient( "gwp_feed_css", $sha, 3 * HOUR_IN_SECONDS );
+					}
+				}
+				
+				return sprintf( 'https://cdn.rawgit.com/EmranAhmed/gwp-admin-notice/%s/gwp-admin-notice%s.css', substr( $sha, 0, 8 ), $suffix );
+			}
+			
 			public function body_class( $classes ) {
 				array_push( $classes, 'woo-variation-swatches' );
 				if ( wp_is_mobile() ) {
@@ -199,7 +230,7 @@
 				array_push( $classes, sprintf( 'woo-variation-swatches-tooltip-%s', $this->get_option( 'tooltip' ) ? 'enabled' : 'disabled' ) );
 				array_push( $classes, sprintf( 'woo-variation-swatches-stylesheet-%s', $this->get_option( 'stylesheet' ) ? 'enabled' : 'disabled' ) );
 				
-				if ( class_exists( 'Woo_Variation_Swatches_Pro' ) ) {
+				if ( $this->is_pro_active() ) {
 					array_push( $classes, 'woo-variation-swatches-pro' );
 				}
 				
@@ -254,6 +285,7 @@
 				
 				wp_enqueue_script( 'form-field-dependency', $this->assets_uri( "/js/form-field-dependency{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
 				wp_enqueue_script( 'woo-variation-swatches-admin', $this->assets_uri( "/js/admin{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
+				wp_enqueue_style( 'gwp-feed', esc_url( $this->feed_css_uri() ) );
 				wp_enqueue_style( 'woo-variation-swatches-admin', $this->assets_uri( "/css/admin{$suffix}.css" ), array(), $this->version() );
 				
 				
@@ -352,7 +384,7 @@
 				
 				$pro_link = $this->get_pro_link();
 				
-				if ( ! class_exists( 'Woo_Variation_Swatches_Pro' ) ):
+				if ( ! $this->is_pro_active() ):
 					$new_links[ 'go-pro' ] = sprintf( '<a target="_blank" style="color: #45b450; font-weight: bold;" href="%1$s" title="%2$s">%2$s</a>', esc_url( $pro_link ), esc_attr__( 'Go Pro', 'woo-variation-swatches' ) );
 				endif;
 				
