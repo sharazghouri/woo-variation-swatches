@@ -42,7 +42,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 = PREMIUM FEATURES OF WOOCOMMERCE VARIATION SWATCHES =
 
-[Live Demo](https://demo.getwooplugins.com/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Upgrade to PRO](https://getwooplugins.com/plugins/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Documentation](https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Support](https://getwooplugins.com/tickets/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches)
+[Live Demo](http://bit.ly/live-demo-readme) | [Upgrade to PRO](http://bit.ly/upgrade-to-pro-readme) | [Documentation](https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Support](https://getwooplugins.com/tickets/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches)
 
 * Convert attribute variations into radio button
 * Individual Product Basis Swatches Customization
