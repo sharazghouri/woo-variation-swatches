@@ -179,6 +179,10 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.29 =
+
+* Add: IE-11 fallback
+
 = 1.0.28 =
 
 * Add: Admin Notice CSS
