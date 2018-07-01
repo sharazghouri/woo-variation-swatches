@@ -64,6 +64,7 @@
 					require_once $this->include_path( 'class-wvs-term-meta.php' );
 					require_once $this->include_path( 'functions.php' );
 					require_once $this->include_path( 'hooks.php' );
+					require_once $this->include_path( 'themes-support.php' );
 				}
 			}
 			
@@ -240,7 +241,11 @@
 			public function enqueue_scripts() {
 				
 				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-				wp_enqueue_script( 'woo-variation-swatches', $this->assets_uri( "/js/frontend{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
+				
+				// Don't load JS on IE11
+				if ( ! wvs_is_ie11() ) {
+					wp_enqueue_script( 'woo-variation-swatches', $this->assets_uri( "/js/frontend{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
+				}
 				
 				if ( $this->get_option( 'stylesheet' ) ) {
 					wp_enqueue_style( 'woo-variation-swatches', $this->assets_uri( "/css/frontend{$suffix}.css" ), array(), $this->version() );
@@ -483,12 +488,7 @@
 			}
 			
 			public function is_wc_active() {
-				
-				if ( ! function_exists( 'is_plugin_active' ) ) {
-					include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-				}
-				
-				return is_plugin_active( 'woocommerce/woocommerce.php' );
+				return class_exists( 'WooCommerce' );
 			}
 			
 			public function basename() {

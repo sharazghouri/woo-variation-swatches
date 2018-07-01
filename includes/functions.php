@@ -13,6 +13,7 @@
 			$is11 = preg_match( "/Trident\/7.0;(.*)rv:11.0/", $ua, $match ) !== FALSE;
 			
 			return $is_IE && $is11;
+			//return TRUE;
 		}
 	endif;
 	
@@ -195,10 +196,10 @@
 							'id'      => 'threshold',
 							'type'    => 'number',
 							'title'   => esc_html__( 'Ajax variation threshold', 'woo-variation-swatches' ),
-							'desc'    => __( 'Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>, <br><span style="color: red">Note: Product variation loaded via ajax doesn\'t follow attribute behaviour.</span>', 'woo-variation-swatches' ),
+							'desc'    => __( 'Control the number of enable ajax variation threshold, If you set <code>1</code> all product variation will be load via ajax. Default value is <code>30</code>, <br><span style="color: red">Note: Product variation loaded via ajax doesn\'t follow attribute behaviour. It\'s recommended to keep this number between 30 - 40.</span>', 'woo-variation-swatches' ),
 							'default' => 30,
 							'min'     => 1,
-							'max'     => 40,
+							'max'     => 80,
 						),
 						array(
 							'id'      => 'attribute-behavior',
@@ -928,6 +929,12 @@
 	
 	if ( ! function_exists( 'wvs_variation_attribute_options_html' ) ):
 		function wvs_variation_attribute_options_html( $html, $args ) {
+			
+			// IE 11 Fallback to default select box
+			if ( wvs_is_ie11() ) {
+				return $html;
+			}
+			
 			ob_start();
 			
 			$available_type_keys = array_keys( wvs_available_attributes_types() );

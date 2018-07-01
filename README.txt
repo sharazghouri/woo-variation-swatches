@@ -57,7 +57,6 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Customize swatches colors, background and border sizes
 * Automatic updates and exclusive technical support
 
-
 = Sites Built With WooCommerce Variation Swatches Plugin =
 <blockquote>
 <ul>
@@ -182,6 +181,8 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 = 1.0.29 =
 
 * Add: IE-11 fallback
+* Add: Increase `variation_threshold` label
+* Fix: Divi woo_layout_injector script override
 
 = 1.0.28 =
 

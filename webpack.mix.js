@@ -75,6 +75,10 @@ if (!Mix.inProduction()) {
 
 mix.js(`src/js/backend.js`, `assets/js/admin${min}.js`);
 mix.js(`src/js/frontend.js`, `assets/js/frontend${min}.js`);
+
+// Woo Layout Injector
+mix.babel(`src/js/divi_woo_layout_injector.js`, `assets/js/divi_woo_layout_injector${min}.js`);
+
 mix.babel(`src/js/FormFieldDependency.js`, `assets/js/form-field-dependency${min}.js`);
 mix.babel(`src/js/wp-color-picker-alpha.js`, `assets/js/wp-color-picker-alpha${min}.js`);
 mix.babel(`src/js/wvs-customize-alpha-color-control.js`, `assets/js/wvs-customize-alpha-color-control${min}.js`);
