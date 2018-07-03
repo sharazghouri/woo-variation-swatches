@@ -46,6 +46,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 * Convert attribute variations into radio button
 * Individual Product Basis Swatches Customization
+* Enable / Disable Ajax Variation
 * Enable Attributes Swatch In Archive / Store Pages
 * Control Swatches Width and Height on Archive Page.
 * Archive page swatches positioning

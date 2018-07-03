@@ -263,7 +263,7 @@
 						'fields' => apply_filters( 'wvs_pro_style_setting_fields', array(
 							array(
 								'pro'          => TRUE,
-								'width'        => '45%',
+								'width'        => '40%',
 								'screen_shot'  => woo_variation_swatches()->images_uri( 'style-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'style-tab' ),
 							),
@@ -281,7 +281,7 @@
 						'fields' => apply_filters( 'wvs_pro_archive_setting_fields', array(
 							array(
 								'pro'          => TRUE,
-								'width'        => '45%',
+								'width'        => '44%',
 								'screen_shot'  => woo_variation_swatches()->images_uri( 'archive-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'archive-tab' ),
 							),
