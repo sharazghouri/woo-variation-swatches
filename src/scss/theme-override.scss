@@ -1,3 +1,5 @@
+// Sober
+//============
 .woo-variation-swatches-theme-sober {
 
   // Item page
@@ -22,7 +24,7 @@
         }
 
       select {
-        border             : 1px solid #E4E6EB;
+        border             : 1px solid #e4e6eb;
         padding            : .5em 1em;
         text-align         : left;
         text-align-last    : left;
@@ -66,7 +68,7 @@
         margin-bottom : 10px;
 
         label {
-          border-bottom : 1px solid #EEEEEE;
+          border-bottom : 1px solid #eeeeee;
           }
         }
 
@@ -77,6 +79,8 @@
     }
   }
 
+// Shophistic Lite
+//=================
 .woo-variation-swatches-theme-shophistic-lite {
   &.woocommerce #main .entry-summary .variations {
     display : block !important;
@@ -92,15 +96,32 @@
     }
   }
 
+//Flatsome
+//============
 .woo-variation-swatches-theme-flatsome .variations .reset_variations {
   position : relative;
   bottom   : 0;
   left     : 0;
   }
 
+// Stockholm
+//==============
 .woo-variation-swatches-theme-stockholm .variations .reset_variations {
-  position : relative;
-  bottom   : 0;
-  left     : 0;
-  transform: none;
+  position  : relative;
+  bottom    : 0;
+  left      : 0;
+  transform : none;
+  }
+
+//Kalium
+//============
+.woo-variation-swatches-theme-kalium {
+  .image-variable-item img {
+    width : 100% !important;
+    }
+
+  .radio-variable-item input{
+    width: 16px !important;
+    height: 16px !important;
+    }
   }
