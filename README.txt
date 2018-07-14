@@ -179,6 +179,11 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.30 =
+
+* Add: body class uniqueness
+* Add: Centralise feed
+
 = 1.0.29 =
 
 * Add: IE-11 fallback

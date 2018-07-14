@@ -1,11 +1,6 @@
 <?php
 	defined( 'ABSPATH' ) or die( 'Keep Quit' );
 	
-	add_action( 'wp_ajax_gwp_live_feed_close', function () {
-		$id = absint( $_POST[ 'id' ] );
-		set_transient( "gwp_live_feed_seen_{$id}", TRUE, 1 * WEEK_IN_SECONDS );
-	} );
-	
 	add_action( 'wp_ajax_nopriv_wvs_get_available_variations', 'wvs_get_available_product_variations' );
 	
 	add_action( 'wp_ajax_wvs_get_available_variations', 'wvs_get_available_product_variations' );

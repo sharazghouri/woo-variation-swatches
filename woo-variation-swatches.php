@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.29
+	 * Version: 1.0.30
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.29';
+			protected $_version = '1.0.30';
 			
 			protected static $_instance = NULL;
 			private          $_settings_api;
@@ -93,6 +93,7 @@
 					add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 					add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 					add_filter( 'body_class', array( $this, 'body_class' ) );
+					add_filter( 'wp_ajax_gwp_live_feed_close', array( $this, 'feed_close' ) );
 					
 					add_filter( 'plugin_action_links_' . $this->basename(), array( $this, 'plugin_action_links' ) );
 					add_action( 'after_wvs_product_option_terms_button', array( $this, 'add_product_attribute_dialog' ), 10, 2 );
@@ -123,102 +124,6 @@
 				return class_exists( 'Woo_Variation_Swatches_Pro' );
 			}
 			
-			public function feed() {
-				
-				$api_url = 'https://getwooplugins.com/wp-json/getwooplugins/v1/fetch-feed';
-				
-				if ( apply_filters( 'stop_gwp_live_feed', FALSE ) ) {
-					return;
-				}
-				
-				if ( isset( $_GET[ 'raw_gwp_live_feed' ] ) ) {
-					delete_transient( "gwp_live_feed" );
-				}
-				
-				if ( FALSE === ( $body = get_transient( 'gwp_live_feed' ) ) ) {
-					$response = wp_remote_get( $api_url, $args = array(
-						'sslverify' => FALSE,
-						'timeout'   => 60,
-						'body'      => array(
-							'item' => 'woo-variation-swatches',
-						)
-					) );
-					
-					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
-						$body = json_decode( wp_remote_retrieve_body( $response ), TRUE );
-						set_transient( "gwp_live_feed", $body, 6 * HOUR_IN_SECONDS );
-						
-						if ( isset( $_GET[ 'raw_gwp_live_feed' ] ) && isset( $body[ 'id' ] ) ) {
-							delete_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" );
-						}
-					}
-				}
-				
-				if ( isset( $body[ 'id' ] ) && FALSE !== get_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" ) ) {
-					return;
-				}
-				
-				if ( isset( $body[ 'version' ] ) && ! empty( $body[ 'version' ] ) && $body[ 'version' ] != $this->version() ) {
-					return;
-				}
-				
-				if ( isset( $body[ 'skip_pro' ] ) && ! empty( $body[ 'skip_pro' ] ) && $this->is_pro_active() ) {
-					return;
-				}
-				
-				if ( isset( $body[ 'only_pro' ] ) && ! empty( $body[ 'only_pro' ] ) && ! $this->is_pro_active() ) {
-					return;
-				}
-				
-				if ( isset( $body[ 'theme' ] ) && ! empty( $body[ 'theme' ] ) && $body[ 'theme' ] != $this->get_parent_theme_dir() ) {
-					return;
-				}
-				
-				if ( isset( $body[ 'message' ] ) && ! empty( $body[ 'message' ] ) ) {
-					$user    = wp_get_current_user();
-					$search  = array( '{pro_link}', '{user_login}', '{user_email}', '{user_firstname}', '{user_lastname}', '{display_name}', '{nickname}' );
-					$replace = array(
-						esc_url( woo_variation_swatches()->get_pro_link( 'product-feed' ) ),
-						$user->user_login ? $user->user_login : 'there',
-						$user->user_email,
-						$user->user_firstname ? $user->user_firstname : 'there',
-						$user->user_lastname ? $user->user_lastname : 'there',
-						$user->display_name ? $user->display_name : 'there',
-						$user->nickname ? $user->nickname : 'there',
-					);
-					
-					$message = str_ireplace( $search, $replace, $body[ 'message' ] );
-					
-					echo $message;
-				}
-			}
-			
-			public function feed_css_uri() {
-				
-				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-				
-				$api_url = "https://api.github.com/repos/EmranAhmed/gwp-admin-notice/commits/master";
-				
-				if ( isset( $_GET[ 'raw_gwp_feed_css' ] ) ) {
-					delete_transient( "gwp_feed_css" );
-				}
-				
-				if ( FALSE === ( $sha = get_transient( 'gwp_feed_css' ) ) ) {
-					$response = wp_remote_get( $api_url, $args = array(
-						'sslverify' => FALSE,
-						'timeout'   => 60
-					) );
-					
-					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
-						$body = json_decode( wp_remote_retrieve_body( $response ) );
-						$sha  = $body->sha;
-						set_transient( "gwp_feed_css", $sha, 3 * HOUR_IN_SECONDS );
-					}
-				}
-				
-				return sprintf( 'https://cdn.rawgit.com/EmranAhmed/gwp-admin-notice/%s/gwp-admin-notice%s.css', substr( $sha, 0, 8 ), $suffix );
-			}
-			
 			public function body_class( $classes ) {
 				array_push( $classes, 'woo-variation-swatches' );
 				if ( wp_is_mobile() ) {
@@ -235,7 +140,7 @@
 					array_push( $classes, 'woo-variation-swatches-pro' );
 				}
 				
-				return $classes;
+				return array_unique( $classes );
 			}
 			
 			public function enqueue_scripts() {
@@ -621,6 +526,110 @@
 				}
 				
 				return apply_filters( 'wvs_get_theme_file_uri', $uri, $file );
+			}
+			
+			// Feed API
+			public function feed() {
+				
+				$feed_transient_id = "gwp_live_feed_wvs";
+				
+				$api_url = 'https://getwooplugins.com/wp-json/getwooplugins/v1/fetch-feed';
+				
+				if ( apply_filters( 'stop_gwp_live_feed', FALSE ) ) {
+					return;
+				}
+				
+				if ( isset( $_GET[ 'raw_gwp_live_feed' ] ) ) {
+					delete_transient( $feed_transient_id );
+				}
+				
+				if ( FALSE === ( $body = get_transient( $feed_transient_id ) ) ) {
+					$response = wp_remote_get( $api_url, $args = array(
+						'sslverify' => FALSE,
+						'timeout'   => 60,
+						'body'      => array(
+							'item' => 'woo-variation-swatches',
+						)
+					) );
+					
+					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
+						$body = json_decode( wp_remote_retrieve_body( $response ), TRUE );
+						set_transient( $feed_transient_id, $body, 6 * HOUR_IN_SECONDS );
+						
+						if ( isset( $_GET[ 'raw_gwp_live_feed' ] ) && isset( $body[ 'id' ] ) ) {
+							delete_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" );
+						}
+					}
+				}
+				
+				if ( isset( $body[ 'id' ] ) && FALSE !== get_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" ) ) {
+					return;
+				}
+				
+				if ( isset( $body[ 'version' ] ) && ! empty( $body[ 'version' ] ) && $body[ 'version' ] != $this->version() ) {
+					return;
+				}
+				
+				if ( isset( $body[ 'skip_pro' ] ) && ! empty( $body[ 'skip_pro' ] ) && $this->is_pro_active() ) {
+					return;
+				}
+				
+				if ( isset( $body[ 'only_pro' ] ) && ! empty( $body[ 'only_pro' ] ) && ! $this->is_pro_active() ) {
+					return;
+				}
+				
+				if ( isset( $body[ 'theme' ] ) && ! empty( $body[ 'theme' ] ) && $body[ 'theme' ] != $this->get_parent_theme_dir() ) {
+					return;
+				}
+				
+				if ( isset( $body[ 'message' ] ) && ! empty( $body[ 'message' ] ) ) {
+					$user    = wp_get_current_user();
+					$search  = array( '{pro_link}', '{user_login}', '{user_email}', '{user_firstname}', '{user_lastname}', '{display_name}', '{nickname}' );
+					$replace = array(
+						esc_url( woo_variation_swatches()->get_pro_link( 'product-feed' ) ),
+						$user->user_login ? $user->user_login : 'there',
+						$user->user_email,
+						$user->user_firstname ? $user->user_firstname : 'there',
+						$user->user_lastname ? $user->user_lastname : 'there',
+						$user->display_name ? $user->display_name : 'there',
+						$user->nickname ? $user->nickname : 'there',
+					);
+					
+					$message = str_ireplace( $search, $replace, $body[ 'message' ] );
+					
+					echo $message;
+				}
+			}
+			
+			public function feed_css_uri() {
+				
+				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+				
+				$api_url = "https://api.github.com/repos/EmranAhmed/gwp-admin-notice/commits/master";
+				
+				if ( isset( $_GET[ 'raw_gwp_feed_css' ] ) ) {
+					delete_transient( "gwp_feed_css" );
+				}
+				
+				if ( FALSE === ( $sha = get_transient( 'gwp_feed_css' ) ) ) {
+					$response = wp_remote_get( $api_url, $args = array(
+						'sslverify' => FALSE,
+						'timeout'   => 60
+					) );
+					
+					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
+						$body = json_decode( wp_remote_retrieve_body( $response ) );
+						$sha  = $body->sha;
+						set_transient( "gwp_feed_css", $sha, 3 * HOUR_IN_SECONDS );
+					}
+				}
+				
+				return sprintf( 'https://cdn.rawgit.com/EmranAhmed/gwp-admin-notice/%s/gwp-admin-notice%s.css', substr( $sha, 0, 8 ), $suffix );
+			}
+			
+			public function feed_close() {
+				$id = absint( $_POST[ 'id' ] );
+				set_transient( "gwp_live_feed_seen_{$id}", TRUE, 1 * WEEK_IN_SECONDS );
 			}
 		}
 		
