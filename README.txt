@@ -183,6 +183,7 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 * Add: body class uniqueness
 * Add: Centralise feed
+* Fix: Elementor Pro JS Issue
 
 = 1.0.29 =
 

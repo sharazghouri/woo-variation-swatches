@@ -18,6 +18,7 @@ const WooVariationSwatches = (($) => {
             this.is_ajax_variation  = !this.product_variations;
             this.product_id         = this._element.data('product_id');
             this.hidden_behaviour   = $('body').hasClass('woo-variation-swatches-attribute-behavior-hide');
+            this.is_mobile          = $('body').hasClass('woo-variation-swatches-on-mobile');
 
             // Call
             this.init(this.is_ajax_variation, this.hidden_behaviour);
@@ -42,6 +43,9 @@ const WooVariationSwatches = (($) => {
                 let select         = $(this).siblings('select.woo-variation-raw-select');
                 let li             = $(this).find('li');
                 let reselect_clear = $(this).hasClass('reselect-clear');
+                let is_mobile      = $('body').hasClass('woo-variation-swatches-on-mobile');
+
+                $(this).parent().addClass('woo-variation-items-wrapper');
 
                 // For Avada FIX
                 if (select.length < 1) {
@@ -55,8 +59,12 @@ const WooVariationSwatches = (($) => {
                         let value = $(this).data('value');
                         select.val(value).trigger('change');
                         select.trigger('click');
+
                         select.trigger('focusin');
-                        select.trigger('touchstart');
+
+                        if (is_mobile) {
+                            select.trigger('touchstart');
+                        }
 
                         $(this).trigger('focus'); // Mobile tooltip
                     });
@@ -66,8 +74,12 @@ const WooVariationSwatches = (($) => {
                         e.stopPropagation();
                         select.val('').trigger('change');
                         select.trigger('click');
+
                         select.trigger('focusin');
-                        select.trigger('touchstart');
+
+                        if (is_mobile) {
+                            select.trigger('touchstart');
+                        }
 
                         $(this).trigger('focus'); // Mobile tooltip
                     });
@@ -97,7 +109,9 @@ const WooVariationSwatches = (($) => {
 
                         select.trigger('click');
                         select.trigger('focusin');
-                        select.trigger('touchstart');
+                        if (is_mobile) {
+                            select.trigger('touchstart');
+                        }
                     });
                 }
                 else {
@@ -108,7 +122,9 @@ const WooVariationSwatches = (($) => {
                         select.val(value).trigger('change');
                         select.trigger('click');
                         select.trigger('focusin');
-                        select.trigger('touchstart');
+                        if (is_mobile) {
+                            select.trigger('touchstart');
+                        }
 
                         $(this).trigger('focus'); // Mobile tooltip
                     });
@@ -122,7 +138,10 @@ const WooVariationSwatches = (($) => {
                         select.val(value).trigger('change');
                         select.trigger('click');
                         select.trigger('focusin');
-                        select.trigger('touchstart');
+
+                        if (is_mobile) {
+                            select.trigger('touchstart');
+                        }
 
                         // Radio
                         $(this).parent('li.radio-variable-item').removeClass('selected disabled').addClass('selected')
