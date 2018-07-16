@@ -180,6 +180,10 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 
 == Changelog ==
 
+= 1.0.31 =
+
+* Add: **Kalium** theme css fix
+
 = 1.0.30 =
 
 * Add: body class uniqueness

@@ -61,7 +61,7 @@ if (Mix.inProduction()) {
 }
 
 mix.banner({
-    banner : "WooCommerce Variation Swatches v1.0.30 \n\nAuthor: Emran Ahmed ( emran.bd.08@gmail.com ) \nDate: " + new Date().toLocaleString() + "\nReleased under the GPLv3 license."
+    banner : "WooCommerce Variation Swatches v1.0.31 \n\nAuthor: Emran Ahmed ( emran.bd.08@gmail.com ) \nDate: " + new Date().toLocaleString() + "\nReleased under the GPLv3 license."
 });
 
 mix.notification({
@@ -84,7 +84,7 @@ mix.babel(`src/js/wp-color-picker-alpha.js`, `assets/js/wp-color-picker-alpha${m
 mix.babel(`src/js/wvs-customize-alpha-color-control.js`, `assets/js/wvs-customize-alpha-color-control${min}.js`);
 mix.sass(`src/scss/backend.scss`, `assets/css/admin${min}.css`);
 
-mix.sass(`src/scss/gwp-admin-notice.scss`, `assets/css/gwp-admin-notice${min}.css`);
+// mix.sass(`src/scss/gwp-admin-notice.scss`, `assets/css/gwp-admin-notice${min}.css`);
 
 mix.sass(`src/scss/frontend.scss`, `assets/css/frontend${min}.css`);
 mix.sass(`src/scss/tooltip.scss`, `assets/css/frontend-tooltip${min}.css`);
