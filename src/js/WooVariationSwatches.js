@@ -38,6 +38,7 @@ const WooVariationSwatches = (($) => {
 
         init(is_ajax, hidden_behaviour) {
 
+            let _this = this;
             this._element.find('ul.variable-items-wrapper').each(function (i, el) {
 
                 let select         = $(this).siblings('select.woo-variation-raw-select');
@@ -67,6 +68,7 @@ const WooVariationSwatches = (($) => {
                         }
 
                         $(this).trigger('focus'); // Mobile tooltip
+                        $(this).trigger('wvs-selected-item', [value, select, _this._element]); // Custom Event for li
                     });
 
                     $(this).on('touchstart click', 'li.selected:not(.radio-variable-item)', function (e) {
@@ -82,6 +84,9 @@ const WooVariationSwatches = (($) => {
                         }
 
                         $(this).trigger('focus'); // Mobile tooltip
+
+                        $(this).trigger('wvs-unselected-item', [value, select, _this._element]); // Custom Event for li
+
                     });
 
                     // RADIO
@@ -97,14 +102,16 @@ const WooVariationSwatches = (($) => {
 
                         let value = $(this).val();
 
-                        if ($(this).parent('.radio-variable-item').hasClass('selected')) {
+                        if ($(this).parent('li.radio-variable-item').hasClass('selected')) {
                             select.val('').trigger('change');
                             _.delay(() => {
-                                $(this).prop('checked', false)
+                                $(this).prop('checked', false);
+                                $(this).parent('li.radio-variable-item').trigger('wvs-unselected-item', [value, select, _this._element]); // Custom Event for li
                             }, 1)
                         }
                         else {
                             select.val(value).trigger('change');
+                            $(this).parent('.radio-variable-item').trigger('wvs-selected-item', [value, select, _this._element]); // Custom Event for li
                         }
 
                         select.trigger('click');
@@ -127,6 +134,8 @@ const WooVariationSwatches = (($) => {
                         }
 
                         $(this).trigger('focus'); // Mobile tooltip
+
+                        $(this).trigger('wvs-selected-item', [value, select, _this._element]); // Custom Event for li
                     });
 
                     // Radio
@@ -144,7 +153,8 @@ const WooVariationSwatches = (($) => {
                         }
 
                         // Radio
-                        $(this).parent('li.radio-variable-item').removeClass('selected disabled').addClass('selected')
+                        $(this).parent('li.radio-variable-item').removeClass('selected disabled').addClass('selected');
+                        $(this).parent('li.radio-variable-item').trigger('wvs-selected-item', [value, select, _this._element]); // Custom Event for li
                     });
                 }
             });
@@ -160,18 +170,18 @@ const WooVariationSwatches = (($) => {
                 this._element.on('woo_variation_swatches_init', function (event, object, product_variations) {
 
                     object._generated = product_variations.reduce((obj, variation) => {
-                        Object.keys(variation.attributes).map((attribute_name) => {
 
-                            if (!obj[attribute_name]) {
-                                obj[attribute_name] = []
-                            }
+                        if (!_.isArray(variation)) {
+                            Object.keys(variation.attributes).map((attribute_name) => {
 
-                            if (variation.attributes[attribute_name]) {
-                                obj[attribute_name].push(variation.attributes[attribute_name])
-                            }
-                        });
+                                if (!obj[attribute_name]) {
+                                    obj[attribute_name] = []
+                                }
+                            });
+                        }
 
                         return obj;
+
                     }, {});
 
                     $(this).find('ul.variable-items-wrapper').each(function () {
@@ -201,6 +211,7 @@ const WooVariationSwatches = (($) => {
         }
 
         reset(is_ajax, hidden_behaviour) {
+            let _this = this;
             this._element.on('reset_data', function (event) {
                 $(this).find('ul.variable-items-wrapper').each(function () {
                     let li = $(this).find('li');
@@ -219,6 +230,8 @@ const WooVariationSwatches = (($) => {
                                 //    $(this).find('input.wvs-radio-variable-item:radio').prop('checked', false);
                             }
                         }
+
+                        $(this).trigger('wvs-unselected-item', ['', '', _this._element]); // Custom Event for li
                     });
                 });
             });
@@ -249,7 +262,7 @@ const WooVariationSwatches = (($) => {
                             }
                         });
 
-                        _.delay(function () {
+                        _.delay(() => {
                             li.each(function () {
                                 let value = $(this).attr('data-value');
                                 $(this).removeClass('selected disabled');
@@ -263,6 +276,9 @@ const WooVariationSwatches = (($) => {
                                     }
                                 }
                             });
+
+                            // Items Updated
+                            $(this).trigger('wvs-items-updated');
                         }, 1);
                     });
                 }
@@ -293,7 +309,7 @@ const WooVariationSwatches = (($) => {
                         }
                     });
 
-                    _.delay(function () {
+                    _.delay(() => {
                         li.each(function () {
                             let value = $(this).attr('data-value');
                             $(this).removeClass('selected disabled').addClass('disabled');
@@ -322,7 +338,11 @@ const WooVariationSwatches = (($) => {
                                 }
                             }
                         });
+
+                        // Items Updated
+                        $(this).trigger('wvs-items-updated');
                     }, 1);
+
                 });
             });
         }

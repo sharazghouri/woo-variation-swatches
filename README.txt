@@ -163,7 +163,16 @@ Yes, it is.
 
 = How to use it on ajax load more? =
 
-Just call this javascript function on ajax load event `$('.variations_form').wc_variation_form()`. And your are ready to go.
+If your theme follow wordpress 'post-load' event with `document` then you don't have to do anything.
+Here is the details about it: https://codex.wordpress.org/AJAX_in_Plugins#The_post-load_JavaScript_Event
+
+But if you don't then just call this javascript function on ajax load event
+```
+$('.variations_form').each(function(){
+    $(this).wc_variation_form();
+});
+```
+And your are ready to go.
 
 == Screenshots ==
 
@@ -180,6 +189,10 @@ Just call this javascript function on ajax load event `$('.variations_form').wc_
 11. Single Variation Product New attribute term
 
 == Changelog ==
+
+= 1.0.32 =
+
+* Add: Out of stock product crossed also if "Hide out of stock items from the catalog" unchecked.
 
 = 1.0.31 =
 

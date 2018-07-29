@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.31
+	 * Version: 1.0.32
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,9 +20,9 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.31';
+			protected $_version = '1.0.32';
 			
-			protected static $_instance = NULL;
+			protected static $_instance = null;
 			private          $_settings_api;
 			
 			public static function instance() {
@@ -68,7 +68,7 @@
 				}
 			}
 			
-			public function define( $name, $value, $case_insensitive = FALSE ) {
+			public function define( $name, $value, $case_insensitive = false ) {
 				if ( ! defined( $name ) ) {
 					define( $name, $value, $case_insensitive );
 				}
@@ -113,7 +113,7 @@
                     </div>
 					<?php
 						$fields = wvs_taxonomy_meta_fields( $tax->attribute_type );
-						WVS_Term_Meta::generate_form_fields( $fields, FALSE );
+						WVS_Term_Meta::generate_form_fields( $fields, false );
 					?>
                 </div>
 				<?php
@@ -149,7 +149,10 @@
 				
 				// Don't load JS on IE11
 				if ( ! wvs_is_ie11() ) {
-					wp_enqueue_script( 'woo-variation-swatches', $this->assets_uri( "/js/frontend{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
+					wp_enqueue_script( 'woo-variation-swatches', $this->assets_uri( "/js/frontend{$suffix}.js" ), array( 'jquery' ), $this->version(), true );
+					wp_localize_script( 'woo-variation-swatches', 'woo_variation_swatches_options', apply_filters( 'woo_variation_swatches_options', array(
+						'is_product_page' => is_product(),
+					) ) );
 				}
 				
 				if ( $this->get_option( 'stylesheet' ) ) {
@@ -191,13 +194,16 @@
 				wp_enqueue_script( 'jquery-ui-dialog' );
 				
 				wp_enqueue_style( 'wp-color-picker' );
-				wp_enqueue_script( 'wp-color-picker-alpha', $this->assets_uri( "/js/wp-color-picker-alpha{$suffix}.js" ), array( 'wp-color-picker' ), '2.1.3', TRUE );
+				wp_enqueue_script( 'wp-color-picker-alpha', $this->assets_uri( "/js/wp-color-picker-alpha{$suffix}.js" ), array( 'wp-color-picker' ), '2.1.3', true );
 				
-				wp_enqueue_script( 'form-field-dependency', $this->assets_uri( "/js/form-field-dependency{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
-				wp_enqueue_script( 'woo-variation-swatches-admin', $this->assets_uri( "/js/admin{$suffix}.js" ), array( 'jquery' ), $this->version(), TRUE );
-				wp_enqueue_style( 'gwp-feed', esc_url( $this->feed_css_uri() ) );
+				wp_enqueue_script( 'form-field-dependency', $this->assets_uri( "/js/form-field-dependency{$suffix}.js" ), array( 'jquery' ), $this->version(), true );
+				wp_enqueue_script( 'woo-variation-swatches-admin', $this->assets_uri( "/js/admin{$suffix}.js" ), array( 'jquery' ), $this->version(), true );
+				
+				if ( ! apply_filters( 'stop_gwp_live_feed', false ) ) {
+					wp_enqueue_style( 'gwp-feed', esc_url( $this->feed_css_uri() ) );
+				}
+				
 				wp_enqueue_style( 'woo-variation-swatches-admin', $this->assets_uri( "/css/admin{$suffix}.css" ), array(), $this->version() );
-				
 				
 				// wp_enqueue_script( 'selectWoo' );
 				// wp_enqueue_style( 'select2' );
@@ -220,7 +226,7 @@
 				return $this->_settings_api;
 			}
 			
-			public function add_setting( $tab_id, $tab_title, $tab_sections, $active = FALSE ) {
+			public function add_setting( $tab_id, $tab_title, $tab_sections, $active = false ) {
 				// Example:
 				
 				// fn(tab_id, tab_title, [
@@ -389,7 +395,7 @@
 			}
 			
 			public function language() {
-				load_plugin_textdomain( 'woo-variation-swatches', FALSE, trailingslashit( WVS_PLUGIN_DIRNAME ) . 'languages' );
+				load_plugin_textdomain( 'woo-variation-swatches', false, trailingslashit( WVS_PLUGIN_DIRNAME ) . 'languages' );
 			}
 			
 			public function is_wc_active() {
@@ -440,7 +446,7 @@
 				return apply_filters( 'wvs_template_uri', untrailingslashit( $this->plugin_uri() ) . '/templates' );
 			}
 			
-			public function locate_template( $template_name, $third_party_path = FALSE ) {
+			public function locate_template( $template_name, $third_party_path = false ) {
 				
 				$template_name = ltrim( $template_name, '/' );
 				$template_path = $this->template_override_dir();
@@ -465,7 +471,7 @@
 				return apply_filters( 'wvs_locate_template', $template, $template_name, $template_path );
 			}
 			
-			public function get_template( $template_name, $template_args = array(), $third_party_path = FALSE ) {
+			public function get_template( $template_name, $template_args = array(), $third_party_path = false ) {
 				
 				$template_name = ltrim( $template_name, '/' );
 				
@@ -484,7 +490,7 @@
 				do_action( 'wvs_after_get_template', $template_name, $template_args );
 			}
 			
-			public function get_theme_file_path( $file, $third_party_path = FALSE ) {
+			public function get_theme_file_path( $file, $third_party_path = false ) {
 				
 				$file         = ltrim( $file, '/' );
 				$template_dir = $this->template_override_dir();
@@ -506,7 +512,7 @@
 				return apply_filters( 'wvs_get_theme_file_path', $path, $file );
 			}
 			
-			public function get_theme_file_uri( $file, $third_party_uri = FALSE ) {
+			public function get_theme_file_uri( $file, $third_party_uri = false ) {
 				
 				$file         = ltrim( $file, '/' );
 				$template_dir = $this->template_override_dir();
@@ -535,7 +541,7 @@
 				
 				$api_url = 'https://getwooplugins.com/wp-json/getwooplugins/v1/fetch-feed';
 				
-				if ( apply_filters( 'stop_gwp_live_feed', FALSE ) ) {
+				if ( apply_filters( 'stop_gwp_live_feed', false ) ) {
 					return;
 				}
 				
@@ -543,9 +549,9 @@
 					delete_transient( $feed_transient_id );
 				}
 				
-				if ( FALSE === ( $body = get_transient( $feed_transient_id ) ) ) {
+				if ( false === ( $body = get_transient( $feed_transient_id ) ) ) {
 					$response = wp_remote_get( $api_url, $args = array(
-						'sslverify' => FALSE,
+						'sslverify' => false,
 						'timeout'   => 60,
 						'body'      => array(
 							'item' => 'woo-variation-swatches',
@@ -553,7 +559,7 @@
 					) );
 					
 					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) == 200 ) {
-						$body = json_decode( wp_remote_retrieve_body( $response ), TRUE );
+						$body = json_decode( wp_remote_retrieve_body( $response ), true );
 						set_transient( $feed_transient_id, $body, 6 * HOUR_IN_SECONDS );
 						
 						if ( isset( $_GET[ 'raw_gwp_live_feed' ] ) && isset( $body[ 'id' ] ) ) {
@@ -562,7 +568,7 @@
 					}
 				}
 				
-				if ( isset( $body[ 'id' ] ) && FALSE !== get_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" ) ) {
+				if ( isset( $body[ 'id' ] ) && false !== get_transient( "gwp_live_feed_seen_{$body[ 'id' ]}" ) ) {
 					return;
 				}
 				
@@ -611,9 +617,9 @@
 					delete_transient( "gwp_feed_css" );
 				}
 				
-				if ( FALSE === ( $sha = get_transient( 'gwp_feed_css' ) ) ) {
+				if ( false === ( $sha = get_transient( 'gwp_feed_css' ) ) ) {
 					$response = wp_remote_get( $api_url, $args = array(
-						'sslverify' => FALSE,
+						'sslverify' => false,
 						'timeout'   => 60
 					) );
 					
@@ -629,7 +635,7 @@
 			
 			public function feed_close() {
 				$id = absint( $_POST[ 'id' ] );
-				set_transient( "gwp_live_feed_seen_{$id}", TRUE, 1 * WEEK_IN_SECONDS );
+				set_transient( "gwp_live_feed_seen_{$id}", true, 1 * WEEK_IN_SECONDS );
 			}
 		}
 		

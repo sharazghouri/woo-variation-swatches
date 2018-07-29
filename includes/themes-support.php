@@ -13,3 +13,5 @@
 		add_action( 'wp_enqueue_scripts', 'wvs_woo_layout_injector_script_override', 99999 );
 	endif;
 	
+	
+	//remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
