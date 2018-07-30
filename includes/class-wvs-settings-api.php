@@ -218,7 +218,9 @@
 						
 						$section = apply_filters( 'wvs_settings_section', $section, $tab );
 						
-						$section[ 'id' ] = ! isset( $section[ 'id' ] ) ? $tab[ 'id' ] . '-section' : $section[ 'id' ];
+						//print_r( $section); die;
+						
+						$section[ 'id' ] = ! isset( $section[ 'id' ] ) ? $tab[ 'id' ] . '-section-'.$section_key : $section[ 'id' ];
 						
 						// Adding Settings section id
 						$this->fields[ $tab_key ][ 'sections' ][ $section_key ][ 'id' ] = $section[ 'id' ];
