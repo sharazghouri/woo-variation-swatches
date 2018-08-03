@@ -22,7 +22,3 @@
 		
 		add_filter( 'woocommerce_product_data_panels', 'add_wvs_pro_preview_tab_panel' );
 	}
-	
-	/*	add_filter( 'woocommerce_available_variation', function ( $variation, $productObject, $variationObject ) {
-			return $variationObject->is_in_stock() ? $variation : FALSE;
-		}, 10, 3 );*/

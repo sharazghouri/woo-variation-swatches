@@ -145,7 +145,7 @@
 			
 			do_action( 'before_wvs_settings', woo_variation_swatches() );
 			
-			woo_variation_swatches()->add_setting( 'simple', esc_html__( 'Simple', 'woo-variation-swatches' ), array(
+			woo_variation_swatches()->add_setting( 'simple', esc_html__( 'Simple', 'woo-variation-swatches' ), apply_filters( 'wvs_simple_settings_section', array(
 				array(
 					'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches' ),
 					'desc'   => esc_html__( 'Simple change some visual styles', 'woo-variation-swatches' ),
@@ -175,12 +175,11 @@
 							),
 							'default' => 'rounded'
 						)
-					
 					) )
 				)
-			), apply_filters( 'wvs_simple_setting_default_active', true ) );
+			) ), apply_filters( 'wvs_simple_setting_default_active', true ) );
 			
-			woo_variation_swatches()->add_setting( 'advanced', esc_html__( 'Advanced', 'woo-variation-swatches' ), array(
+			woo_variation_swatches()->add_setting( 'advanced', esc_html__( 'Advanced', 'woo-variation-swatches' ), apply_filters( 'wvs_advanced_settings_section', array(
 				array(
 					'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches' ),
 					'desc'   => esc_html__( 'Advanced change some visual styles', 'woo-variation-swatches' ),
@@ -253,7 +252,7 @@
 						)
 					) )
 				)
-			), apply_filters( 'wvs_advanced_setting_default_active', false ) );
+			) ), apply_filters( 'wvs_advanced_setting_default_active', false ) );
 			
 			if ( ! woo_variation_swatches()->is_pro_active() ) {
 				woo_variation_swatches()->add_setting( 'style', esc_html__( 'Style', 'woo-variation-swatches' ), array(
@@ -568,7 +567,7 @@
 			
 			array_push( $css_classes, $clear_on_reselect );
 			
-			$data = sprintf( '<ul class="variable-items-wrapper %s" data-attribute_name="%s">%s</ul>', implode( ' ', $css_classes ), esc_attr( wc_variation_attribute_name( $attribute ) ), $contents );
+			$data = sprintf( '<ul class="variable-items-wrapper %s" data-attribute_name="%s">%s</ul>', trim( implode( ' ', array_unique( $css_classes ) ) ), esc_attr( wc_variation_attribute_name( $attribute ) ), $contents );
 			
 			return apply_filters( 'wvs_variable_items_wrapper', $data, $contents, $type, $args, $saved_attribute );
 		}
@@ -964,29 +963,6 @@
 			$data = ob_get_clean();
 			
 			return apply_filters( 'wvs_variation_attribute_options_html', $data, $args );
-		}
-	endif;
-	
-	//-------------------------------------------------------------------------------
-	// WooCommerce Function Override
-	//-------------------------------------------------------------------------------
-	
-	if ( ! function_exists( 'woocommerce_variable_add_to_cart' ) ):
-		function woocommerce_variable_add_to_cart() {
-			global $product;
-			// Enqueue variation scripts.
-			wp_enqueue_script( 'wc-add-to-cart-variation' );
-			
-			// Get Available variations?
-			$get_variations = count( $product->get_children() ) <= apply_filters( 'woocommerce_ajax_variation_threshold', 30, $product );
-			
-			// Load the template.
-			//print_r($product->get_available_variations()); die;
-			wc_get_template( 'single-product/add-to-cart/variable.php', apply_filters( 'wvs_woocommerce_variable_add_to_cart_template_args', array(
-				'available_variations' => $get_variations ? array_values( $product->get_available_variations() ) : false,
-				'attributes'           => $product->get_variation_attributes(),
-				'selected_attributes'  => $product->get_default_attributes(),
-			) ) );
 		}
 	endif;
 	
