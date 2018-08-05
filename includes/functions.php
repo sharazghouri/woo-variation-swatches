@@ -263,7 +263,7 @@
 						'fields' => apply_filters( 'wvs_pro_style_setting_fields', array(
 							array(
 								'pro'          => true,
-								'width'        => '40%',
+								'width'        => '55%',
 								'screen_shot'  => woo_variation_swatches()->images_uri( 'style-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'style-tab' ),
 							),
@@ -273,11 +273,11 @@
 			}
 			
 			if ( ! woo_variation_swatches()->is_pro_active() ) {
-				woo_variation_swatches()->add_setting( 'archive', esc_html__( 'Archive / Shop', 'woo-variation-swatches-pro' ), array(
+				woo_variation_swatches()->add_setting( 'archive', esc_html__( 'Archive / Shop', 'woo-variation-swatches' ), array(
 					array(
 						'pro'    => true,
 						'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches-pro' ),
-						'desc'   => esc_html__( 'Advanced change some visual styles', 'woo-variation-swatches-pro' ),
+						'desc'   => esc_html__( 'Advanced change some visual styles on shop / archive page', 'woo-variation-swatches-pro' ),
 						'fields' => apply_filters( 'wvs_pro_archive_setting_fields', array(
 							array(
 								'pro'          => true,
@@ -288,6 +288,24 @@
 						) )
 					)
 				), apply_filters( 'wvs_pro_archive_setting_default_active', false ) );
+			}
+			
+			if ( ! woo_variation_swatches()->is_pro_active() ) {
+				woo_variation_swatches()->add_setting( 'special', esc_html__( 'Special Attribute', 'woo-variation-swatches' ), array(
+					array(
+						'pro'    => true,
+						'title'  => esc_html__( 'Catalog mode', 'woo-variation-swatches-pro' ),
+						'desc'   => esc_html__( 'Show single attribute as catalog mode on shop / archive pages', 'woo-variation-swatches-pro' ),
+						'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
+							array(
+								'pro'          => true,
+								'width'        => '50%',
+								'screen_shot'  => woo_variation_swatches()->images_uri( 'special-preview.png' ),
+								'product_link' => woo_variation_swatches()->get_pro_link( 'special-tab' ),
+							),
+						) )
+					)
+				), apply_filters( 'wvs_pro_special_setting_default_active', false ) );
 			}
 			
 			do_action( 'after_wvs_settings', woo_variation_swatches() );
