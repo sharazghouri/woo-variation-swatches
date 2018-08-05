@@ -1010,6 +1010,9 @@
                     <li><span class="dashicons dashicons-yes"></span> Control swatches width and height on archive page.</li>
                     <li><span class="dashicons dashicons-yes"></span> Archive page swatches positioning.</li>
                     <li><span class="dashicons dashicons-yes"></span> Archive page swatches alignment.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Hide only out of stock variation product.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Individual attribute to show in large style.</li>
+                    <li><span class="dashicons dashicons-yes"></span> Catalog mode to show only one attribute on shop / archive page.</li>
                     <li><span class="dashicons dashicons-yes"></span> Tooltip display setting on archive/shop page.</li>
                     <li><span class="dashicons dashicons-yes"></span> Variation clear button display setting.</li>
                     <li><span class="dashicons dashicons-yes"></span> Customize tooltip text and background color.</li>
