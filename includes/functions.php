@@ -259,7 +259,7 @@
 					array(
 						'pro'    => true,
 						'title'  => esc_html__( 'Visual Styling', 'woo-variation-swatches-pro' ),
-						'desc'   => esc_html__( 'Change some visual styles', 'woo-variation-swatches-pro' ),
+						'desc'   => esc_html__( 'Change some visual styles', 'woo-variation-swatches' ),
 						'fields' => apply_filters( 'wvs_pro_style_setting_fields', array(
 							array(
 								'pro'          => true,
@@ -277,7 +277,7 @@
 					array(
 						'pro'    => true,
 						'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches-pro' ),
-						'desc'   => esc_html__( 'Advanced change some visual styles on shop / archive page', 'woo-variation-swatches-pro' ),
+						'desc'   => esc_html__( 'Advanced change some visual styles on shop / archive page', 'woo-variation-swatches' ),
 						'fields' => apply_filters( 'wvs_pro_archive_setting_fields', array(
 							array(
 								'pro'          => true,
@@ -295,7 +295,7 @@
 					array(
 						'pro'    => true,
 						'title'  => esc_html__( 'Catalog mode', 'woo-variation-swatches-pro' ),
-						'desc'   => esc_html__( 'Show single attribute as catalog mode on shop / archive pages', 'woo-variation-swatches-pro' ),
+						'desc'   => esc_html__( 'Show single attribute as catalog mode on shop / archive pages', 'woo-variation-swatches' ),
 						'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
 							array(
 								'pro'          => true,
