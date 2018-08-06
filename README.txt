@@ -190,6 +190,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.33 =
+
+* Fix: CSS Issue
+
 = 1.0.32 =
 
 * Add: Out of stock product crossed also if "Hide out of stock items from the catalog" unchecked.
