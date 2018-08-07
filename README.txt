@@ -190,6 +190,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.34 =
+
+* Fix: Known JS Issue
+
 = 1.0.33 =
 
 * Fix: CSS Issue

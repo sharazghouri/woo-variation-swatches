@@ -171,14 +171,15 @@ const WooVariationSwatches = (($) => {
 
                     object._generated = product_variations.reduce((obj, variation) => {
 
-                        if (!_.isArray(variation)) {
-                            Object.keys(variation.attributes).map((attribute_name) => {
+                        Object.keys(variation.attributes).map((attribute_name) => {
+                            if (!obj[attribute_name]) {
+                                obj[attribute_name] = []
+                            }
 
-                                if (!obj[attribute_name]) {
-                                    obj[attribute_name] = []
-                                }
-                            });
-                        }
+                            if (variation.attributes[attribute_name]) {
+                                obj[attribute_name].push(variation.attributes[attribute_name]);
+                            }
+                        });
 
                         return obj;
 
