@@ -74,6 +74,7 @@
     line-height: 50px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
+    border: 0;
     }
 
   .ui-button.ui-dialog-titlebar-close{
@@ -145,6 +146,10 @@
         &:hover{
           background: #389db1;
           }
+
+        &:active{
+          transform: translateY(0);
+          }
         }
 
       #feedback-dialog-form-button-skip{
@@ -157,6 +162,10 @@
         padding: 10px 0;
         outline: 0;
         text-decoration: none;
+
+        &:focus{
+          box-shadow:none;
+          }
 
         &:hover{
           text-decoration: underline;
