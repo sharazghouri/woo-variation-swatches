@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.34
+	 * Version: 1.0.35
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.34';
+			protected $_version = '1.0.35';
 			
 			protected static $_instance = null;
 			private          $_settings_api;
@@ -87,7 +87,10 @@
 				add_action( 'admin_notices', array( $this, 'wc_version_requirement_notice' ) );
 				add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
 				
+				add_action( 'admin_footer', array( $this, 'deactivate_feedback_dialog' ) );
+				
 				if ( $this->is_required_php_version() ) {
+					add_action( 'admin_init', array( $this, 'after_plugin_active' ) );
 					add_action( 'admin_notices', array( $this, 'feed' ) );
 					add_action( 'init', array( $this, 'settings_api' ), 5 );
 					add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -117,6 +120,16 @@
 					?>
                 </div>
 				<?php
+			}
+			
+			public function deactivate_feedback_dialog() {
+				
+				if ( in_array( get_current_screen()->id, array( 'plugins', 'plugins-network' ), true ) ) {
+					// add_thickbox();
+					wp_enqueue_script( 'jquery-ui-dialog' );
+					wp_enqueue_script( 'serializejson' );
+					include_once $this->include_path( 'deactive-feedback-dialog.php' );
+				}
 			}
 			
 			// Use it under hook. Don't use it on top level file like: hooks.php
@@ -186,6 +199,7 @@
 				$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 				
 				wp_enqueue_script( 'jquery-ui-dialog' );
+				wp_enqueue_style( 'wp-jquery-ui-dialog' );
 				
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_enqueue_script( 'wp-color-picker-alpha', $this->assets_uri( "/js/wp-color-picker-alpha{$suffix}.js" ), array( 'wp-color-picker' ), '2.1.3', true );
@@ -215,7 +229,10 @@
 			}
 			
 			public function settings_api() {
-				$this->_settings_api = new WVS_Settings_API( $this );
+				
+				if ( ! $this->_settings_api ) {
+					$this->_settings_api = new WVS_Settings_API();
+				}
 				
 				return $this->_settings_api;
 			}
@@ -253,6 +270,11 @@
 			}
 			
 			public function get_option( $id ) {
+				
+				if ( ! $this->_settings_api ) {
+					$this->settings_api();
+				}
+				
 				return $this->_settings_api->get_option( $id );
 			}
 			
@@ -528,6 +550,24 @@
 				return apply_filters( 'wvs_get_theme_file_uri', $uri, $file );
 			}
 			
+			public function after_plugin_active() {
+				if ( get_option( 'activate-woo-variation-swatches' ) === 'yes' ) {
+					delete_option( 'activate-woo-variation-swatches' );
+					wp_safe_redirect( add_query_arg( array(
+						                                 'page' => 'woo-variation-swatches-settings',
+						                                 'tab'  => 'tutorial'
+					                                 ), admin_url( 'admin.php' ) ) );
+				}
+			}
+			
+			public static function plugin_activated() {
+				update_option( 'activate-woo-variation-swatches', 'yes' );
+			}
+			
+			public static function plugin_deactivated() {
+				delete_option( 'activate-woo-variation-swatches' );
+			}
+			
 			// Feed API
 			public function feed() {
 				
@@ -638,4 +678,6 @@
 		}
 		
 		add_action( 'plugins_loaded', 'woo_variation_swatches' );
+		register_activation_hook( __FILE__, array( 'Woo_Variation_Swatches', 'plugin_activated' ) );
+		register_deactivation_hook( __FILE__, array( 'Woo_Variation_Swatches', 'plugin_deactivated' ) );
 	endif;
