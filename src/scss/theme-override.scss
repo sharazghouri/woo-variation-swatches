@@ -24,7 +24,7 @@
         }
 
       select {
-        border             : 1px solid #e4e6eb;
+        border             : 1px solid #E4E6EB;
         padding            : .5em 1em;
         text-align         : left;
         text-align-last    : left;
@@ -68,7 +68,7 @@
         margin-bottom : 10px;
 
         label {
-          border-bottom : 1px solid #eeeeee;
+          border-bottom : 1px solid #EEEEEE;
           }
         }
 
@@ -116,27 +116,35 @@
 //Kalium
 //============
 .woo-variation-swatches-theme-kalium,
-.woo-variation-swatches-theme-kalium-child{
+.woo-variation-swatches-theme-kalium-child {
   .image-variable-item img {
     width : 100% !important;
     }
 
-  .radio-variable-item input{
-    width: 16px !important;
-    height: 16px !important;
+  .radio-variable-item input {
+    width  : 16px !important;
+    height : 16px !important;
     }
 
-  .woo-variation-items-wrapper .select-option-ui{
-    display: none;
+  .woo-variation-items-wrapper .select-option-ui {
+    display : none;
     }
   }
-
 
 //AURUM
 //============
 .woo-variation-swatches-theme-aurum,
-.woo-variation-swatches-theme-child-aurum{
+.woo-variation-swatches-theme-child-aurum {
   .variable-items-wrapper .image-variable-item > img {
-    width: 100%;
+    width : 100%;
+    }
+  }
+
+// Hestia Theme
+.woo-variation-swatches-theme-hestia {
+  .woo-variation-items-wrapper.value {
+    &::before {
+      display : none !important;
+      }
     }
   }
