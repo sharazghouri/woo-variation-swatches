@@ -97,6 +97,7 @@
 					add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 					add_filter( 'body_class', array( $this, 'body_class' ) );
 					add_filter( 'wp_ajax_gwp_live_feed_close', array( $this, 'feed_close' ) );
+					add_filter( 'wp_ajax_gwp_deactivate_feedback', array( $this, 'deactivate_feedback' ) );
 					
 					add_filter( 'plugin_action_links_' . $this->basename(), array( $this, 'plugin_action_links' ) );
 					add_action( 'after_wvs_product_option_terms_button', array( $this, 'add_product_attribute_dialog' ), 10, 2 );
@@ -122,13 +123,89 @@
 				<?php
 			}
 			
+			private function deactivate_feedback_reasons() {
+				return array(
+					'no_longer_needed'      => array(
+						'title'             => esc_html__( 'I no longer need the plugin', 'woo-variation-swatches' ),
+						'input_placeholder' => '',
+					),
+					'found_a_better_plugin' => array(
+						'title'             => esc_html__( 'I found a better plugin', 'woo-variation-swatches' ),
+						'input_placeholder' => esc_html__( 'Please share which plugin', 'woo-variation-swatches' ),
+					),
+					
+					'couldnt_get_the_plugin_to_work' => array(
+						'title'             => esc_html__( 'I couldn\'t get the plugin to work', 'woo-variation-swatches' ),
+						'input_placeholder' => '',
+						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately and release an exclusive update for you.', 'woo-variation-swatches' ),
+					),
+					'temporary_deactivation'         => array(
+						'title'             => esc_html__( 'It\'s a temporary deactivation', 'woo-variation-swatches' ),
+						'input_placeholder' => '',
+					),
+					'other'                          => array(
+						'title'             => esc_html__( 'Other', 'woo-variation-swatches' ),
+						'input_placeholder' => esc_html__( 'Please share the reason', 'woo-variation-swatches' ),
+					)
+				);
+			}
+			
 			public function deactivate_feedback_dialog() {
 				
 				if ( in_array( get_current_screen()->id, array( 'plugins', 'plugins-network' ), true ) ) {
-					// add_thickbox();
-					wp_enqueue_script( 'jquery-ui-dialog' );
-					wp_enqueue_script( 'serializejson' );
+					
+					$deactivate_reasons = $this->deactivate_feedback_reasons();
+					$plugin_name        = esc_html__( 'WooCommerce Variation Swatches', 'woo-variation-swatches' );
+					
 					include_once $this->include_path( 'deactive-feedback-dialog.php' );
+					gwp_plugin_deactivate_feedback_dialog( $plugin_name, $deactivate_reasons );
+				}
+			}
+			
+			public function deactivate_feedback() {
+				
+				$api_url = 'https://getwooplugins.com/wp-json/getwooplugins/v1/deactivation';
+				
+				$deactivate_reasons = $this->deactivate_feedback_reasons();
+				
+				$plugin         = sanitize_title( $_POST[ 'plugin' ] );
+				$reason_id      = sanitize_title( $_POST[ 'reason_type' ] );
+				$reason_title   = $deactivate_reasons[ $reason_id ][ 'title' ];
+				$reason_text    = esc_html( $_POST[ 'reason_text' ] );
+				$theme          = $this->get_parent_theme_name() . ' version ' . $this->get_theme_version();
+				$plugin_version = $this->version();
+				
+				if ( 'temporary_deactivation' === $reason_id ) {
+					wp_send_json_success( true );
+					
+					return;
+				}
+				
+				if ( class_exists( 'WC_REST_System_Status_Controller' ) ) {
+					$system_status  = new WC_REST_System_Status_Controller();
+					$environment    = $system_status->get_environment_info();
+					$active_plugins = $system_status->get_active_plugins();
+					$theme          = $system_status->get_theme_info();
+				}
+				
+				$response = wp_remote_post( $api_url, $args = array(
+					'sslverify' => false,
+					'timeout'   => 60,
+					'body'      => array(
+						'plugin'         => $plugin,
+						'version'        => $plugin_version,
+						'reason_title'   => $reason_title,
+						'reason_text'    => $reason_text,
+						'theme'          => $theme,
+						'active_plugins' => $active_plugins,
+						'environment'    => $environment
+					)
+				) );
+				
+				if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
+					wp_send_json_success( wp_remote_retrieve_body( $response ) );
+				} else {
+					wp_send_json_error( wp_remote_retrieve_response_message( $response ) );
 				}
 			}
 			
@@ -211,6 +288,7 @@
 					wp_enqueue_style( 'gwp-feed', esc_url( $this->feed_css_uri() ) );
 				}
 				
+				
 				wp_enqueue_style( 'woo-variation-swatches-admin', $this->assets_uri( "/css/admin{$suffix}.css" ), array(), $this->version() );
 				
 				// wp_enqueue_script( 'selectWoo' );
@@ -226,6 +304,14 @@
 					'ajaxurl'       => esc_url( admin_url( 'admin-ajax.php', 'relative' ) ),
 					'nonce'         => wp_create_nonce( 'wvs_plugin_nonce' ),
 				) );
+				
+				// GWP Admin Helper
+				wp_enqueue_script( 'gwp-admin', $this->assets_uri( "/js/gwp-admin{$suffix}.js" ), array( 'jquery', 'jquery-ui-dialog', 'serializejson' ), $this->version(), true );
+				wp_localize_script( 'gwp-admin', 'GWPAdmin', array(
+					'feedback_title' => esc_html__( 'Quick Feedback', 'woo-variation-swatches' )
+				) );
+				wp_enqueue_style( 'gwp-admin', $this->assets_uri( "/css/gwp-admin{$suffix}.css" ), array( 'wp-jquery-ui-dialog' ), $this->version() );
+				
 			}
 			
 			public function settings_api() {

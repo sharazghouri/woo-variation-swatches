@@ -22,3 +22,4 @@
 		
 		add_filter( 'woocommerce_product_data_panels', 'add_wvs_pro_preview_tab_panel' );
 	}
+	

@@ -3,6 +3,15 @@
 const PluginHelper = (($) => {
     class PluginHelper {
 
+        static GWPAdmin() {
+            if ($().gwp_live_feed) {
+                $().gwp_live_feed();
+            }
+            if ($().gwp_deactivate_popup) {
+                $().gwp_deactivate_popup('woo-variation-swatches');
+            }
+        }
+
         static ImageUploader() {
             $(document).off('click', 'button.wvs_upload_image_button');
             $(document).on('click', 'button.wvs_upload_image_button', this.AddImage);

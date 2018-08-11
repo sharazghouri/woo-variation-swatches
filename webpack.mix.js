@@ -75,6 +75,7 @@ if (!Mix.inProduction()) {
 
 mix.js(`src/js/backend.js`, `assets/js/admin${min}.js`);
 mix.js(`src/js/frontend.js`, `assets/js/frontend${min}.js`);
+mix.js(`src/js/gwp-admin.js`, `assets/js/gwp-admin${min}.js`);
 
 // Woo Layout Injector
 mix.babel(`src/js/divi_woo_layout_injector.js`, `assets/js/divi_woo_layout_injector${min}.js`);
@@ -84,7 +85,7 @@ mix.babel(`src/js/wp-color-picker-alpha.js`, `assets/js/wp-color-picker-alpha${m
 mix.babel(`src/js/wvs-customize-alpha-color-control.js`, `assets/js/wvs-customize-alpha-color-control${min}.js`);
 mix.sass(`src/scss/backend.scss`, `assets/css/admin${min}.css`);
 
-// mix.sass(`src/scss/gwp-admin-notice.scss`, `assets/css/gwp-admin-notice${min}.css`);
+mix.sass(`src/scss/gwp-admin.scss`, `assets/css/gwp-admin${min}.css`);
 
 mix.sass(`src/scss/frontend.scss`, `assets/css/frontend${min}.css`);
 mix.sass(`src/scss/tooltip.scss`, `assets/css/frontend-tooltip${min}.css`);
