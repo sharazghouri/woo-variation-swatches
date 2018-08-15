@@ -14,7 +14,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="http://bit.ly/tutorial-tab-01" target="_blank" class="button button-live-demo">Live Demo</a>
-                    <a href="#" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="http://bit.ly/wvs-tuts-01" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
         </li>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="http://bit.ly/tutorial-tab-02" target="_blank" class="button button-live-demo">Live Demo</a>
-                    <a href="#" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="http://bit.ly/wvs-tuts-02" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
             <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-2.png' ) ?>"></div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="http://bit.ly/tutorial-tab-03" target="_blank" class="button button-live-demo">Live Demo</a>
-                    <a href="#" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="http://bit.ly/wvs-tuts-03" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
         </li>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="http://bit.ly/tutorial-tab-04" target="_blank" class="button button-live-demo">Live Demo</a>
-                    <a href="#" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="http://bit.ly/wvs-tuts-04" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
         </li>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="http://bit.ly/tutorial-tab-06" target="_blank" class="button button-live-demo">Live Demo</a>
-                    <a href="#" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="http://bit.ly/wvs-tuts-05" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
             <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-5.png' ) ?>"></div>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="tutorial-buttons">
                     <a href="http://bit.ly/tutorial-tab-05" target="_blank" class="button button-live-demo">Live Demo</a>
-                    <a href="#" target="_blank" class="button button-docs">Documentation</a>
+                    <a href="http://bit.ly/wvs-tuts-06" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
         </li>
