@@ -181,6 +181,9 @@
 					return;
 				}
 				
+				// PHP Version
+                // Database version wc_get_server_database_version
+				
 				if ( class_exists( 'WC_REST_System_Status_Controller' ) ) {
 					$system_status  = new WC_REST_System_Status_Controller();
 					$environment    = $system_status->get_environment_info();

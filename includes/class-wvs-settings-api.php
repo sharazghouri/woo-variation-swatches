@@ -138,7 +138,7 @@
 			}
 			
 			private function get_default( $key ) {
-				return isset( $this->defaults[ $key ] ) ? $this->defaults[ $key ] : NULL;
+				return isset( $this->defaults[ $key ] ) ? $this->defaults[ $key ] : null;
 			}
 			
 			public function get_defaults() {
@@ -161,7 +161,7 @@
 							if ( isset( $field[ 'pro' ] ) ) {
 								continue;
 							}
-							$field[ 'default' ] = isset( $field[ 'default' ] ) ? $field[ 'default' ] : NULL;
+							$field[ 'default' ] = isset( $field[ 'default' ] ) ? $field[ 'default' ] : null;
 							$this->set_default( $field[ 'id' ], $field[ 'type' ], $field[ 'default' ] );
 						}
 					}
@@ -220,7 +220,7 @@
 						
 						//print_r( $section); die;
 						
-						$section[ 'id' ] = ! isset( $section[ 'id' ] ) ? $tab[ 'id' ] . '-section-'.$section_key : $section[ 'id' ];
+						$section[ 'id' ] = ! isset( $section[ 'id' ] ) ? $tab[ 'id' ] . '-section-' . $section_key : $section[ 'id' ];
 						
 						// Adding Settings section id
 						$this->fields[ $tab_key ][ 'sections' ][ $section_key ][ 'id' ] = $section[ 'id' ];
@@ -243,7 +243,7 @@
 							
 							//$field[ 'label_for' ] = $this->settings_name . '[' . $field[ 'id' ] . ']';
 							$field[ 'label_for' ] = $field[ 'id' ] . '-field';
-							$field[ 'default' ]   = isset( $field[ 'default' ] ) ? $field[ 'default' ] : NULL;
+							$field[ 'default' ]   = isset( $field[ 'default' ] ) ? $field[ 'default' ] : null;
 							
 							// $this->set_default( $field[ 'id' ], $field[ 'default' ] );
 							
@@ -301,7 +301,7 @@
 				
 				$value = (bool) $this->get_option( $args[ 'id' ] );
 				$size  = isset( $args[ 'size' ] ) && ! is_null( $args[ 'size' ] ) ? $args[ 'size' ] : 'regular';
-				$html  = sprintf( '<fieldset><label><input type="checkbox" id="%2$s-field" name="%4$s[%2$s]" value="%3$s" %5$s/> %6$s</label></fieldset>', $size, $args[ 'id' ], TRUE, $this->settings_name, checked( $value, TRUE, FALSE ), esc_attr( $args[ 'desc' ] ) );
+				$html  = sprintf( '<fieldset><label><input type="checkbox" id="%2$s-field" name="%4$s[%2$s]" value="%3$s" %5$s/> %6$s</label></fieldset>', $size, $args[ 'id' ], true, $this->settings_name, checked( $value, true, false ), esc_attr( $args[ 'desc' ] ) );
 				
 				echo $html;
 			}
@@ -312,7 +312,7 @@
 				$value   = esc_attr( $this->get_option( $args[ 'id' ] ) );
 				$html    = '<fieldset>';
 				$html    .= implode( '<br />', array_map( function ( $key, $option ) use ( $size, $args, $value ) {
-					return sprintf( '<label><input type="radio" id="%2$s-field" name="%4$s[%2$s]" value="%3$s" %5$s/> %6$s</label>', $size, $args[ 'id' ], $key, $this->settings_name, checked( $value, $key, FALSE ), $option );
+					return sprintf( '<label><input type="radio" id="%2$s-field" name="%4$s[%2$s]" value="%3$s" %5$s/> %6$s</label>', $size, $args[ 'id' ], $key, $this->settings_name, checked( $value, $key, false ), $option );
 				}, array_keys( $options ), $options ) );
 				$html    .= $this->get_field_description( $args );
 				$html    .= '</fieldset>';
@@ -324,7 +324,7 @@
 				$options = apply_filters( "wvs_settings_{$args[ 'id' ]}_select_options", $args[ 'options' ] );
 				$value   = esc_attr( $this->get_option( $args[ 'id' ] ) );
 				$options = array_map( function ( $key, $option ) use ( $value ) {
-					return "<option value='{$key}'" . selected( $key, $value, FALSE ) . ">{$option}</option>";
+					return "<option value='{$key}'" . selected( $key, $value, false ) . ">{$option}</option>";
 				}, array_keys( $options ), $options );
 				$size    = isset( $args[ 'size' ] ) && ! is_null( $args[ 'size' ] ) ? $args[ 'size' ] : 'regular';
 				$html    = sprintf( '<select class="%1$s-text" id="%2$s-field" name="%4$s[%2$s]">%3$s</select>', $size, $args[ 'id' ], implode( '', $options ), $this->settings_name );
@@ -350,7 +350,7 @@
 				$value = esc_attr( $this->get_option( $args[ 'id' ] ) );
 				
 				$options = array_map( function ( $option ) use ( $value ) {
-					return "<option value='{$option->ID}'" . selected( $option->ID, $value, FALSE ) . ">$option->post_title</option>";
+					return "<option value='{$option->ID}'" . selected( $option->ID, $value, false ) . ">$option->post_title</option>";
 				}, $options );
 				
 				$size = isset( $args[ 'size' ] ) && ! is_null( $args[ 'size' ] ) ? $args[ 'size' ] : 'regular';
@@ -370,12 +370,21 @@
 			
 			public function pro_field_callback( $args ) {
 				
-				$image = esc_url( $args[ 'screen_shot' ] );
-				$link  = esc_url( $args[ 'product_link' ] );
-				$width = isset( $args[ 'width' ] ) ? $args[ 'width' ] : '70%';
+				$is_html = isset( $args[ 'html' ] );
 				
-				$html = sprintf( '<a target="_blank" href="%s"><img style="width: %s" src="%s" /></a>', $link, $width, $image );
-				$html .= $this->get_field_description( $args );
+				if ( $is_html ) {
+					$html = $args[ 'html' ];
+				} else {
+					$image = esc_url( $args[ 'screen_shot' ] );
+					$link  = esc_url( $args[ 'product_link' ] );
+					
+					
+					$width = isset( $args[ 'width' ] ) ? $args[ 'width' ] : '70%';
+					
+					$html = sprintf( '<a target="_blank" href="%s"><img style="width: %s" src="%s" /></a>', $link, $width, $image );
+					$html .= $this->get_field_description( $args );
+				}
+				
 				
 				echo $html;
 			}
@@ -383,7 +392,7 @@
 			public function color_field_callback( $args ) {
 				$value = esc_attr( $this->get_option( $args[ 'id' ] ) );
 				// $size  = isset( $args[ 'size' ] ) && ! is_null( $args[ 'size' ] ) ? $args[ 'size' ] : 'regular';
-				$alpha = isset( $args[ 'alpha' ] ) && $args[ 'alpha' ] === TRUE ? ' data-alpha="true"' : '';
+				$alpha = isset( $args[ 'alpha' ] ) && $args[ 'alpha' ] === true ? ' data-alpha="true"' : '';
 				$html  = sprintf( '<input type="text" %1$s class="wvs-color-picker" id="%2$s-field" name="%4$s[%2$s]" value="%3$s"  data-default-color="%3$s" />', $alpha, $args[ 'id' ], $value, $this->settings_name );
 				$html  .= $this->get_field_description( $args );
 				
@@ -426,7 +435,7 @@
 							<?php foreach ( $this->fields as $tab ):
 								
 								if ( ! isset( $tab[ 'active' ] ) ) {
-									$tab[ 'active' ] = FALSE;
+									$tab[ 'active' ] = false;
 								}
 								$is_active = ( $this->get_last_active_tab() == $tab[ 'id' ] );
 								?>
@@ -525,9 +534,9 @@
 				
 				foreach ( $attributes as $key => $value ) {
 					
-					if ( is_bool( $attributes[ $key ] ) and $attributes[ $key ] === TRUE ) {
+					if ( is_bool( $attributes[ $key ] ) and $attributes[ $key ] === true ) {
 						return $attributes[ $key ] ? $key : '';
-					} elseif ( is_bool( $attributes[ $key ] ) and $attributes[ $key ] === FALSE ) {
+					} elseif ( is_bool( $attributes[ $key ] ) and $attributes[ $key ] === false ) {
 						$attributes_array[] = '';
 					} else {
 						$attributes_array[] = $key . '="' . $value . '"';

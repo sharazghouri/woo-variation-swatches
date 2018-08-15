@@ -77,9 +77,7 @@ const GWPAdminHelper = (($) => {
                 wp.ajax.send(data.action, {
                     data,
                     success : (response) => {
-                        if (response) {
-                            window.location.replace(link)
-                        }
+                        window.location.replace(link)
                     },
                     error   : () => {
                         window.location.replace(link)

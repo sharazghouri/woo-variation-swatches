@@ -9,6 +9,11 @@
 	if ( ! function_exists( 'wvs_is_ie11' ) ):
 		function wvs_is_ie11() {
 			global $is_IE;
+			
+			if ( ! isset( $_SERVER[ 'HTTP_USER_AGENT' ] ) ) {
+				return false;
+			}
+			
 			$ua   = $_SERVER[ 'HTTP_USER_AGENT' ];
 			$is11 = preg_match( "/Trident\/7.0;(.*)rv:11.0/", $ua, $match ) !== false;
 			
@@ -108,6 +113,18 @@
 			}
 			
 			return $selector;
+		}
+	endif;
+	
+	//-------------------------------------------------------------------------------
+	// Tutorials Tab Contents
+	//-------------------------------------------------------------------------------
+	if ( ! function_exists( 'wvs_tutorial_tab_contents' ) ):
+		function wvs_tutorial_tab_contents() {
+			ob_start();
+			include_once woo_variation_swatches()->include_path( 'tutorials.php' );
+			
+			return ob_get_clean();
 		}
 	endif;
 	
@@ -307,6 +324,21 @@
 					)
 				), apply_filters( 'wvs_pro_special_setting_default_active', false ) );
 			}
+			
+			woo_variation_swatches()->add_setting( 'tutorial', esc_html__( 'Tutorials', 'woo-variation-swatches' ), array(
+				array(
+					'pro'    => true,
+					'title'  => esc_html__( 'How to tutorials', 'woo-variation-swatches-pro' ),
+					'desc'   => esc_html__( 'How to setup and use this plugin', 'woo-variation-swatches' ),
+					'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
+						array(
+							'pro'  => true,
+							'html' => wvs_tutorial_tab_contents(),
+						),
+					) )
+				)
+			), apply_filters( 'wvs_tutorial_setting_default_active', false ) );
+			
 			
 			do_action( 'after_wvs_settings', woo_variation_swatches() );
 		}
@@ -608,7 +640,7 @@
 					foreach ( $terms as $term ) {
 						if ( in_array( $term->slug, $options ) ) {
 							$selected_class = ( sanitize_title( $args[ 'selected' ] ) == $term->slug ) ? 'selected' : '';
-							$tooltip        = trim( apply_filters( 'wvs_color_variable_item_tooltip', $term->name, $term, $args ) );
+							$tooltip        = trim( apply_filters( 'wvs_variable_item_tooltip', $term->name, $term, $args ) );
 							
 							$tooltip_html_attr = ! empty( $tooltip ) ? sprintf( 'data-wvstooltip="%s"', esc_attr( $tooltip ) ) : '';
 							
