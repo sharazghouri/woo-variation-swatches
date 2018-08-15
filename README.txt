@@ -176,23 +176,24 @@ And your are ready to go.
 
 == Screenshots ==
 
-1. Single Product Variation page
-2. Product QuickView
-3. Available Attribute Options
-4. Attribute Color Type Preview
-5. Attribute Image Type Preview
-6. Attribute Button / Label Type Preview
-7. Single Variation Product Edit View
-8. Simple Settings Panel
-9. Advanced Settings Panel
-10. Customizer Panel
-11. Single Variation Product New attribute term
+1. Variation Color Swatch Preview
+2. Variation Image Swatch Preview
+3. Variation Button / Label Swatch Preview
+4. Product QuickView Preview
+5. Out Of Stock Variation Preview
+6. Tooltip Preview
+7. Tooltip Setting
+8. Attribute Variation Shape
+9. Attribute Variation Display Behavior
+10. Variation Swatches Size and Font Setting
+11. Global Variation Image Swatches Attribute List Preview
+12. Global Variation Color Swatches Attribute List Preview
 
 == Changelog ==
 
 = 1.0.35 =
 
-* Add:  AURUM theme support
+* Add: AURUM theme support
 
 = 1.0.34 =
 

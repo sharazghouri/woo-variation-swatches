@@ -125,6 +125,17 @@
 			
 			private function deactivate_feedback_reasons() {
 				return array(
+					'temporary_deactivation' => array(
+						'title'             => esc_html__( 'It\'s a temporary deactivation.', 'woo-variation-swatches' ),
+						'input_placeholder' => '',
+					),
+					
+					'dont_know_about' => array(
+						'title'             => esc_html__( 'I don\'t know, what it does.', 'woo-variation-swatches' ),
+						'input_placeholder' => '',
+						'alert'             => __( 'It converts variation select box to beautiful swatches. <br> <a target="_blank" href="https://bit.ly/deactivate-dialogue">Please check live demo</a>.', 'woo-variation-swatches' ),
+					),
+					
 					'no_longer_needed'      => array(
 						'title'             => esc_html__( 'I no longer need the plugin', 'woo-variation-swatches' ),
 						'input_placeholder' => '',
@@ -134,16 +145,25 @@
 						'input_placeholder' => esc_html__( 'Please share which plugin', 'woo-variation-swatches' ),
 					),
 					
+					'broke_site_layout' => array(
+						'title'             => __( 'The plugin <strong>broke my layout</strong> or some functionality.', 'woo-variation-swatches' ),
+						'input_placeholder' => '',
+						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately.', 'woo-variation-swatches' ),
+					),
+					
+					'plugin_config_too_complicated' => array(
+						'title'             => __( 'The plugin is <strong>too complicated to configure.</strong>', 'woo-variation-swatches' ),
+						'input_placeholder' => '',
+						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/documentation/woocommerce-variation-swatches/">Have you checked our documentation?</a>.', 'woo-variation-swatches' ),
+					),
+					
 					'couldnt_get_the_plugin_to_work' => array(
 						'title'             => esc_html__( 'I couldn\'t get the plugin to work', 'woo-variation-swatches' ),
 						'input_placeholder' => '',
-						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately and release an exclusive update for you.', 'woo-variation-swatches' ),
+						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately.', 'woo-variation-swatches' ),
 					),
-					'temporary_deactivation'         => array(
-						'title'             => esc_html__( 'It\'s a temporary deactivation', 'woo-variation-swatches' ),
-						'input_placeholder' => '',
-					),
-					'other'                          => array(
+					
+					'other' => array(
 						'title'             => esc_html__( 'Other', 'woo-variation-swatches' ),
 						'input_placeholder' => esc_html__( 'Please share the reason', 'woo-variation-swatches' ),
 					)
@@ -155,10 +175,9 @@
 				if ( in_array( get_current_screen()->id, array( 'plugins', 'plugins-network' ), true ) ) {
 					
 					$deactivate_reasons = $this->deactivate_feedback_reasons();
-					$plugin_name        = esc_html__( 'WooCommerce Variation Swatches', 'woo-variation-swatches' );
 					
 					include_once $this->include_path( 'deactive-feedback-dialog.php' );
-					gwp_plugin_deactivate_feedback_dialog( $plugin_name, $deactivate_reasons );
+					gwp_plugin_deactivate_feedback_dialog( $deactivate_reasons );
 				}
 			}
 			
@@ -172,7 +191,6 @@
 				$reason_id      = sanitize_title( $_POST[ 'reason_type' ] );
 				$reason_title   = $deactivate_reasons[ $reason_id ][ 'title' ];
 				$reason_text    = esc_html( $_POST[ 'reason_text' ] );
-				$theme          = $this->get_parent_theme_name() . ' version ' . $this->get_theme_version();
 				$plugin_version = $this->version();
 				
 				if ( 'temporary_deactivation' === $reason_id ) {
@@ -181,27 +199,47 @@
 					return;
 				}
 				
-				// PHP Version
-                // Database version wc_get_server_database_version
+				$theme = array(
+					'is_child_theme'   => is_child_theme(),
+					'parent_theme'     => $this->get_parent_theme_name(),
+					'theme_name'       => $this->get_theme_name(),
+					'theme_version'    => $this->get_theme_version(),
+					'theme_uri'        => wp_get_theme( get_template() )->get( 'ThemeURI' ),
+					'theme_author'     => wp_get_theme( get_template() )->get( 'Author' ),
+					'theme_author_uri' => wp_get_theme( get_template() )->get( 'AuthorURI' ),
+				);
 				
-				if ( class_exists( 'WC_REST_System_Status_Controller' ) ) {
-					$system_status  = new WC_REST_System_Status_Controller();
-					$environment    = $system_status->get_environment_info();
-					$active_plugins = $system_status->get_active_plugins();
-					$theme          = $system_status->get_theme_info();
+				$database_version = wc_get_server_database_version();
+				$active_plugins   = (array) get_option( 'active_plugins', array() );
+				
+				if ( is_multisite() ) {
+					$network_activated_plugins = array_keys( get_site_option( 'active_sitewide_plugins', array() ) );
+					$active_plugins            = array_merge( $active_plugins, $network_activated_plugins );
 				}
+				
+				$environment = array(
+					'is_multisite'         => is_multisite(),
+					'site_url'             => get_option( 'siteurl' ),
+					'home_url'             => get_option( 'home' ),
+					'php_version'          => phpversion(),
+					'mysql_version'        => $database_version[ 'number' ],
+					'mysql_version_string' => $database_version[ 'string' ],
+					'wc_version'           => WC()->version,
+					'wp_version'           => get_bloginfo( 'version' ),
+					'server_info'          => isset( $_SERVER[ 'SERVER_SOFTWARE' ] ) ? wc_clean( wp_unslash( $_SERVER[ 'SERVER_SOFTWARE' ] ) ) : '',
+				);
 				
 				$response = wp_remote_post( $api_url, $args = array(
 					'sslverify' => false,
 					'timeout'   => 60,
 					'body'      => array(
-						'plugin'         => $plugin,
-						'version'        => $plugin_version,
-						'reason_title'   => $reason_title,
-						'reason_text'    => $reason_text,
-						'theme'          => $theme,
-						'active_plugins' => $active_plugins,
-						'environment'    => $environment
+						'plugin'       => $plugin,
+						'version'      => $plugin_version,
+						'reason_title' => $reason_title,
+						'reason_text'  => $reason_text,
+						'theme'        => $theme,
+						'plugins'      => $active_plugins,
+						'environment'  => $environment
 					)
 				) );
 				
