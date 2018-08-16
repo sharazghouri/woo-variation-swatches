@@ -129,87 +129,146 @@
     }
   }
 
-// Tutorial Tab
 
-#tutorial{
-  .gwp-tutorials-wrapper{
-    margin: 0 -20px;
-    background: #fff;
+#woo-variation-swatches-settings-wrap{
 
-    img{
-      width: 100%;
+  #settings-tabs{
+    margin-top: 30px;
+
+    //Section heading
+    h2{
+      font-size: 1.5em;
+      margin-bottom: 10px;
       }
 
-    li{
-      overflow: hidden;
-      display: block;
-      padding: 50px 0;
-      margin: 0;
-      border-bottom: 1px solid #ddd;
-      }
-    .tutorial-image-wrapper,
-    .tutorial-description-wrapper{
-      float: left;
-      padding: 0 20px;
-      box-sizing: border-box;
+
+    // form table style
+    .form-table{
+      margin-top: 15px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07);
+
+      tr{
+        border-bottom: 1px solid #eee;
+        padding: 0 20px;
+        display: block;
+
+        &:last-child{
+          border: 0;
+          }
+        }
       }
 
-    .tutorial-image-wrapper{
-      width: 60%;
+    // Style & special tab margin
+    #style,
+    #special{
+      .form-table{
+        margin-bottom: 30px;
+        }
       }
-    .tutorial-description-wrapper{
-      width: 40%;
+    }
 
-      h3{
-        margin: 0 0 20px;
-        font-size: 1.5em;
+
+  // Tutorial Tab
+  #tutorial{
+    .form-table{
+      tr{
+        padding: 0 !important;
+        }
+      }
+
+    .gwp-tutorials-wrapper{
+      img{
+        width: 100%;
         }
 
-      .tutorial-contents{
-        font-size: 15px;
-        line-height: 1.5em;
-        margin-bottom: 20px;
+      ul{
+        margin: 0;
         }
 
+      li{
+        overflow: hidden;
+        display: block;
+        padding: 50px 30px;
+        margin: 0;
+        border-bottom: 1px solid #ddd;
 
-      .tutorial-buttons{
-        .button{
-          border-radius    : 3px;
-          line-height      : 1;
-          padding          : 13px 20px;
-          font-size        : 13px;
-          height           : 40px;
-          box-shadow       : none;
-          text-shadow      : none;
-          &:active {
-            transform : translateY(0);
-            }
+        &:last-child{
+          border: 0;
+          }
+        }
+      .tutorial-image-wrapper,
+      .tutorial-description-wrapper{
+        float: left;
+        padding: 0 20px;
+        box-sizing: border-box;
+        }
 
-          &.button-live-demo{
-            background-color : #fff;
-            color            : #333;
-            border           : 1px solid #eee;
-            &:hover {
-              background : #eee;
+      .tutorial-image-wrapper{
+        width: 60%;
+        }
+      .tutorial-description-wrapper{
+        width: 40%;
+
+        h3{
+          margin: 0 0 20px;
+          font-size: 1.5em;
+          }
+
+        .tutorial-contents{
+          font-size: 15px;
+          line-height: 1.5em;
+          margin-bottom: 20px;
+          }
+
+
+        .tutorial-buttons{
+          .button{
+            border-radius    : 3px;
+            line-height      : 1;
+            padding          : 13px 20px;
+            font-size        : 13px;
+            height           : 40px;
+            box-shadow       : none;
+            text-shadow      : none;
+            &:active {
+              transform : translateY(0);
               }
-            }
 
-          &.button-docs{
-            background-color : #36373a;
-            color            : #FFFFFF;
-            border           : 1px solid #36373a;
-            &:hover {
-              background : #5d5e61;
-              border-color: #5d5e61;
+            &.button-live-demo{
+              background-color : #fff;
+              color            : #333;
+              border           : 1px solid #eee;
+              &:hover {
+                background : #eee;
+                }
               }
+
+            &.button-docs{
+              background-color : #36373a;
+              color            : #FFFFFF;
+              border           : 1px solid #36373a;
+              &:hover {
+                background : #5d5e61;
+                border-color: #5d5e61;
+                }
+              }
+
             }
 
           }
 
+
         }
 
-
       }
-
     }
+
   }
+
+
+
+
+
+
