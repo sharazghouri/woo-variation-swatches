@@ -189,7 +189,8 @@
 
       li{
         overflow: hidden;
-        display: block;
+        display: flex;
+        align-items: center;
         padding: 50px 30px;
         margin: 0;
         border-bottom: 1px solid #ddd;
