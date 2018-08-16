@@ -146,8 +146,11 @@
     .form-table{
       margin-top: 15px;
       background: #fff;
-      border-radius: 5px;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07);
+      border-radius: 2px;
+      //box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07);
+      //border: 1px solid #e5e5e5;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07),
+      0 1px 1px rgba(0,0,0,0.04);
 
       tr{
         border-bottom: 1px solid #eee;
