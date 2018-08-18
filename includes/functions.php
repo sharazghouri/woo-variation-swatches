@@ -280,7 +280,7 @@
 						'fields' => apply_filters( 'wvs_pro_style_setting_fields', array(
 							array(
 								'pro'          => true,
-								'width'        => '55%',
+								'width'        => '100%',
 								'screen_shot'  => woo_variation_swatches()->images_uri( 'style-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'style-tab' ),
 							),
@@ -298,7 +298,7 @@
 						'fields' => apply_filters( 'wvs_pro_archive_setting_fields', array(
 							array(
 								'pro'          => true,
-								'width'        => '44%',
+								'width'        => '100%',
 								'screen_shot'  => woo_variation_swatches()->images_uri( 'archive-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'archive-tab' ),
 							),
@@ -316,7 +316,7 @@
 						'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
 							array(
 								'pro'          => true,
-								'width'        => '50%',
+								'width'        => '100%',
 								'screen_shot'  => woo_variation_swatches()->images_uri( 'special-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'special-tab' ),
 							),
