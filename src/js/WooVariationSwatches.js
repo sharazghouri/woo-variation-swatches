@@ -169,10 +169,6 @@ const WooVariationSwatches = (($) => {
             if (!is_ajax) {
                 this._element.on('woo_variation_swatches_init', function (event, object, product_variations) {
 
-                    if (!_.isArray(product_variations)) {
-                        return;
-                    }
-
                     object._generated = product_variations.reduce((obj, variation) => {
 
                         Object.keys(variation.attributes).map((attribute_name) => {

@@ -131,7 +131,7 @@
 					),
 					
 					'dont_know_about' => array(
-						'title'             => esc_html__( 'I don\'t know, what it does.', 'woo-variation-swatches' ),
+						'title'             => esc_html__( 'I couldn\'t understand how to make it work.', 'woo-variation-swatches' ),
 						'input_placeholder' => '',
 						'alert'             => __( 'It converts variation select box to beautiful swatches. <br> <a target="_blank" href="https://bit.ly/deactivate-dialogue">Please check live demo</a>.', 'woo-variation-swatches' ),
 					),
@@ -140,6 +140,7 @@
 						'title'             => esc_html__( 'I no longer need the plugin', 'woo-variation-swatches' ),
 						'input_placeholder' => '',
 					),
+					
 					'found_a_better_plugin' => array(
 						'title'             => esc_html__( 'I found a better plugin', 'woo-variation-swatches' ),
 						'input_placeholder' => esc_html__( 'Please share which plugin', 'woo-variation-swatches' ),
@@ -157,10 +158,10 @@
 						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/documentation/woocommerce-variation-swatches/">Have you checked our documentation?</a>.', 'woo-variation-swatches' ),
 					),
 					
-					'couldnt_get_the_plugin_to_work' => array(
-						'title'             => esc_html__( 'I couldn\'t get the plugin to work', 'woo-variation-swatches' ),
-						'input_placeholder' => '',
-						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately.', 'woo-variation-swatches' ),
+					'need_specific_feature' => array(
+						'title'             => esc_html__( 'I need specific feature that you don\'t support.', 'woo-variation-swatches' ),
+						'input_placeholder' => esc_html__( 'Please share with us.', 'woo-variation-swatches' ),
+						//'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately.', 'woo-variation-swatches' ),
 					),
 					
 					'other' => array(
