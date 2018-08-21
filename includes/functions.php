@@ -984,8 +984,8 @@
 			if ( wvs_is_ie11() ) {
 				return $html;
 			}
-			//print_r( $args); die(__FILE__);
-			//ob_start();
+			
+			ob_start();
 			
 			$available_type_keys = array_keys( wvs_available_attributes_types() );
 			$available_types     = wvs_available_attributes_types();
@@ -995,13 +995,13 @@
 				if ( wvs_wc_product_has_attribute_type( $type, $args[ 'attribute' ] ) ) {
 					$output_callback = apply_filters( 'wvs_variation_attribute_options_callback', $available_types[ $type ][ 'output' ], $available_types, $type, $args, $html );
 					$output_callback( apply_filters( 'wvs_variation_attribute_options_args', wp_parse_args( $args, array(
-						                                                                       'options'    => $args[ 'options' ],
-						                                                                       'attribute'  => $args[ 'attribute' ],
-						                                                                       'product'    => $args[ 'product' ],
-						                                                                       'selected'   => $args[ 'selected' ],
-						                                                                       'type'       => $type,
-						                                                                       'is_archive' => ( isset( $args[ 'is_archive' ] ) && $args[ 'is_archive' ] )
-					                                                                       ) ) ) );
+						'options'    => $args[ 'options' ],
+						'attribute'  => $args[ 'attribute' ],
+						'product'    => $args[ 'product' ],
+						'selected'   => $args[ 'selected' ],
+						'type'       => $type,
+						'is_archive' => ( isset( $args[ 'is_archive' ] ) && $args[ 'is_archive' ] )
+					) ) ) );
 					$default = false;
 				}
 			}

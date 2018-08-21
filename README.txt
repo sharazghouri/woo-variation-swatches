@@ -194,6 +194,7 @@ And your are ready to go.
 = 1.0.35 =
 
 * Add: AURUM theme support
+* Fix: WooCommerce Product Bundle conflict.
 
 = 1.0.34 =
 
