@@ -467,11 +467,25 @@
 				?>
                 <h2 class="nav-tab-wrapper wp-clearfix">
 					<?php foreach ( $this->fields as $tabs ): ?>
-                        <a data-target="<?php echo $tabs[ 'id' ] ?>" class="wvs-setting-nav-tab nav-tab <?php echo ( $this->get_last_active_tab() == $tabs[ 'id' ] ) ? 'nav-tab-active' : '' ?> " href="#<?php echo $tabs[ 'id' ] ?>"><?php echo $tabs[ 'title' ] ?></a>
+                        <a data-target="<?php echo $tabs[ 'id' ] ?>" <?php echo $this->get_options_tab_pro_attr( $tabs ) ?> class="wvs-setting-nav-tab nav-tab <?php echo $this->get_options_tab_css_classes($tabs) ?> " href="#<?php echo $tabs[ 'id' ] ?>"><?php echo $tabs[ 'title' ] ?></a>
 					<?php endforeach; ?>
                 </h2>
 				<?php
 			}
+			
+			private function get_options_tab_pro_attr( $tabs ) {
+				return ( isset( $tabs[ 'is_pro' ] ) && $tabs[ 'is_pro' ] ) ? sprintf( 'data-pro-text="%s"', apply_filters( 'wvs_settings_tab_pro_text', 'Pro' ) ) : false;
+			}
+			
+			private function get_options_tab_css_classes( $tabs ) {
+				$classes = array();
+				
+				$classes[] = ( $this->get_last_active_tab() == $tabs[ 'id' ] ) ? 'nav-tab-active' : '';
+				$classes[] = ( $this->get_options_tab_pro_attr( $tabs ) ) ? 'pro-tab' : '';
+				
+				return implode( ' ', array_unique( $classes ) );
+			}
+			
 			
 			private function get_last_active_tab() {
 				

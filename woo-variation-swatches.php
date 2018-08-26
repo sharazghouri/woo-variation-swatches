@@ -136,7 +136,7 @@
 						'alert'             => __( 'It converts variation select box to beautiful swatches. <br> <a target="_blank" href="https://bit.ly/deactivate-dialogue">Please check live demo</a>.', 'woo-variation-swatches' ),
 					),
 					
-					'no_longer_needed'      => array(
+					'no_longer_needed' => array(
 						'title'             => esc_html__( 'I no longer need the plugin', 'woo-variation-swatches' ),
 						'input_placeholder' => '',
 					),
@@ -365,7 +365,7 @@
 				return $this->_settings_api;
 			}
 			
-			public function add_setting( $tab_id, $tab_title, $tab_sections, $active = false ) {
+			public function add_setting( $tab_id, $tab_title, $tab_sections, $active = false, $is_pro_tab = false ) {
 				// Example:
 				
 				// fn(tab_id, tab_title, [
@@ -385,12 +385,13 @@
 				//  ]
 				//], active ? true | false)
 				
-				add_filter( 'wvs_settings', function ( $fields ) use ( $tab_id, $tab_title, $tab_sections, $active ) {
+				add_filter( 'wvs_settings', function ( $fields ) use ( $tab_id, $tab_title, $tab_sections, $active, $is_pro_tab ) {
 					array_push( $fields, array(
 						'id'       => $tab_id,
 						'title'    => esc_html( $tab_title ),
 						'active'   => $active,
-						'sections' => $tab_sections
+						'sections' => $tab_sections,
+						'is_pro'   => $is_pro_tab
 					) );
 					
 					return $fields;

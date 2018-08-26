@@ -241,7 +241,7 @@
 							'id'      => 'width',
 							'type'    => 'number',
 							'title'   => esc_html__( 'Width', 'woo-variation-swatches' ),
-							'desc'    => __( 'Variation item width', 'woo-variation-swatches' ),
+							'desc'    => esc_html__( 'Variation item width', 'woo-variation-swatches' ),
 							'default' => 30,
 							'min'     => 10,
 							'max'     => 200,
@@ -251,7 +251,7 @@
 							'id'      => 'height',
 							'type'    => 'number',
 							'title'   => esc_html__( 'Height', 'woo-variation-swatches' ),
-							'desc'    => __( 'Variation item height', 'woo-variation-swatches' ),
+							'desc'    => esc_html__( 'Variation item height', 'woo-variation-swatches' ),
 							'default' => 30,
 							'min'     => 10,
 							'max'     => 200,
@@ -261,7 +261,7 @@
 							'id'      => 'single-font-size',
 							'type'    => 'number',
 							'title'   => esc_html__( 'Font Size', 'woo-variation-swatches' ),
-							'desc'    => __( 'Single product variation item font size', 'woo-variation-swatches' ),
+							'desc'    => esc_html__( 'Single product variation item font size', 'woo-variation-swatches' ),
 							'default' => 16,
 							'min'     => 8,
 							'max'     => 24,
@@ -286,7 +286,7 @@
 							),
 						) )
 					)
-				), apply_filters( 'wvs_pro_style_setting_default_active', false ) );
+				), apply_filters( 'wvs_pro_style_setting_default_active', false ), true );
 			}
 			
 			if ( ! woo_variation_swatches()->is_pro_active() ) {
@@ -304,7 +304,7 @@
 							),
 						) )
 					)
-				), apply_filters( 'wvs_pro_archive_setting_default_active', false ) );
+				), apply_filters( 'wvs_pro_archive_setting_default_active', false ), true );
 			}
 			
 			if ( ! woo_variation_swatches()->is_pro_active() ) {
@@ -322,7 +322,7 @@
 							),
 						) )
 					)
-				), apply_filters( 'wvs_pro_special_setting_default_active', false ) );
+				), apply_filters( 'wvs_pro_special_setting_default_active', false ), true );
 			}
 			
 			woo_variation_swatches()->add_setting( 'tutorial', esc_html__( 'Tutorials', 'woo-variation-swatches' ), array(

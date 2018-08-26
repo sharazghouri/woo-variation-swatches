@@ -14,6 +14,7 @@ const WooVariationSwatches = (($) => {
             this._element           = $(element);
             this._config            = $.extend({}, Default, config);
             this._generated         = {};
+            this._out_of_stock      = {};
             this.product_variations = this._element.data('product_variations');
             this.is_ajax_variation  = !this.product_variations;
             this.product_id         = this._element.data('product_id');
@@ -185,10 +186,31 @@ const WooVariationSwatches = (($) => {
 
                     }, {});
 
+                    object._out_of_stock = product_variations.reduce((obj, variation) => {
+
+                        Object.keys(variation.attributes).map((attribute_name) => {
+                            if (!obj[attribute_name]) {
+                                obj[attribute_name] = []
+                            }
+
+                            if (variation.attributes[attribute_name] && !variation.is_in_stock) {
+                                obj[attribute_name].push(variation.attributes[attribute_name]);
+                            }
+                        });
+
+                        return obj;
+
+                    }, {});
+
+                    // console.log(object._out_of_stock);
+
                     $(this).find('ul.variable-items-wrapper').each(function () {
-                        let li               = $(this).find('li');
-                        let attribute        = $(this).data('attribute_name');
-                        let attribute_values = object._generated[attribute];
+                        let li                  = $(this).find('li');
+                        let attribute           = $(this).data('attribute_name');
+                        let attribute_values    = object._generated[attribute];
+                        let out_of_stock_values = object._out_of_stock[attribute];
+
+                        //console.log(out_of_stock_values)
 
                         li.each(function () {
                             let attribute_value = $(this).attr('data-value');
@@ -196,10 +218,6 @@ const WooVariationSwatches = (($) => {
                             if (!_.isEmpty(attribute_values) && !attribute_values.includes(attribute_value)) {
                                 $(this).removeClass('selected');
                                 $(this).addClass('disabled');
-
-                                if (hidden_behaviour) {
-                                    //$(this).stop().fadeOut('fast');
-                                }
 
                                 if ($(this).hasClass('radio-variable-item')) {
                                     $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', true).prop('checked', false);
@@ -219,9 +237,7 @@ const WooVariationSwatches = (($) => {
                     li.each(function () {
                         if (!is_ajax) {
                             $(this).removeClass('selected disabled');
-                            if (hidden_behaviour) {
-                                //$(this).stop().fadeIn('fast');
-                            }
+
                             if ($(this).hasClass('radio-variable-item')) {
                                 $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false).prop('checked', false);
                             }
@@ -239,6 +255,28 @@ const WooVariationSwatches = (($) => {
         }
 
         update(is_ajax, hidden_behaviour) {
+
+            this._element.on('__found_variation.wc-variation-form', function (event, variation) {
+
+                _.delay(() => {
+                    $(this).find('ul.variable-items-wrapper').each(function () {
+                        let attribute_name = $(this).data('attribute_name');
+
+                        $(this).find('li').each(function () {
+                            let value = $(this).attr('data-value');
+
+                            console.log(variation)
+
+                            if (variation.attributes[attribute_name] === value && !variation.is_in_stock) {
+                                $(this).addClass('disabled');
+                            }
+
+                        });
+                    });
+
+                }, 2)
+            });
+
             this._element.on('woocommerce_variation_has_changed', function (event) {
                 if (is_ajax) {
                     $(this).find('ul.variable-items-wrapper').each(function () {
@@ -267,9 +305,7 @@ const WooVariationSwatches = (($) => {
                             li.each(function () {
                                 let value = $(this).attr('data-value');
                                 $(this).removeClass('selected disabled');
-                                if (hidden_behaviour) {
-                                    //$(this).stop().fadeIn('fast');
-                                }
+
                                 if (value === selected) {
                                     $(this).addClass('selected');
                                     if ($(this).hasClass('radio-variable-item')) {
@@ -315,15 +351,16 @@ const WooVariationSwatches = (($) => {
                             let value = $(this).attr('data-value');
                             $(this).removeClass('selected disabled').addClass('disabled');
 
-                            if (hidden_behaviour) {
-                                //$(this).stop().fadeIn('fast');
-                            }
-
                             if (_.contains(selects, value)) {
+
                                 $(this).removeClass('disabled');
+
                                 $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', false);
+
                                 if (value === selected) {
+
                                     $(this).addClass('selected');
+
                                     if ($(this).hasClass('radio-variable-item')) {
                                         $(this).find('input.wvs-radio-variable-item:radio').prop('checked', true);
                                     }
@@ -331,9 +368,6 @@ const WooVariationSwatches = (($) => {
                             }
                             else {
 
-                                if (hidden_behaviour) {
-                                    //$(this).stop().fadeOut('fast');
-                                }
                                 if ($(this).hasClass('radio-variable-item')) {
                                     $(this).find('input.wvs-radio-variable-item:radio').prop('disabled', true).prop('checked', false);
                                 }
