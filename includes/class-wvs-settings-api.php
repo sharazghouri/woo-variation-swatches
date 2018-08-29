@@ -43,7 +43,9 @@
 				
 				add_action( 'admin_footer', array( $this, 'admin_inline_js' ) );
 				
-				new WVS_Customizer( $this->theme_feature_name, $this->plugin_class, $this->settings_name, $this->fields );
+				if ( apply_filters( 'show_wvs_settings_on_customizer', false ) ):
+					new WVS_Customizer( $this->theme_feature_name, $this->plugin_class, $this->settings_name, $this->fields );
+				endif;
 				
 				do_action( 'wvs_setting_api_init', $this );
 			}
@@ -467,7 +469,7 @@
 				?>
                 <h2 class="nav-tab-wrapper wp-clearfix">
 					<?php foreach ( $this->fields as $tabs ): ?>
-                        <a data-target="<?php echo $tabs[ 'id' ] ?>" <?php echo $this->get_options_tab_pro_attr( $tabs ) ?> class="wvs-setting-nav-tab nav-tab <?php echo $this->get_options_tab_css_classes($tabs) ?> " href="#<?php echo $tabs[ 'id' ] ?>"><?php echo $tabs[ 'title' ] ?></a>
+                        <a data-target="<?php echo $tabs[ 'id' ] ?>" <?php echo $this->get_options_tab_pro_attr( $tabs ) ?> class="wvs-setting-nav-tab nav-tab <?php echo $this->get_options_tab_css_classes( $tabs ) ?> " href="#<?php echo $tabs[ 'id' ] ?>"><?php echo $tabs[ 'title' ] ?></a>
 					<?php endforeach; ?>
                 </h2>
 				<?php

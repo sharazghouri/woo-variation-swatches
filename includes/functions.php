@@ -151,6 +151,25 @@
 		}
 	}
 	
+	
+	// Tutorials TAB
+	
+	add_action( 'after_wvs_settings', function ( $swatches ) {
+		$swatches->add_setting( 'tutorial', esc_html__( 'Tutorials', 'woo-variation-swatches' ), array(
+			array(
+				'pro'    => true,
+				'title'  => esc_html__( 'How to tutorials', 'woo-variation-swatches-pro' ),
+				'desc'   => esc_html__( 'How to setup and use this plugin', 'woo-variation-swatches' ),
+				'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
+					array(
+						'pro'  => true,
+						'html' => wvs_tutorial_tab_contents(),
+					),
+				) )
+			)
+		), apply_filters( 'wvs_tutorial_setting_default_active', false ) );
+	}, 50 );
+	
 	//-------------------------------------------------------------------------------
 	// Add settings
 	// Add Theme Support:
@@ -324,21 +343,6 @@
 					)
 				), apply_filters( 'wvs_pro_special_setting_default_active', false ), true );
 			}
-			
-			woo_variation_swatches()->add_setting( 'tutorial', esc_html__( 'Tutorials', 'woo-variation-swatches' ), array(
-				array(
-					'pro'    => true,
-					'title'  => esc_html__( 'How to tutorials', 'woo-variation-swatches-pro' ),
-					'desc'   => esc_html__( 'How to setup and use this plugin', 'woo-variation-swatches' ),
-					'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
-						array(
-							'pro'  => true,
-							'html' => wvs_tutorial_tab_contents(),
-						),
-					) )
-				)
-			), apply_filters( 'wvs_tutorial_setting_default_active', false ) );
-			
 			
 			do_action( 'after_wvs_settings', woo_variation_swatches() );
 		}
