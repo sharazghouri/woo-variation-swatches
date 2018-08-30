@@ -199,4 +199,25 @@
       }
     }
 
+  .nav-tab-wrapper{
+    .pro-tab{
+      position: relative;
+      &::before{
+        content: attr(data-pro-text);
+        position: absolute;
+        right: 5px;
+        top: 0;
+        transform: translateY(-50%);
+        background: #FF5722;
+        color: #fff;
+        font-size: 8px;
+        font-weight: normal;
+        text-transform: uppercase;
+        padding: 3px 5px;
+        line-height: 1;
+        border-radius: 10px;
+        }
+      }
+    }
+
   }
