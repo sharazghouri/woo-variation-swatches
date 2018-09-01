@@ -49,7 +49,6 @@
         </li>
 
         <li>
-            <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-4.png' ) ?>"></div>
             <div class="tutorial-description-wrapper">
                 <h3>Integrated With Quick View</h3>
                 <div class="tutorial-contents">
@@ -60,10 +59,12 @@
                     <a href="http://bit.ly/wvs-tuts-04" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
+            <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-4.png' ) ?>"></div>
         </li>
 
 
         <li>
+             <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-5.png' ) ?>"></div>
             <div class="tutorial-description-wrapper">
                 <h3>Text Tooltip</h3>
                 <div class="tutorial-contents">
@@ -74,11 +75,11 @@
                     <a href="http://bit.ly/wvs-tuts-05" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
-            <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-5.png' ) ?>"></div>
+           
         </li>
 
         <li>
-            <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-6.png' ) ?>"></div>
+           
             <div class="tutorial-description-wrapper">
                 <h3>Blur/Hide Out of Stock Variation</h3>
                 <div class="tutorial-contents">
@@ -89,6 +90,7 @@
                     <a href="http://bit.ly/wvs-tuts-06" target="_blank" class="button button-docs">Documentation</a>
                 </div>
             </div>
+             <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-6.png' ) ?>"></div>
         </li>
     </ul>
 
