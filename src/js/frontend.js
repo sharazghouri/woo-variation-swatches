@@ -12,5 +12,12 @@ jQuery($ => {
             })
         });
 
+        // Support for Yith Infinite Scroll
+        $(document).on('yith_infs_added_elem', function () {
+            $('.variations_form').each(function () {
+                $(this).wc_variation_form();
+            })
+        });
+
     });
 });  // end of jquery main wrapper

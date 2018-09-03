@@ -191,6 +191,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.36 =
+
+* Add: Yith Infinite Scroll support
+
 = 1.0.35 =
 
 * Add: AURUM theme support
