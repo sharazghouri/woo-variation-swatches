@@ -176,7 +176,8 @@
 				if ( in_array( get_current_screen()->id, array( 'plugins', 'plugins-network' ), true ) ) {
 					
 					$deactivate_reasons = $this->deactivate_feedback_reasons();
-					$slug = 'woo-variation-swatches';
+					$slug               = 'woo-variation-swatches';
+					$version            = $this->version();
 					
 					include_once $this->include_path( 'deactive-feedback-dialog.php' );
 				}
@@ -192,7 +193,7 @@
 				$reason_id      = sanitize_title( $_POST[ 'reason_type' ] );
 				$reason_title   = $deactivate_reasons[ $reason_id ][ 'title' ];
 				$reason_text    = esc_html( $_POST[ 'reason_text' ] );
-				$plugin_version = $this->version();
+				$plugin_version = esc_html( $_POST[ 'version' ] );
 				
 				if ( 'temporary_deactivation' === $reason_id ) {
 					wp_send_json_success( true );

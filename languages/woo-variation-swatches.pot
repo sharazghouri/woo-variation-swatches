@@ -16,23 +16,23 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../includes/class-wvs-customizer.php:34, ../woo-variation-swatches.php:537
+#: ../includes/class-wvs-customizer.php:34, ../woo-variation-swatches.php:538
 msgid "WooCommerce Variation Swatches"
 msgstr ""
 
-#: ../includes/class-wvs-settings-api.php:83
+#: ../includes/class-wvs-settings-api.php:85
 msgid "WooCommerce Variation Swatches Settings"
 msgstr ""
 
-#: ../includes/class-wvs-settings-api.php:84, ../includes/class-wvs-settings-api.php:97, ../includes/functions.php:1025
+#: ../includes/class-wvs-settings-api.php:86, ../includes/class-wvs-settings-api.php:99, ../includes/functions.php:1033
 msgid "Swatches Settings"
 msgstr ""
 
-#: ../includes/class-wvs-settings-api.php:112
+#: ../includes/class-wvs-settings-api.php:114
 msgid "Clear transient"
 msgstr ""
 
-#: ../includes/class-wvs-settings-api.php:133
+#: ../includes/class-wvs-settings-api.php:135
 msgid "Settings"
 msgstr ""
 
@@ -44,19 +44,19 @@ msgstr ""
 msgid "Remove image"
 msgstr ""
 
-#: ../includes/deactive-feedback-dialog.php:12
+#: ../includes/deactive-feedback-dialog.php:10
 msgid "May we have a little info about why you are deactivating?"
 msgstr ""
 
-#: ../includes/deactive-feedback-dialog.php:28, ../includes/deactive-feedback-dialog.php:28
+#: ../includes/deactive-feedback-dialog.php:26, ../includes/deactive-feedback-dialog.php:26
 msgid "Send &amp; Deactivate"
 msgstr ""
 
-#: ../includes/deactive-feedback-dialog.php:28
+#: ../includes/deactive-feedback-dialog.php:26
 msgid "Deactivating..."
 msgstr ""
 
-#: ../includes/deactive-feedback-dialog.php:30
+#: ../includes/deactive-feedback-dialog.php:28
 msgid "Skip &amp; Deactivate"
 msgstr ""
 
@@ -231,31 +231,31 @@ msgstr ""
 msgid "Choose a color"
 msgstr ""
 
-#: ../includes/functions.php:372, ../woo-variation-swatches.php:340
+#: ../includes/functions.php:372, ../woo-variation-swatches.php:341
 msgid "Choose an Image"
 msgstr ""
 
-#: ../includes/functions.php:531
+#: ../includes/functions.php:533
 msgid "Select terms"
 msgstr ""
 
-#: ../includes/functions.php:542
+#: ../includes/functions.php:544
 msgid "Select all"
 msgstr ""
 
-#: ../includes/functions.php:543
+#: ../includes/functions.php:545
 msgid "Select none"
 msgstr ""
 
-#: ../includes/functions.php:548
+#: ../includes/functions.php:551
 msgid "Add new %s"
 msgstr ""
 
-#: ../includes/functions.php:548, ../includes/functions.php:550
+#: ../includes/functions.php:551, ../includes/functions.php:553
 msgid "Add new"
 msgstr ""
 
-#: ../includes/functions.php:709, ../includes/functions.php:781, ../includes/functions.php:854, ../includes/functions.php:925
+#: ../includes/functions.php:712, ../includes/functions.php:784, ../includes/functions.php:857, ../includes/functions.php:928
 msgid "Choose an option"
 msgstr ""
 
@@ -315,66 +315,66 @@ msgstr ""
 msgid "Please share the reason"
 msgstr ""
 
-#: ../woo-variation-swatches.php:341
+#: ../woo-variation-swatches.php:342
 msgid "Add Attribute"
 msgstr ""
 
-#: ../woo-variation-swatches.php:342
+#: ../woo-variation-swatches.php:343
 msgid "Add"
 msgstr ""
 
-#: ../woo-variation-swatches.php:343
+#: ../woo-variation-swatches.php:344
 msgid "Cancel"
 msgstr ""
 
-#: ../woo-variation-swatches.php:344
+#: ../woo-variation-swatches.php:345
 msgid "Use Image"
 msgstr ""
 
-#: ../woo-variation-swatches.php:345
+#: ../woo-variation-swatches.php:346
 msgid "Add Media"
 msgstr ""
 
-#: ../woo-variation-swatches.php:353
+#: ../woo-variation-swatches.php:354
 msgid "Quick Feedback"
 msgstr ""
 
-#: ../woo-variation-swatches.php:432, ../woo-variation-swatches.php:432
+#: ../woo-variation-swatches.php:433, ../woo-variation-swatches.php:433
 msgid "Read Documentation"
 msgstr ""
 
-#: ../woo-variation-swatches.php:434
+#: ../woo-variation-swatches.php:435
 msgid "Facing issue?"
 msgstr ""
 
-#: ../woo-variation-swatches.php:434
+#: ../woo-variation-swatches.php:435
 msgid "Please open a ticket."
 msgstr ""
 
-#: ../woo-variation-swatches.php:449
+#: ../woo-variation-swatches.php:450
 msgid "Go Pro"
 msgstr ""
 
-#: ../woo-variation-swatches.php:502
+#: ../woo-variation-swatches.php:503
 msgid "Please check PHP version requirement."
 msgstr ""
 
-#: ../woo-variation-swatches.php:504
+#: ../woo-variation-swatches.php:505
 msgid "It's required to use latest version of PHP to use <strong>WooCommerce Variation Swatches</strong>."
 msgstr ""
 
-#: ../woo-variation-swatches.php:516
+#: ../woo-variation-swatches.php:517
 msgid "WooCommerce"
 msgstr ""
 
-#: ../woo-variation-swatches.php:524
+#: ../woo-variation-swatches.php:525
 msgid "<strong>WooCommerce Variation Swatches</strong> is an add-on of "
 msgstr ""
 
-#: ../woo-variation-swatches.php:537
+#: ../woo-variation-swatches.php:538
 msgid "Currently, you are using older version of WooCommerce. It's recommended to use latest version of WooCommerce to work with %s."
 msgstr ""
 
-#: ../woo-variation-swatches.php:632
+#: ../woo-variation-swatches.php:633
 msgid "WooCommerce Variation Swatches Plugin try to load \"%s\" but template \"%s\" was not found."
 msgstr ""

@@ -6,6 +6,7 @@
     <form class="feedback-dialog-form" method="post" onsubmit="return false">
         <input type="hidden" name="action" value="gwp_deactivate_feedback"/>
         <input type="hidden" name="plugin" value="<?php echo esc_attr( $slug ) ?>"/>
+        <input type="hidden" name="version" value="<?php echo esc_attr( $version ) ?>"/>
         <div class="feedback-dialog-form-caption"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'woo-variation-swatches' ); ?></div>
         <div class="feedback-dialog-form-body">
 			<?php foreach ( $deactivate_reasons as $reason_key => $reason ) : ?>
