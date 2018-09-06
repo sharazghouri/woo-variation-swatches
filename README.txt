@@ -194,6 +194,7 @@ And your are ready to go.
 = 1.0.36 =
 
 * Add: Yith Infinite Scroll support
+* Fix: Yoast SEO Focused keyword issue.
 
 = 1.0.35 =
 

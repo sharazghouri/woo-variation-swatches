@@ -11,10 +11,10 @@
 	
 	add_action( 'admin_init', 'wvs_add_product_taxonomy_meta' );
 	
-	add_action( 'woocommerce_product_option_terms', 'wvs_product_option_terms', 10, 2 );
+	add_action( 'woocommerce_product_option_terms', 'wvs_product_option_terms', 20, 2 );
 	
 	// Support Dokan Multi Vendor
-	add_action( 'dokan_product_option_terms', 'wvs_product_option_terms', 10, 2 );
+	add_action( 'dokan_product_option_terms', 'wvs_product_option_terms', 20, 2 );
 	
 	add_filter( 'woocommerce_ajax_variation_threshold', 'wvs_ajax_variation_threshold', 8 );
 	

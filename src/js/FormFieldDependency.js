@@ -134,7 +134,6 @@
 
             if (useEvent) {
                 $(document.body).on('input', $(parent), function (e) {
-                    e.stopPropagation();
                     typeRegExpDependency(element, depObject, parent, false);
                 });
             }
@@ -204,7 +203,6 @@
 
             if (useEvent) {
                 $(document.body).on('input change', $(parent), function (e) {
-                    e.stopPropagation();
                     typeEmptyDependency(element, depObject, parent, false);
                 });
             }
@@ -274,7 +272,6 @@
 
             if (useEvent) {
                 $(document.body).on('input change', $(parent), function (e) {
-                    e.stopPropagation();
                     typeNotEmptyDependency(element, depObject, parent, false);
                 });
             }
@@ -402,7 +399,6 @@
 
             if (useEvent) {
                 $(document.body).on('input change', $(parent), function (e) {
-                    e.stopPropagation();
                     typeEqualDependency(element, depObject, parent, false);
                 });
             }
@@ -538,7 +534,6 @@
 
             if (useEvent) {
                 $(document.body).on('input change', $(parent), function (e) {
-                    e.stopPropagation();
                     typeNotEqualDependency(element, depObject, parent, false);
                 });
             }
@@ -626,7 +621,6 @@
 
             if (useEvent) {
                 $(document.body).on('input change', $(parent), function (e) {
-                    e.stopPropagation();
                     typeCompareDependency(element, depObject, parent, false);
                 });
             }
@@ -676,7 +670,6 @@
 
             if (useEvent) {
                 $(document.body).on('input change', $(parent), function (e) {
-                    e.stopPropagation();
                     typeRangeDependency(element, depObject, parent, false);
                 });
             }
@@ -764,7 +757,8 @@
 
             if (useEvent) {
                 $(document.body).on('input change', $(parent), function (e) {
-                    e.stopPropagation();
+                    //e.stopPropagation();
+                    //e.stopImmediatePropagation();
                     typeLengthDependency(element, depObject, parent, false);
                 });
             }

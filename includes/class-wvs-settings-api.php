@@ -39,7 +39,9 @@
 				
 				add_filter( 'plugin_action_links_' . $this->plugin_class->basename(), array( $this, 'plugin_action_links' ) );
 				
-				add_action( 'wp_before_admin_bar_render', array( $this, 'add_admin_bar' ), 999 );
+				if ( apply_filters( 'show_wvs_settings_link_on_admin_bar', false ) ):
+					add_action( 'wp_before_admin_bar_render', array( $this, 'add_admin_bar' ), 999 );
+				endif;
 				
 				add_action( 'admin_footer', array( $this, 'admin_inline_js' ) );
 				

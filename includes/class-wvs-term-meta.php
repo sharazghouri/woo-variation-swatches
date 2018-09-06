@@ -110,7 +110,7 @@
 				$this->generate_fields();
 			}
 			
-			private function generate_fields( $term = FALSE ) {
+			private function generate_fields( $term = false ) {
 				
 				$screen = get_current_screen();
 				
@@ -136,11 +136,11 @@
 					if ( ! $term ) {
 						$field[ 'value' ] = isset( $field[ 'default' ] ) ? $field[ 'default' ] : '';
 					} else {
-						$field[ 'value' ] = get_term_meta( $term->term_id, $field[ 'id' ], TRUE );
+						$field[ 'value' ] = get_term_meta( $term->term_id, $field[ 'id' ], true );
 					}
 					
 					$field[ 'size' ]        = isset( $field[ 'size' ] ) ? $field[ 'size' ] : '40';
-					$field[ 'required' ]    = ( isset( $field[ 'required' ] ) and $field[ 'required' ] == TRUE ) ? ' aria-required="true"' : '';
+					$field[ 'required' ]    = ( isset( $field[ 'required' ] ) and $field[ 'required' ] == true ) ? ' aria-required="true"' : '';
 					$field[ 'placeholder' ] = ( isset( $field[ 'placeholder' ] ) ) ? ' placeholder="' . $field[ 'placeholder' ] . '" data-placeholder="' . $field[ 'placeholder' ] . '"' : '';
 					$field[ 'desc' ]        = ( isset( $field[ 'desc' ] ) ) ? $field[ 'desc' ] : '';
 					
@@ -178,8 +178,8 @@
 								? $field[ 'settings' ]
 								: array(
 									'textarea_rows' => 8,
-									'quicktags'     => FALSE,
-									'media_buttons' => FALSE
+									'quicktags'     => false,
+									'media_buttons' => false
 								);
 							ob_start();
 							wp_editor( $field[ 'value' ], $field[ 'id' ], $field[ 'settings' ] );
@@ -197,7 +197,7 @@
                             <select name="<?php echo $field[ 'id' ] ?>" id="<?php echo $field[ 'id' ] ?>" class="<?php echo $css_class ?>" <?php echo $field[ 'multiple' ] ?>>
 								<?php
 									foreach ( $field[ 'options' ] as $key => $option ) {
-										echo '<option' . selected( $field[ 'value' ], $key, FALSE ) . ' value="' . $key . '">' . $option . '</option>';
+										echo '<option' . selected( $field[ 'value' ], $key, false ) . ' value="' . $key . '">' . $option . '</option>';
 									}
 								?>
                             </select>
@@ -255,7 +255,7 @@
 				echo ob_get_clean();
 			}
 			
-			private static function get_img_src( $thumbnail_id = FALSE ) {
+			private static function get_img_src( $thumbnail_id = false ) {
 				if ( ! empty( $thumbnail_id ) ) {
 					$image = wp_get_attachment_thumb_url( $thumbnail_id );
 				} else {

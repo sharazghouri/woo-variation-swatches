@@ -17,15 +17,17 @@ const GWPAdminHelper = (($) => {
             });
         }
 
-        static ResetPopupData() {
-
-            let $button = $('#feedback-dialog-form-button-send');
+        static ResetPopupData(pluginslug) {
+            let id      = `#gwp-plugin-deactivate-feedback-dialog-wrapper-${pluginslug}`;
+            let $button = $('.feedback-dialog-form-button-send', id);
             $button.prop('disabled', false).text($button.data('defaultvalue')).next().removeClass('visible');
         }
 
         static DeactivatePopup(pluginslug) {
 
-            $('#gwp-plugin-deactivate-feedback-dialog-wrapper').dialog({
+            let id = `#gwp-plugin-deactivate-feedback-dialog-wrapper-${pluginslug}`;
+
+            $(id).dialog({
                 title         : GWPAdmin.feedback_title,
                 dialogClass   : 'wp-dialog gwp-deactivate-feedback-dialog',
                 autoOpen      : false,
@@ -44,27 +46,26 @@ const GWPAdminHelper = (($) => {
                 },
                 open          : function () {
                     $('.ui-widget-overlay').bind('click', function () {
-                        $('#gwp-plugin-deactivate-feedback-dialog-wrapper').dialog('close');
+                        $(id).dialog('close');
                     });
 
                     let opener = $(this).data('gwp-deactivate-dialog-opener');
 
-                    GWPAdminHelper.ResetPopupData();
+                    GWPAdminHelper.ResetPopupData(pluginslug);
 
                     let slug            = $(opener).data('slug');
                     let plugin          = $(opener).data('plugin');
                     let deactivate_link = $(opener).data('deactivate_link');
 
-                    $('#gwp-plugin-slug').val(slug);
-                    $('#feedback-dialog-form-button-skip').prop('href', deactivate_link)
-                    $('#feedback-dialog-form-button-send').data('deactivate_link', deactivate_link)
+                    $('.feedback-dialog-form-button-skip', id).prop('href', deactivate_link)
+                    $('.feedback-dialog-form-button-send', id).data('deactivate_link', deactivate_link)
 
                 }
             });
 
-            $('#feedback-dialog-form-button-send').on('click', function (event) {
+            $('.feedback-dialog-form-button-send', id).on('click', function (event) {
                 event.preventDefault();
-                let data = $('#gwp-plugin-deactivate-feedback-dialog-wrapper .feedback-dialog-form').serializeJSON();
+                let data = $('.feedback-dialog-form', id).serializeJSON();
 
                 let link = $(this).data('deactivate_link');
 
@@ -87,7 +88,7 @@ const GWPAdminHelper = (($) => {
                 //console.log(data)
             });
 
-            $('#gwp-plugin-deactivate-feedback-dialog-wrapper :radio').on('change', function () {
+            $(':radio', id).on('change', function () {
 
                 $(this).closest('.feedback-dialog-form-body').find('.feedback-text').prop('disabled', true).hide();
 
@@ -104,7 +105,7 @@ const GWPAdminHelper = (($) => {
                 $(this).find('.deactivate a').on('click', (event) => {
                     event.preventDefault();
 
-                    $('#gwp-plugin-deactivate-feedback-dialog-wrapper').data('gwp-deactivate-dialog-opener', this).dialog('open');
+                    $(id).data('gwp-deactivate-dialog-opener', this).dialog('open');
                 });
             });
         }

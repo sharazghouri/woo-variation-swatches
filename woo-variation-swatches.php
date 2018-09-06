@@ -176,9 +176,9 @@
 				if ( in_array( get_current_screen()->id, array( 'plugins', 'plugins-network' ), true ) ) {
 					
 					$deactivate_reasons = $this->deactivate_feedback_reasons();
+					$slug = 'woo-variation-swatches';
 					
 					include_once $this->include_path( 'deactive-feedback-dialog.php' );
-					gwp_plugin_deactivate_feedback_dialog( $deactivate_reasons );
 				}
 			}
 			
