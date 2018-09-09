@@ -292,4 +292,30 @@
         }
       }
     }
+
+
+
+  // RTL Support
+  &.rtl{
+    table.variations td.label{
+      padding-left: 15px;
+      padding-right: 0;
+      text-align: left;
+      }
+
+    .variable-items-wrapper .variable-item{
+      text-align: right;
+      }
+
+    .variable-items-wrapper .variable-item:not(.radio-variable-item){
+      margin: 4px 0 4px 8px;
+      }
+
+    .variable-items-wrapper.radio-variable-wrapper .radio-variable-item input{
+      margin-right: 0;
+      margin-left: 5px;
+      }
+
+    }
+
   }
