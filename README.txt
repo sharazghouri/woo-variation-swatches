@@ -191,6 +191,11 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.37 =
+
+* Add: RTL Support
+* Fix: The Gem Theme CSS Issue
+
 = 1.0.36 =
 
 * Add: Yith Infinite Scroll support
