@@ -148,3 +148,11 @@
       }
     }
   }
+
+// TheGem theme
+.woo-variation-swatches-theme-thegem,
+.woo-variation-swatches-theme-child-thegem{
+  .woo-variation-items-wrapper .combobox-wrapper{
+    display: none;
+    }
+  }
