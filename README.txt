@@ -191,6 +191,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.38 =
+
+* Remove: Pro Class from Settings
+
 = 1.0.37 =
 
 * Add: RTL Support

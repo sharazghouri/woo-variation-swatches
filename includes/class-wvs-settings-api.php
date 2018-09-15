@@ -485,9 +485,10 @@
 				$classes = array();
 				
 				$classes[] = ( $this->get_last_active_tab() == $tabs[ 'id' ] ) ? 'nav-tab-active' : '';
-				$classes[] = ( $this->get_options_tab_pro_attr( $tabs ) ) ? 'pro-tab' : '';
 				
-				return implode( ' ', array_unique( $classes ) );
+				// $classes[] = ( $this->get_options_tab_pro_attr( $tabs ) ) ? 'pro-tab' : '';
+				
+				return implode( ' ', array_unique( apply_filters( 'get_options_tab_css_classes', $classes ) ) );
 			}
 			
 			
