@@ -92,6 +92,22 @@
             </div>
              <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-6.png' ) ?>"></div>
         </li>
+
+        <li class="pro-tutorial-feature">
+             <div class="tutorial-image-wrapper"><img alt="" src="<?php echo woo_variation_swatches()->images_uri( 'tutorial-5.png' ) ?>"></div>
+            <div class="tutorial-description-wrapper">
+                <h3>Display Swatch in Catalog / Archive Page</h3>
+                <div class="tutorial-contents">
+                    To boost store conversion and engagement, Attribute variation swatches plugin enables swatch on the catalog page. It allows customers to check product variation from the archive page and add them to the cart.
+
+                </div>
+                <div class="tutorial-buttons">
+                    <a href="http://bit.ly/tutorial-tab-07" target="_blank" class="button button-live-demo">Live Demo</a>
+                    <a href="http://bit.ly/wvs-tuts-07" target="_blank" class="button button-docs">Documentation</a>
+                </div>
+            </div>
+           
+        </li>
     </ul>
 
 </div>
