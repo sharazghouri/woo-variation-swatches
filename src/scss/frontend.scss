@@ -313,11 +313,10 @@
       margin-right : 0;
       margin-left  : 5px;
       }
-
     }
 
   // Fix Elementor CSS
   &.woocommerce .product.elementor table.variations td.value:before {
-    display : none;
+    display : none !important;
     }
   }
