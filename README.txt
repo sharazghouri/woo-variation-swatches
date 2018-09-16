@@ -191,6 +191,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.39 =
+
+* Fix: Elementor Pro CSS Issue
+
 = 1.0.38 =
 
 * Remove: Pro Class from Settings
