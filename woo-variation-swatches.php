@@ -124,6 +124,9 @@
 			}
 			
 			private function deactivate_feedback_reasons() {
+				
+				$current_user = wp_get_current_user();
+				
 				return array(
 					'temporary_deactivation' => array(
 						'title'             => esc_html__( 'It\'s a temporary deactivation.', 'woo-variation-swatches' ),
@@ -149,7 +152,14 @@
 					'broke_site_layout' => array(
 						'title'             => __( 'The plugin <strong>broke my layout</strong> or some functionality.', 'woo-variation-swatches' ),
 						'input_placeholder' => '',
-						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately.', 'woo-variation-swatches' ),
+						'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a support ticket</a>, we will fix it immediately.', 'woo-variation-swatches' ),
+					),
+					
+					'plugin_setup_help' => array(
+						'title'             => __( 'I need someone to <strong>setup this plugin.</strong>', 'woo-variation-swatches' ),
+						'input_placeholder' => esc_html__( 'Your email address.', 'woo-variation-swatches' ),
+						'input_value'       => sanitize_email( $current_user->user_email ),
+						'alert'             => __( 'Please provide your email address to contact with you <br>and help you to setup and configure this plugin.', 'woo-variation-swatches' ),
 					),
 					
 					'plugin_config_too_complicated' => array(
@@ -159,7 +169,7 @@
 					),
 					
 					'need_specific_feature' => array(
-						'title'             => esc_html__( 'I need specific feature that you don\'t support.', 'woo-variation-swatches' ),
+						'title'             => __( 'I need <strong>specific feature</strong> that you don\'t support.', 'woo-variation-swatches' ),
 						'input_placeholder' => esc_html__( 'Please share with us.', 'woo-variation-swatches' ),
 						//'alert'             => __( '<a target="_blank" href="https://getwooplugins.com/tickets/">Please open a ticket</a>, we will try to fix it immediately.', 'woo-variation-swatches' ),
 					),

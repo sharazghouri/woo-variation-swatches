@@ -14,7 +14,7 @@
                     <input id="feedback-<?php echo esc_attr( $reason_key ); ?><?php echo esc_attr( $slug ) ?>" class="feedback-dialog-input" type="radio" name="reason_type" value="<?php echo esc_attr( $reason_key ); ?>"/>
                     <label for="feedback-<?php echo esc_attr( $reason_key ); ?><?php echo esc_attr( $slug ) ?>" class="feedback-dialog-label"><?php echo $reason[ 'title' ]; ?></label>
 					<?php if ( ! empty( $reason[ 'input_placeholder' ] ) ) : ?>
-                        <input class="feedback-text" style="display: none" disabled type="text" name="reason_text" placeholder="<?php echo esc_attr( $reason[ 'input_placeholder' ] ); ?>"/>
+                        <input value="<?php echo( isset( $reason[ 'input_value' ] ) ? $reason[ 'input_value' ] : '' ) ?>" class="feedback-text" style="display: none" disabled type="text" name="reason_text" placeholder="<?php echo esc_attr( $reason[ 'input_placeholder' ] ); ?>"/>
 					<?php endif; ?>
 					<?php if ( ! empty( $reason[ 'alert' ] ) ) : ?>
                         <div class="feedback-text feedback-alert"><?php echo $reason[ 'alert' ]; ?></div>

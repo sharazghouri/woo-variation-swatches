@@ -60,162 +60,219 @@
   border : #000000 1px solid;
   }
 
-#woo-variation-swatches-settings-wrap{
+#woo-variation-swatches-settings-wrap {
 
-  #settings-tabs{
-    margin-top: 30px;
+  #settings-tabs {
+    margin-top : 30px;
 
     //Section heading
-    h2{
-      font-size: 1.5em;
-      margin-bottom: 10px;
+    h2 {
+      font-size     : 1.5em;
+      margin-bottom : 10px;
       }
 
-
     // form table style
-    .form-table{
-      margin-top: 15px;
-      background: #fff;
-      border-radius: 2px;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07), 0 1px 1px rgba(0,0,0,0.04);
+    .form-table {
+      margin-top    : 15px;
+      background    : #FFFFFF;
+      border-radius : 2px;
+      box-shadow    : 0 0 0 1px rgba(0, 0, 0, 0.07), 0 1px 1px rgba(0, 0, 0, 0.04);
 
-      tr{
-        border-bottom: 1px solid #eee;
-        display: block;
+      tr {
+        border-bottom : 1px solid #EEEEEE;
+        display       : block;
 
-        &:last-child{
-          border: 0;
+        &:last-child {
+          border : 0;
           }
         }
 
-      th{
-        padding: 20px 10px 20px 20px;
+      th {
+        padding : 20px 10px 20px 20px;
         }
       }
 
     // Style & special tab margin
     #style,
-    #special{
-      .form-table{
-        margin-bottom: 30px;
+    #special {
+      .form-table {
+        margin-bottom : 30px;
         }
       }
     }
 
-
   // Tutorial Tab
-  #tutorial{
-    .form-table{
-      tr{
-        padding: 0 !important;
+  #tutorial {
+    .form-table {
+      tr {
+        padding : 0 !important;
         }
       }
 
-    .gwp-tutorials-wrapper{
-      img{
-        width: 100%;
+    .gwp-tutorials-wrapper {
+      img {
+        width : 100%;
         }
 
-      ul{
-        margin: 0;
+      ul {
+        margin : 0;
         }
 
-      li{
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        padding: 50px 30px;
-        margin: 0;
-        border-bottom: 1px solid #ddd;
+      li {
+        overflow      : hidden;
+        display       : flex;
+        align-items   : center;
+        padding       : 50px 30px;
+        margin        : 0;
+        border-bottom : 1px solid #DDDDDD;
+        position      : relative;
 
-        &:last-child{
-          border: 0;
+        &:last-child {
+          border : 0;
           }
+
         }
       .tutorial-image-wrapper,
-      .tutorial-description-wrapper{
-        float: left;
-        padding: 0 20px;
-        box-sizing: border-box;
+      .tutorial-description-wrapper {
+        float      : left;
+        padding    : 0 20px;
+        box-sizing : border-box;
         }
 
-      .tutorial-image-wrapper{
-        width: 60%;
+      .tutorial-image-wrapper {
+        width : 60%;
         }
-      .tutorial-description-wrapper{
-        width: 40%;
+      .tutorial-description-wrapper {
+        width : 40%;
 
-        h3{
-          margin: 0 0 20px;
-          font-size: 1.5em;
+        h3 {
+          margin    : 0 0 20px;
+          font-size : 1.5em;
           }
 
-        .tutorial-contents{
-          font-size: 15px;
-          line-height: 1.5em;
-          margin-bottom: 20px;
+        .tutorial-contents {
+          font-size     : 15px;
+          line-height   : 1.5em;
+          margin-bottom : 20px;
           }
 
-
-        .tutorial-buttons{
-          .button{
-            border-radius    : 3px;
-            line-height      : 1;
-            padding          : 13px 20px;
-            font-size        : 13px;
-            height           : 40px;
-            box-shadow       : none;
-            text-shadow      : none;
+        .tutorial-buttons {
+          .button {
+            border-radius : 3px;
+            line-height   : 1;
+            padding       : 13px 20px;
+            font-size     : 13px;
+            height        : 40px;
+            box-shadow    : none;
+            text-shadow   : none;
             &:active {
               transform : translateY(0);
               }
 
-            &.button-live-demo{
-              background-color : #fff;
-              color            : #333;
-              border           : 1px solid #eee;
+            &.button-live-demo {
+              background-color : #FFFFFF;
+              color            : #333333;
+              border           : 1px solid #EEEEEE;
               &:hover {
-                background : #eee;
+                background : #EEEEEE;
                 }
               }
 
-            &.button-docs{
-              background-color : #36373a;
+            &.button-docs {
+              background-color : #36373A;
               color            : #FFFFFF;
-              border           : 1px solid #36373a;
+              border           : 1px solid #36373A;
               &:hover {
-                background : #5d5e61;
-                border-color: #5d5e61;
+                background   : #5D5E61;
+                border-color : #5D5E61;
                 }
               }
 
+            &.button-pro {
+              background-color : #39B54A;
+              color            : #FFFFFF;
+              border           : 1px solid #39B54A;
+              &:hover {
+                background   : #3FC851;
+                border-color : #3FC851;
+                }
+              }
             }
-
           }
-
-
         }
 
+      .tutorial-image-wrapper {
+        position : relative;
+        .ribbon {
+          position   : absolute;
+          left       : -5px;
+          top        : -5px;
+          z-index    : 1;
+          overflow   : hidden;
+          width      : 75px;
+          height     : 75px;
+          text-align : right;
+          margin     : 1px 22px;
+          }
+        .ribbon span {
+          font-size      : 10px;
+          font-weight    : bold;
+          color          : #FFFFFF;
+          text-transform : uppercase;
+          text-align     : center;
+          line-height    : 20px;
+          transform      : rotate(-45deg);
+          width          : 100px;
+          display        : block;
+          background     : #BC0808;
+          box-shadow     : 0 3px 10px -5px rgba(0, 0, 0, 1);
+          position       : absolute;
+          top            : 19px;
+          left           : -21px;
+          }
+        .ribbon span::before {
+          content       : "";
+          position      : absolute;
+          left          : 0px;
+          top           : 100%;
+          z-index       : -1;
+          border-left   : 3px solid #8F0808;
+          border-right  : 3px solid transparent;
+          border-bottom : 3px solid transparent;
+          border-top    : 3px solid #8F0808;
+          }
+        .ribbon span::after {
+          content       : "";
+          position      : absolute;
+          right         : 0px;
+          top           : 100%;
+          z-index       : -1;
+          border-left   : 3px solid transparent;
+          border-right  : 3px solid #8F0808;
+          border-bottom : 3px solid transparent;
+          border-top    : 3px solid #8F0808;
+          }
+        }
       }
     }
 
-  .nav-tab-wrapper{
-    .pro-tab{
-      position: relative;
-      &::before{
-        content: attr(data-pro-text);
-        position: absolute;
-        right: 5px;
-        top: 0;
-        transform: translateY(-50%);
-        background: #FF5722;
-        color: #fff;
-        font-size: 8px;
-        font-weight: normal;
-        text-transform: uppercase;
-        padding: 3px 5px;
-        line-height: 1;
-        border-radius: 10px;
+  .nav-tab-wrapper {
+    .pro-tab {
+      position : relative;
+      &::before {
+        content        : attr(data-pro-text);
+        position       : absolute;
+        right          : 5px;
+        top            : 0;
+        transform      : translateY(-50%);
+        background     : #FF5722;
+        color          : #FFFFFF;
+        font-size      : 8px;
+        font-weight    : normal;
+        text-transform : uppercase;
+        padding        : 3px 5px;
+        line-height    : 1;
+        border-radius  : 10px;
         }
       }
     }

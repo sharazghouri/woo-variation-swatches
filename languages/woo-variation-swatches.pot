@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../includes/class-wvs-customizer.php:34, ../woo-variation-swatches.php:538
+#: ../includes/class-wvs-customizer.php:34, ../woo-variation-swatches.php:548
 msgid "WooCommerce Variation Swatches"
 msgstr ""
 
@@ -231,7 +231,7 @@ msgstr ""
 msgid "Choose a color"
 msgstr ""
 
-#: ../includes/functions.php:372, ../woo-variation-swatches.php:341
+#: ../includes/functions.php:372, ../woo-variation-swatches.php:351
 msgid "Choose an Image"
 msgstr ""
 
@@ -259,122 +259,134 @@ msgstr ""
 msgid "Choose an option"
 msgstr ""
 
-#: ../woo-variation-swatches.php:129
+#: ../woo-variation-swatches.php:132
 msgid "It's a temporary deactivation."
 msgstr ""
 
-#: ../woo-variation-swatches.php:134
+#: ../woo-variation-swatches.php:137
 msgid "I couldn't understand how to make it work."
 msgstr ""
 
-#: ../woo-variation-swatches.php:136
+#: ../woo-variation-swatches.php:139
 msgid "It converts variation select box to beautiful swatches. <br> <a target=\"_blank\" href=\"https://bit.ly/deactivate-dialogue\">Please check live demo</a>."
 msgstr ""
 
-#: ../woo-variation-swatches.php:140
+#: ../woo-variation-swatches.php:143
 msgid "I no longer need the plugin"
 msgstr ""
 
-#: ../woo-variation-swatches.php:145
+#: ../woo-variation-swatches.php:148
 msgid "I found a better plugin"
 msgstr ""
 
-#: ../woo-variation-swatches.php:146
+#: ../woo-variation-swatches.php:149
 msgid "Please share which plugin"
 msgstr ""
 
-#: ../woo-variation-swatches.php:150
+#: ../woo-variation-swatches.php:153
 msgid "The plugin <strong>broke my layout</strong> or some functionality."
 msgstr ""
 
-#: ../woo-variation-swatches.php:152
-msgid "<a target=\"_blank\" href=\"https://getwooplugins.com/tickets/\">Please open a ticket</a>, we will try to fix it immediately."
+#: ../woo-variation-swatches.php:155
+msgid "<a target=\"_blank\" href=\"https://getwooplugins.com/tickets/\">Please open a support ticket</a>, we will fix it immediately."
 msgstr ""
 
-#: ../woo-variation-swatches.php:156
-msgid "The plugin is <strong>too complicated to configure.</strong>"
+#: ../woo-variation-swatches.php:159
+msgid "I need someone to <strong>setup this plugin.</strong>"
 msgstr ""
 
-#: ../woo-variation-swatches.php:158
-msgid "<a target=\"_blank\" href=\"https://getwooplugins.com/documentation/woocommerce-variation-swatches/\">Have you checked our documentation?</a>."
+#: ../woo-variation-swatches.php:160
+msgid "Your email address."
 msgstr ""
 
 #: ../woo-variation-swatches.php:162
-msgid "I need specific feature that you don't support."
+msgid "Please provide your email address to contact with you <br>and help you to setup and configure this plugin."
 msgstr ""
 
-#: ../woo-variation-swatches.php:163
-msgid "Please share with us."
+#: ../woo-variation-swatches.php:166
+msgid "The plugin is <strong>too complicated to configure.</strong>"
 msgstr ""
 
 #: ../woo-variation-swatches.php:168
+msgid "<a target=\"_blank\" href=\"https://getwooplugins.com/documentation/woocommerce-variation-swatches/\">Have you checked our documentation?</a>."
+msgstr ""
+
+#: ../woo-variation-swatches.php:172
+msgid "I need <strong>specific feature</strong> that you don't support."
+msgstr ""
+
+#: ../woo-variation-swatches.php:173
+msgid "Please share with us."
+msgstr ""
+
+#: ../woo-variation-swatches.php:178
 msgid "Other"
 msgstr ""
 
-#: ../woo-variation-swatches.php:169
+#: ../woo-variation-swatches.php:179
 msgid "Please share the reason"
 msgstr ""
 
-#: ../woo-variation-swatches.php:342
+#: ../woo-variation-swatches.php:352
 msgid "Add Attribute"
 msgstr ""
 
-#: ../woo-variation-swatches.php:343
+#: ../woo-variation-swatches.php:353
 msgid "Add"
 msgstr ""
 
-#: ../woo-variation-swatches.php:344
+#: ../woo-variation-swatches.php:354
 msgid "Cancel"
 msgstr ""
 
-#: ../woo-variation-swatches.php:345
+#: ../woo-variation-swatches.php:355
 msgid "Use Image"
 msgstr ""
 
-#: ../woo-variation-swatches.php:346
+#: ../woo-variation-swatches.php:356
 msgid "Add Media"
 msgstr ""
 
-#: ../woo-variation-swatches.php:354
+#: ../woo-variation-swatches.php:364
 msgid "Quick Feedback"
 msgstr ""
 
-#: ../woo-variation-swatches.php:433, ../woo-variation-swatches.php:433
+#: ../woo-variation-swatches.php:443, ../woo-variation-swatches.php:443
 msgid "Read Documentation"
 msgstr ""
 
-#: ../woo-variation-swatches.php:435
+#: ../woo-variation-swatches.php:445
 msgid "Facing issue?"
 msgstr ""
 
-#: ../woo-variation-swatches.php:435
+#: ../woo-variation-swatches.php:445
 msgid "Please open a ticket."
 msgstr ""
 
-#: ../woo-variation-swatches.php:450
+#: ../woo-variation-swatches.php:460
 msgid "Go Pro"
 msgstr ""
 
-#: ../woo-variation-swatches.php:503
+#: ../woo-variation-swatches.php:513
 msgid "Please check PHP version requirement."
 msgstr ""
 
-#: ../woo-variation-swatches.php:505
+#: ../woo-variation-swatches.php:515
 msgid "It's required to use latest version of PHP to use <strong>WooCommerce Variation Swatches</strong>."
 msgstr ""
 
-#: ../woo-variation-swatches.php:517
+#: ../woo-variation-swatches.php:527
 msgid "WooCommerce"
 msgstr ""
 
-#: ../woo-variation-swatches.php:525
+#: ../woo-variation-swatches.php:535
 msgid "<strong>WooCommerce Variation Swatches</strong> is an add-on of "
 msgstr ""
 
-#: ../woo-variation-swatches.php:538
+#: ../woo-variation-swatches.php:548
 msgid "Currently, you are using older version of WooCommerce. It's recommended to use latest version of WooCommerce to work with %s."
 msgstr ""
 
-#: ../woo-variation-swatches.php:633
+#: ../woo-variation-swatches.php:643
 msgid "WooCommerce Variation Swatches Plugin try to load \"%s\" but template \"%s\" was not found."
 msgstr ""
