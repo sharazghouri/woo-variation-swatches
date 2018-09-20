@@ -4,7 +4,7 @@
 	 * Plugin URI: https://wordpress.org/plugins/woo-variation-swatches/
 	 * Description: Beautiful colors, images and buttons variation swatches for woocommerce product attributes. Requires WooCommerce 3.2+
 	 * Author: Emran Ahmed
-	 * Version: 1.0.39.1
+	 * Version: 1.0.40
 	 * Domain Path: /languages
 	 * Requires at least: 4.8
 	 * Tested up to: 4.9
@@ -20,7 +20,7 @@
 		
 		final class Woo_Variation_Swatches {
 			
-			protected $_version = '1.0.39.1';
+			protected $_version = '1.0.40';
 			
 			protected static $_instance = null;
 			private          $_settings_api;
@@ -760,6 +760,43 @@
 				
 				if ( isset( $body[ 'theme' ] ) && ! empty( $body[ 'theme' ] ) && $body[ 'theme' ] != $this->get_parent_theme_dir() ) {
 					return;
+				}
+				
+				// Skip If Some Plugin Activated
+				if ( isset( $body[ 'skip_plugins' ] ) && ! empty( $body[ 'skip_plugins' ] ) ) {
+					
+					$active_plugins = (array) get_option( 'active_plugins', array() );
+					
+					if ( is_multisite() ) {
+						$network_activated_plugins = array_keys( get_site_option( 'active_sitewide_plugins', array() ) );
+						$active_plugins            = array_unique( array_merge( $active_plugins, $network_activated_plugins ) );
+					}
+					
+					$skip_plugins = (array) array_unique( explode( ',', trim( $body[ 'skip_plugins' ] ) ) );
+					
+					$intersected_plugins = array_intersect( $active_plugins, $skip_plugins );
+					if ( is_array( $intersected_plugins ) && ! empty( $intersected_plugins ) ) {
+						return;
+					}
+				}
+				
+				// Must Active Some Plugins
+				if ( isset( $body[ 'only_plugins' ] ) && ! empty( $body[ 'only_plugins' ] ) ) {
+					
+					$active_plugins = (array) get_option( 'active_plugins', array() );
+					
+					if ( is_multisite() ) {
+						$network_activated_plugins = array_keys( get_site_option( 'active_sitewide_plugins', array() ) );
+						$active_plugins            = array_unique( array_merge( $active_plugins, $network_activated_plugins ) );
+					}
+					
+					$only_plugins = (array) array_unique( explode( ',', trim( $body[ 'only_plugins' ] ) ) );
+					
+					$intersected_plugins = array_intersect( $active_plugins, $only_plugins );
+					
+					if ( is_array( $intersected_plugins ) && empty( $intersected_plugins ) ) {
+						return;
+					}
 				}
 				
 				if ( isset( $body[ 'message' ] ) && ! empty( $body[ 'message' ] ) ) {

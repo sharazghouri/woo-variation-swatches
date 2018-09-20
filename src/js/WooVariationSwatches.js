@@ -256,25 +256,28 @@ const WooVariationSwatches = (($) => {
 
         update(is_ajax, hidden_behaviour) {
 
-            this._element.on('__found_variation.wc-variation-form', function (event, variation) {
+            this._element.on('__found_variation', (event, variation) => {
 
-                _.delay(() => {
-                    $(this).find('ul.variable-items-wrapper').each(function () {
-                        let attribute_name = $(this).data('attribute_name');
 
-                        $(this).find('li').each(function () {
-                            let value = $(this).attr('data-value');
+                //console.log(this.$attributeFields);
 
-                            console.log(variation)
+                /*  _.delay(() => {
+                      $(this).find('ul.variable-items-wrapper').each(function () {
+                          let attribute_name = $(this).data('attribute_name');
 
-                            if (variation.attributes[attribute_name] === value && !variation.is_in_stock) {
-                                $(this).addClass('disabled');
-                            }
+                          $(this).find('li').each(function () {
+                              let value = $(this).attr('data-value');
 
-                        });
-                    });
+                              console.log(variation)
 
-                }, 2)
+                              if (variation.attributes[attribute_name] === value && !variation.is_in_stock) {
+                                  $(this).addClass('disabled');
+                              }
+
+                          });
+                      });
+
+                  }, 2)*/
             });
 
             this._element.on('woocommerce_variation_has_changed', function (event) {
@@ -381,6 +384,7 @@ const WooVariationSwatches = (($) => {
                 });
             });
         }
+
     }
 
     /**

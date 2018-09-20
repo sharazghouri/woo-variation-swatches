@@ -192,6 +192,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.40 =
+
+* Improve: Live Feed
+
 = 1.0.39 and 1.0.39.1 =
 
 * Fix: Elementor Pro CSS Issue
