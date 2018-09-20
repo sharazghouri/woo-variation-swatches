@@ -28,18 +28,19 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 = Key Feature Comes with this Plugin =
 
-* Work on variable product
-* Work on variable product quick view
-* Enable attributes into images swatches
-* Enable attributes into color swatches
-* Enable attributes into label/text/button swatches
-* Control attribute setting globally.
-* Compatible with popular themes and plugins
-* Option to select ROUNDED and SQUARED variation shape.
-* Flexible tooltip insert and display settings
-* Option to disable default plugin stylesheet for theme developer.
-* Compatible With Popular WooCommerce Plugins Including <a href="http://bit.ly/woovs-org-item-page">WooCommerce Variation Image Gallery</a>. 
-* No extra option and no confusion.
+* Enable Color Swatches For Variable Product Attribute Variations 
+  [Live Demo](http://bit.ly/color-swatch-free-readme) | [Documentation](http://bit.ly/color-swatch-free-readme-doc) | [Video Tutorial](http://bit.ly/color-swatch-free-read-youtube) 
+  
+* Enable Image Swatches For Variable Product Attribute Variations 
+* Enable Label/Text/Button Swatches For Variable Product Attribute Variations 
+* Control Attribute Variation Globally   
+* Option to Select ROUNDED and SQUARED Variation Swatches Shape.   
+* Flexible Swatches Tooltip Insert and Display settings   
+* Work on Variable Product Quick View Popup   
+* Compatible with popular WooCommerce themes and plugins 
+* Frequently Updated And Secured Codebase 
+* Option to disable default plugin stylesheet for theme developer   
+* Compatible With Popular WooCommerce Plugins Including <a href="http://bit.ly/woovs-org-item-page">WooCommerce Variation Image Gallery</a>  
 
 = PREMIUM FEATURES OF WOOCOMMERCE VARIATION SWATCHES =
 
