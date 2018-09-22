@@ -32,9 +32,11 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
   [Live Demo](http://bit.ly/color-swatch-free-readme) | [Documentation](http://bit.ly/color-swatch-free-readme-doc) | [Video Tutorial](http://bit.ly/color-swatch-free-read-youtube) 
   
 * Enable Image Swatches For Variable Product Attribute Variations
- [Live Demo](http://bit.ly/color-swatch-demo-free-readme) | [Documentation](http://bit.ly/image-swatch-free-readme-doc) | [Video Tutorial](http://bit.ly/image-swatch-free-read-youtube) 
+ [Live Demo](http://bit.ly/labbel-swatch-demo-free-readme) | [Documentation](http://bit.ly/image-swatch-free-readme-doc) | [Video Tutorial](http://bit.ly/image-swatch-free-read-youtube) 
  
 * Enable Label/Text/Button Swatches For Variable Product Attribute Variations 
+  [Live Demo](http://bit.ly/labbel-swatch-demo-free-readme) | [Documentation](http://bit.ly/label-swatch-free-readme-doc) | [Video Tutorial](http://bit.ly/label-swatch-free-read-youtube) 
+ 
 * Control Attribute Variation Globally   
 * Option to Select ROUNDED and SQUARED Variation Swatches Shape.   
 * Flexible Swatches Tooltip Insert and Display settings   
