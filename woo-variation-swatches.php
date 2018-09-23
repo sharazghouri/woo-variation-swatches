@@ -294,7 +294,7 @@
 				if ( ! wvs_is_ie11() ) {
 					wp_enqueue_script( 'woo-variation-swatches', $this->assets_uri( "/js/frontend{$suffix}.js" ), array( 'jquery' ), $this->version(), true );
 					wp_localize_script( 'woo-variation-swatches', 'woo_variation_swatches_options', apply_filters( 'woo_variation_swatches_js_options', array(
-						'is_product_page' => is_product(),
+						'is_product_page' => is_product()
 					) ) );
 				}
 				
