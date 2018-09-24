@@ -141,6 +141,7 @@
   }
 
 // Hestia Theme
+//================
 .woo-variation-swatches-theme-hestia {
   .woo-variation-items-wrapper.value {
     &::before {
@@ -150,6 +151,7 @@
   }
 
 // TheGem theme
+//=================
 .woo-variation-swatches-theme-thegem,
 .woo-variation-swatches-theme-child-thegem{
   .woo-variation-items-wrapper .combobox-wrapper{
@@ -159,4 +161,19 @@
   .wvs-archive-variation-wrapper .variations{
     padding: 0;
     }
+  }
+
+// Ushop
+//============
+.woo-variation-swatches-theme-ushop,
+.woo-variation-swatches-theme-child-ushop{
+  .variations_form{
+    overflow: visible !important;
+    }
+
+  .single-product-summary .product_meta{
+    display: inline-table;
+    }
+
+
   }
