@@ -196,6 +196,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.41 =
+
+* Fix: uShop by themetim CSS Issue
+
 = 1.0.40 =
 
 * Improve: Live Feed
