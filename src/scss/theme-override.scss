@@ -175,3 +175,18 @@
     display: inline-table;
     }
   }
+
+// Savoy
+//===========
+.woo-variation-swatches-theme-savoy,
+.woo-variation-swatches-theme-child-savoy{
+  .woo-variation-items-wrapper{
+    position: relative !important;
+    .sod_select{
+      display: none !important;
+      }
+    }
+  .nm-variation-row{
+    display: flex;
+    }
+  }
