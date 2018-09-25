@@ -1,16 +1,24 @@
 // Sober
 //============
-.woo-variation-swatches-theme-sober {
+.woo-variation-swatches-theme-sober,
+.woo-variation-swatches-theme-child-sober{
 
   // Item page
   //================
   .product form.cart {
     .variations {
-      div {
-        margin-bottom   : 20px;
-        display         : flex;
-        align-items     : center;
-        justify-content : center;
+      .variable{
+        margin-bottom: 15px !important;
+        }
+      .variable-options{
+        border: 0 !important;
+        &::after{
+          display: none;
+          }
+        }
+
+      .arrow{
+        display: none;
         }
 
       .label {
@@ -24,11 +32,11 @@
         }
 
       select {
-        border             : 1px solid #E4E6EB;
-        padding            : .5em 1em;
-        text-align         : left;
-        text-align-last    : left;
-        -webkit-appearance : menulist-button;
+        border             : 1px solid #E4E6EB !important;
+        padding            : .5em 1em !important;
+        text-align         : left !important;
+        text-align-last    : left !important;
+        -webkit-appearance : menulist-button !important;
         }
 
       }
@@ -55,28 +63,6 @@
 
     }
 
-  // Item style 4
-  &.product-style-4 .product form.cart {
-    .variations {
-      div {
-        display : block;
-        }
-
-      .label {
-        display       : block;
-        text-align    : center;
-        margin-bottom : 10px;
-
-        label {
-          border-bottom : 1px solid #EEEEEE;
-          }
-        }
-
-      .variable-items-wrapper {
-        justify-content : center;
-        }
-      }
-    }
   }
 
 // Shophistic Lite
