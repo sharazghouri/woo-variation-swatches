@@ -19,5 +19,12 @@ jQuery($ => {
             })
         });
 
+        // Support for Woodmart theme
+        $(document).on('wood-images-loaded', function () {
+            $('.variations_form').each(function () {
+                $(this).wc_variation_form();
+            })
+        });
+
     });
 });  // end of jquery main wrapper
