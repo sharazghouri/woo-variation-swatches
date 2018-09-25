@@ -190,3 +190,13 @@
     display: flex;
     }
   }
+
+// WoodStock
+//===============
+.woo-variation-swatches-theme-woodstock,
+.woo-variation-swatches-theme-child-woodstock{
+  .woo-variation-items-wrapper .variation-select{
+    display: none !important;
+    }
+  }
+
