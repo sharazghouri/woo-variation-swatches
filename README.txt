@@ -52,6 +52,10 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 * Convert attribute variations into radio button
 * Individual Product Basis Swatches Customization
+* Change Variation Product Gallery After Selecting Single Attribute Like Amazon Or AliExpress
+  [Live Demo](http://bit.ly/change-gallery-image-on-single-attribute-demo-readme) | [Documentation](hhttp://bit.ly/change-gallery-doc-readme) | [Video Tutorial](http://bit.ly/change-gallery-image-on-single-attribute-youtube-readme) 
+* Generate Selected Attribute Variation Link 
+  Live Demo](http://bit.ly/link-generate-readme-demo) | [Documentation](http://bit.ly/generate-attribute-variation-link-doc-readme) | [Video Tutorial](http://bit.ly/link-generate-readme-youtube)
 * Enable / Disable Ajax Variation
 * Enable Attributes Swatch In Archive / Store Pages
 * Control Swatches Width and Height on Archive Page.
