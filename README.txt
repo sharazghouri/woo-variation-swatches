@@ -50,6 +50,8 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 [Live Demo](http://bit.ly/live-demo-readme) | [Upgrade to PRO](http://bit.ly/upgrade-to-pro-readme) | [Documentation](https://getwooplugins.com/documentation/woocommerce-variation-swatches/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches) | [Support](https://getwooplugins.com/tickets/?utm_source=wordpress.org&utm_medium=README&utm_campaign=woo-variation-swatches)
 
+* Enable Entire Attributes Swatches In Catelog/ Archive / Store Page Like Product Page
+* Enable Selected Single Attribute Swatches In Catelog/ Archive / Store Pages From Product Page
 * Convert attribute variations into radio button
 * Individual Product Basis Swatches Customization
 * Change Variation Product Gallery After Selecting Single Attribute Like Amazon Or AliExpress
@@ -57,7 +59,6 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Generate Selected Attribute Variation Link 
   [Live Demo](http://bit.ly/link-generate-readme-demo) | [Documentation](http://bit.ly/generate-attribute-variation-link-doc-readme) | [Video Tutorial](http://bit.ly/link-generate-readme-youtube)
 * Enable / Disable Ajax Variation
-* Enable Attributes Swatch In Archive / Store Pages
 * Control Swatches Width and Height on Archive Page.
 * Archive page swatches positioning
 * Archive page swatches alignment
