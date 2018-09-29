@@ -53,6 +53,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Show Entire Color, Image, Label And Radio Attributes Swatches In Catelog/ Category / Archive / Store/  Shop Pages
   [Live Demo](http://bit.ly/add-to-cart-shop-page-swatch-readme-demo) | [Documentation](http://bit.ly/add-to-cart-shop-page-swatch-readme-doc) | [Video Tutorial](http://bit.ly/add-to-cart-readme-video)
 * Show Selected Single Color or Image Or Label Attribute Swatches In Catelog/ Category / Archive / Store / Shop Pages
+  [Live Demo](http://bit.ly/catalog-archive-demo-readme) | [Documentation](http://bit.ly/catalog-archive-doc-readme) | [Video Tutorial](http://bit.ly/catalog-archive-readme-youtube-tuts)
 * Convert attribute variations into radio button
 * Individual Product Basis Swatches Customization
 * Change Variation Product Gallery After Selecting Single Attribute Like Amazon Or AliExpress
