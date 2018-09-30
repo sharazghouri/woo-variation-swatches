@@ -299,8 +299,8 @@
 						'fields' => apply_filters( 'wvs_pro_style_setting_fields', array(
 							array(
 								'pro'          => true,
-								'width'        => '100%',
-								'screen_shot'  => woo_variation_swatches()->images_uri( 'style-preview.png' ),
+								'width'        => 'auto',
+								'screen_shot'  => woo_variation_swatches()->images_uri( 'red-style-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'style-tab' ),
 							),
 						) )
@@ -317,8 +317,8 @@
 						'fields' => apply_filters( 'wvs_pro_archive_setting_fields', array(
 							array(
 								'pro'          => true,
-								'width'        => '100%',
-								'screen_shot'  => woo_variation_swatches()->images_uri( 'archive-preview.png' ),
+								'width'        => 'auto',
+								'screen_shot'  => woo_variation_swatches()->images_uri( 'red-archive-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'archive-tab' ),
 							),
 						) )
@@ -335,8 +335,8 @@
 						'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
 							array(
 								'pro'          => true,
-								'width'        => '100%',
-								'screen_shot'  => woo_variation_swatches()->images_uri( 'special-preview.png' ),
+								'width'        => 'auto',
+								'screen_shot'  => woo_variation_swatches()->images_uri( 'red-special-preview.png' ),
 								'product_link' => woo_variation_swatches()->get_pro_link( 'special-tab' ),
 							),
 						) )
