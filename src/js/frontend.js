@@ -26,5 +26,12 @@ jQuery($ => {
             })
         });
 
+        // Support for berocket ajax filters
+        $(document).on('berocket_ajax_products_loaded', function () {
+            $('.variations_form').each(function () {
+                $(this).wc_variation_form();
+            })
+        });
+
     });
 });  // end of jquery main wrapper

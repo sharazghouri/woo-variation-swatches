@@ -76,6 +76,10 @@ msgstr ""
 msgid "Tutorials"
 msgstr ""
 
+#: ../includes/functions.php:161
+msgid "How to tutorials"
+msgstr ""
+
 #: ../includes/functions.php:162
 msgid "How to setup and use this plugin"
 msgstr ""
@@ -84,7 +88,7 @@ msgstr ""
 msgid "Simple"
 msgstr ""
 
-#: ../includes/functions.php:186, ../includes/functions.php:220
+#: ../includes/functions.php:186, ../includes/functions.php:220, ../includes/functions.php:315
 msgid "Visual Section"
 msgstr ""
 
@@ -207,6 +211,10 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
+#: ../includes/functions.php:297
+msgid "Visual Styling"
+msgstr ""
+
 #: ../includes/functions.php:298
 msgid "Change some visual styles"
 msgstr ""
@@ -221,6 +229,10 @@ msgstr ""
 
 #: ../includes/functions.php:330
 msgid "Special Attribute"
+msgstr ""
+
+#: ../includes/functions.php:333
+msgid "Catalog mode"
 msgstr ""
 
 #: ../includes/functions.php:334
