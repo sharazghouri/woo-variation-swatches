@@ -37,7 +37,9 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Enable Label/Text/Button Swatches For Variable Product Attribute Variations 
   [Live Demo](http://bit.ly/labbel-swatch-demo-free-readme) | [Documentation](http://bit.ly/label-swatch-free-readme-doc) | [Video Tutorial](http://bit.ly/label-swatch-free-read-youtube) 
 <hr />
-* Control Attribute Variation Globally   
+* Convert Globally Created Attibute Variations Into Color, Image, and Label Swatches
+  [Video Tutorial](http://bit.ly/label-swatch-free-read-youtube)
+<hr />
 * Option to Select ROUNDED and SQUARED Variation Swatches Shape.   
 * Flexible Swatches Tooltip Insert and Display settings   
 * Work on Variable Product Quick View Popup   
@@ -60,6 +62,9 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 [Live Demo](http://bit.ly/radio-readme-demo) | [Documentation](http://bit.ly/radio-readme-doc) | [Video Tutorial](http://bit.ly/readme-radio-video)
 <hr />
 * Individual Product Basis Swatches Customization
+* Convert Manually Created Attibute Variations Into Color, Image, and Label Swatches
+  [Video Tutorial](http://bit.ly/manual-attribute-readme-video)
+<hr />
 * Change Variation Product Gallery After Selecting Single Attribute Like Amazon Or AliExpress
   [Live Demo](http://bit.ly/change-gallery-image-on-single-attribute-demo-readme) | [Documentation](hhttp://bit.ly/change-gallery-doc-readme) | [Video Tutorial](http://bit.ly/change-gallery-image-on-single-attribute-youtube-readme) 
 * Generate Selected Attribute Variation Link 
