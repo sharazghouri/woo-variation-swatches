@@ -158,7 +158,7 @@
 		$swatches->add_setting( 'tutorial', esc_html__( 'Tutorials', 'woo-variation-swatches' ), array(
 			array(
 				'pro'    => true,
-				'title'  => esc_html__( 'How to tutorials', 'woo-variation-swatches-pro' ),
+				'title'  => esc_html__( 'How to tutorials', 'woo-variation-swatches' ),
 				'desc'   => esc_html__( 'How to setup and use this plugin', 'woo-variation-swatches' ),
 				'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
 					array(
@@ -294,7 +294,7 @@
 				woo_variation_swatches()->add_setting( 'style', esc_html__( 'Style', 'woo-variation-swatches' ), array(
 					array(
 						'pro'    => true,
-						'title'  => esc_html__( 'Visual Styling', 'woo-variation-swatches-pro' ),
+						'title'  => esc_html__( 'Visual Styling', 'woo-variation-swatches' ),
 						'desc'   => esc_html__( 'Change some visual styles', 'woo-variation-swatches' ),
 						'fields' => apply_filters( 'wvs_pro_style_setting_fields', array(
 							array(
@@ -312,7 +312,7 @@
 				woo_variation_swatches()->add_setting( 'archive', esc_html__( 'Archive / Shop', 'woo-variation-swatches' ), array(
 					array(
 						'pro'    => true,
-						'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches-pro' ),
+						'title'  => esc_html__( 'Visual Section', 'woo-variation-swatches' ),
 						'desc'   => esc_html__( 'Advanced change some visual styles on shop / archive page', 'woo-variation-swatches' ),
 						'fields' => apply_filters( 'wvs_pro_archive_setting_fields', array(
 							array(
@@ -330,7 +330,7 @@
 				woo_variation_swatches()->add_setting( 'special', esc_html__( 'Special Attribute', 'woo-variation-swatches' ), array(
 					array(
 						'pro'    => true,
-						'title'  => esc_html__( 'Catalog mode', 'woo-variation-swatches-pro' ),
+						'title'  => esc_html__( 'Catalog mode', 'woo-variation-swatches' ),
 						'desc'   => esc_html__( 'Show single attribute as catalog mode on shop / archive pages', 'woo-variation-swatches' ),
 						'fields' => apply_filters( 'wvs_pro_large_catalog_setting_fields', array(
 							array(

@@ -212,6 +212,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.42 =
+
+* Fix: JS Reload variation.
+
 = 1.0.41 =
 
 * Fix: uShop by themetim CSS Issue

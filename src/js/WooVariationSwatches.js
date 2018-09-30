@@ -161,9 +161,10 @@ const WooVariationSwatches = (($) => {
             });
 
             _.delay(() => {
+                this._element.trigger('reload_product_variations');
                 this._element.trigger('woo_variation_swatches_init', [this, this.product_variations])
                 $(document).trigger('woo_variation_swatches_loaded', [this._element, this.product_variations])
-            }, 2)
+            }, 1)
         }
 
         loaded(is_ajax, hidden_behaviour) {
