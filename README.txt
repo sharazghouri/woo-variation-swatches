@@ -62,13 +62,17 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 [Live Demo](http://bit.ly/radio-readme-demo) | [Documentation](http://bit.ly/radio-readme-doc) | [Video Tutorial](http://bit.ly/readme-radio-video)
 <hr />
 * Individual Product Basis Swatches Customization
+[Live Demo](http://bit.ly/product-basis-demo-readme) | [Documentation](http://bit.ly/product-basis-doc-link-from-readme) | [Video Tutorial](http://bit.ly/product-basis-youtube-video-link-from-readme)
+<hr />
 * Convert Manually Created Attibute Variations Into Color, Image, and Label Swatches
   [Video Tutorial](http://bit.ly/manual-attribute-readme-video)
 <hr />
 * Change Variation Product Gallery After Selecting Single Attribute Like Amazon Or AliExpress
-  [Live Demo](http://bit.ly/change-gallery-image-on-single-attribute-demo-readme) | [Documentation](hhttp://bit.ly/change-gallery-doc-readme) | [Video Tutorial](http://bit.ly/change-gallery-image-on-single-attribute-youtube-readme) 
+  [Live Demo](http://bit.ly/change-gallery-image-on-single-attribute-demo-readme) | [Documentation](hhttp://bit.ly/change-gallery-doc-readme) | [Video Tutorial](http://bit.ly/change-gallery-image-on-single-attribute-youtube-readme)
+<hr />
 * Generate Selected Attribute Variation Link 
   [Live Demo](http://bit.ly/link-generate-readme-demo) | [Documentation](http://bit.ly/generate-attribute-variation-link-doc-readme) | [Video Tutorial](http://bit.ly/link-generate-readme-youtube)
+<hr />
 * Enable / Disable Ajax Variation
 * Control Swatches Width and Height on Archive Page.
 * Archive page swatches positioning
