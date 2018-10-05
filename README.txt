@@ -40,7 +40,8 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Convert Globally Created Attibute Variations Into Color, Image, and Label Swatches
   [Video Tutorial](http://bit.ly/label-swatch-free-read-youtube)
 <hr />
-* Option to Select ROUNDED and SQUARED Variation Swatches Shape.   
+* Option to Select ROUNDED and SQUARED Variation Swatches Shape.
+* Reorder Product Attribute Variation Swatches
 * Flexible Swatches Tooltip Insert and Display settings   
 * Work on Variable Product Quick View Popup   
 * Compatible with popular WooCommerce themes and plugins 
