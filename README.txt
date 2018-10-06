@@ -93,18 +93,98 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 
 = Sites Built With WooCommerce Variation Swatches Plugin =
 <blockquote>
+
+
+<blockquote>
 <ul>
-<li><a target="_blank" href="http://bit.ly/wvs-flatsome-01">muliomulio.com</a> | Built With: Flatsome Theme | Niche: Leather Bag Store </li>
-<li><a target="_blank" href="http://bit.ly/twentey-seventeen-demo">vollstedt-b2b.com</a> | Built With: Twenty Seventen Theme | Niche: Leather Wallets Store </li>
-<li><a target="_blank" href="http://bit.ly/wvg-demo-kelium">qnoop.com</a> | Built With: Kalium Theme | Niche: Clothing Store </li>
-<li><a target="_blank" href="http://bit.ly/wvs-client-demo-01">designchess.com</a> | Built With: Flatsome Theme | Niche: Chess Design Store </li>
-<li><a target="_blank" href="http://bit.ly/woovs-demo-flatsome-02">makromass.pl</a> | Built With: Flatsome Theme | Niche: Supplements for athletes</li>
-<li><a target="_blank" href="http://bit.ly/wvs-demo-client-2">delampjesfabriek.nl</a> | Built With: Flatsome Theme | Niche: Supplements for athletes</li>
-<li><a target="_blank" href="http://bit.ly/woovs-demo-avada-01">luckyonebijoux.com</a> | Built With: Avada Theme | Niche: Jewelry Shop </li>
-<li><a target="_blank" href="http://bit.ly/woovs-avada-02">polymaker.metricdesign.net</a> | Built With: Avada Theme | Niche: 3d Parts Shop </li>
-<li><a target="_blank" href="http://bit.ly/woovs-demo-nitro">sethsoldtimes.com</a> | Built With: Nitro Theme | Niche: Dise Golf Store</li>
-<li><a target="_blank" href="http://bit.ly/woovs-demo-01">plotnikoff.ru</a> Built With: Uncode Theme | Niche: Furniture and Home Appliances Store </li>
-<li><a target="_blank" href="http://bit.ly/woovs-demo-03">robinsongarden.co.uk</a> Built With: Labomba Theme | Niche: Bespoke Furniture Store</li>
+<li> Built With: Flatsome WooCommerce Theme
+   <ul style="list-style: none;">
+   	<li><a target="_blank" href="http://bit.ly/wvs-flatsome-01">muliomulio.com | Niche: Leather Bag Store </a>  </li>
+   	<li><a target="_blank" href="http://bit.ly/wvs-client-demo-01">designchess.com  | Niche: Chess Design Store </a></li>
+	<li><a target="_blank" href="http://bit.ly/woovs-demo-flatsome-02">makromass.pl| Niche: Supplements for athletes </a></li>
+	<li><a target="_blank" href="http://bit.ly/wvs-demo-client-2">delampjesfabriek.nl  | Niche: Supplements for athletes </a></li>
+	<li><a target="_blank" href="http://bit.ly/flatsome-wvs-demo-04">bell-motorcycle-helmets.co.uk | Niche: Motorcycle Helmets </a></li>
+   </ul>
+</li>
+
+<li> Built With: Avada WooCommerce Multi-Purpose Theme
+   <ul>
+   	<li><a target="_blank" href="http://bit.ly/woovs-demo-avada-01">luckyonebijoux.com | Niche: Jewelry Shop </a></li>
+	<li><a target="_blank" href="http://bit.ly/woovs-avada-02">polymaker.metricdesign.net | Niche: 3d Parts Shop </a></li>   	
+   </ul>
+</li>
+
+<li> Built With: Divi by Elegant Themes
+   <ul>
+   	<li><a target="_blank" href="http://bit.ly/wvs-divi-demo-01">embodywear.com | Niche: Bodywear Shop </a></li>
+   	<li><a target="_blank" href="http://bit.ly/divi-wvs-demo-01">clasp.apsbay.com | Niche: Handbags Shop </a></li>
+   </ul>
+</li>
+
+<li> Built With: Enfold - WooCommerce Multi-Purpose Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/wvs-enfold-demo">drawnfresh.co.uk | Niche: T-Shirt Store </a> </li>
+   </ul>
+</li>
+
+<li> Built With: Astra WooCommerce Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/astra-wvs-demo">polelegendaerial.at | Niche: Shoe Store </a> </li>
+   </ul>
+</li>
+
+<li> Built With: Salient WooCommerce Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/salient-wvs-demo">chooseoneshop.com | Niche: T-Shirt Store </a> </li>
+   </ul>
+</li>
+
+<li> Built With: Twenty Seventen Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/twentey-seventeen-demo">vollstedt-b2b.com | Niche: Leather Wallets Store </a></li>
+
+   </ul>
+</li>
+
+<li> Built With: TheGem WooCommerce Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/thegem-wvs-demo">sarrowork.com.br | Niche: Jacket Clothing Store </a></li>
+
+   </ul>
+</li>
+
+<li> Built With: Kalium WooCommerce Professionals Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/wvg-demo-kelium">qnoop.com | Niche: Clothing Store </a></li>
+   </ul>
+</li>
+
+<li> Built With: Jevelin WooCommerce Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/jevelin-wvs-demo">falkgarn.se | Niche: Cotton & Spinning Store </a></li>
+   </ul>
+</li>
+
+
+<li> Built With: Nitro WooCommerce Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/woovs-demo-nitro">sethsoldtimes.com | Niche: Dise Golf Store </a></li>
+   </ul>
+</li>
+
+
+<li> Built With: Domino WooCommerce Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/domino-theme-demo">abso.com.ar | Niche: Clothing Store </a></li>
+   </ul>
+</li>
+
+<li> Built With: KuteShop WooCommerce Theme
+   <ul>
+   		<li><a target="_blank" href="http://bit.ly/kuteshop-vws-demo">torbice.s | Niche: Bag and Baggage Store </a></li>
+   </ul>
+</li>
+
 </ul>
 </blockquote>
 
