@@ -38,9 +38,12 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
   [Live Demo](http://bit.ly/labbel-swatch-demo-free-readme) | [Documentation](http://bit.ly/label-swatch-free-readme-doc) | [Video Tutorial](http://bit.ly/label-swatch-free-read-youtube) 
 <hr />
 * Convert Globally Created Attibute Variations Into Color, Image, and Label Swatches
-  [Video Tutorial](http://bit.ly/label-swatch-free-read-youtube)
+  [Video Tutorial & Preview](http://bit.ly/label-swatch-free-read-youtube)
 <hr />
-* Option to Select ROUNDED and SQUARED Variation Swatches Shape.
+* Option to Globally Select ROUNDED or SQUARED Attribute Variation Swatches Shape.
+  [Round Swatches Demo](http://bit.ly/round-swatches-demo-readme) | [Square Swatches Demo](http://bit.ly/square-swatches-demo-readme) | [Documentation](http://bit.ly/round-square-doc-from-readme) | [Video Tutorial](http://bit.ly/round-square-youtube-video-from-readme) 
+<hr />
+* Blur Or Hide Or Cross Out of Stock Variation Swatches 
 * Reorder Product Attribute Variation Swatches
 * Flexible Swatches Tooltip Insert and Display settings   
 * Work on Variable Product Quick View Popup   
@@ -73,6 +76,9 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 <hr />
 * Generate Selected Attribute Variation Link 
   [Live Demo](http://bit.ly/link-generate-readme-demo) | [Documentation](http://bit.ly/generate-attribute-variation-link-doc-readme) | [Video Tutorial](http://bit.ly/link-generate-readme-youtube)
+<hr />
+* Option to Select ROUNDED and SQUARED Attribute Variation Swatches Shape In the Same Product.
+  [Round & Square Swatches Demo](http://bit.ly/round-square-demo-readme) | [Documentation](http://bit.ly/round-square-doc-from-readme) | [Video Tutorial](http://bit.ly/round-square-youtube-video-from-readme)
 <hr />
 * Enable / Disable Ajax Variation
 * Control Swatches Width and Height on Archive Page.
