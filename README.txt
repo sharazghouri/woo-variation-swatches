@@ -82,7 +82,7 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Option to Select ROUNDED and SQUARED Attribute Variation Swatches Shape In the Same Product.
   [Round & Square Swatches Demo](http://bit.ly/round-square-demo-readme) | [Documentation](http://bit.ly/round-square-doc-from-readme) | [Video Tutorial](http://bit.ly/round-square-youtube-video-from-readme)
 <hr />
-* Blur Or Hide Or Show Cross Sign For Out of Stock Variation Swatches (Limited Variations Without hide out of stock item from catalog)
+* Blur Or Hide Or Show Cross Sign For Out of Stock Variation Swatches (Unlimited Variations Without hiding out of stock item from catalog)
   [Live Demo](http://bit.ly/bulr-premium-outstock-demo-readme) | [Documentation](http://bit.ly/blur-hide-readme-doc) | [Video Tutorial](http://bit.ly/blur-hide-youtube-readme) 
 <hr />
 
