@@ -43,7 +43,9 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Option to Globally Select ROUNDED or SQUARED Attribute Variation Swatches Shape.
   [Round Swatches Demo](http://bit.ly/round-swatches-demo-readme) | [Square Swatches Demo](http://bit.ly/square-swatches-demo-readme) | [Documentation](http://bit.ly/round-square-doc-from-readme) | [Video Tutorial](http://bit.ly/round-square-youtube-video-from-readme) 
 <hr />
-* Blur Or Hide Or Cross Out of Stock Variation Swatches 
+* Blur Or Hide Or Show Cross Sign For Out of Stock Variation Swatches (Up To 40 Variations)
+  [Live Demo](http://bit.ly/blur-cross-hide-readme-demo) | [Documentation](http://bit.ly/blur-hide-readme-doc) | [Video Tutorial](http://bit.ly/blur-hide-youtube-readme) 
+<hr />
 * Reorder Product Attribute Variation Swatches
 * Flexible Swatches Tooltip Insert and Display settings   
 * Work on Variable Product Quick View Popup   
@@ -80,6 +82,10 @@ In the free WooCommerce attribute variation plugin, besides creating size, brand
 * Option to Select ROUNDED and SQUARED Attribute Variation Swatches Shape In the Same Product.
   [Round & Square Swatches Demo](http://bit.ly/round-square-demo-readme) | [Documentation](http://bit.ly/round-square-doc-from-readme) | [Video Tutorial](http://bit.ly/round-square-youtube-video-from-readme)
 <hr />
+* Blur Or Hide Or Show Cross Sign For Out of Stock Variation Swatches (Limited Variations Without hide out of stock item from catalog)
+  [Live Demo](http://bit.ly/bulr-premium-outstock-demo-readme) | [Documentation](http://bit.ly/blur-hide-readme-doc) | [Video Tutorial](http://bit.ly/blur-hide-youtube-readme) 
+<hr />
+
 * Enable / Disable Ajax Variation
 * Control Swatches Width and Height on Archive Page.
 * Archive page swatches positioning
