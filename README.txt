@@ -309,6 +309,10 @@ And your are ready to go.
 
 == Changelog ==
 
+= 1.0.43 =
+
+* Fix: Uncode theme Issue
+
 = 1.0.42 =
 
 * Fix: JS Reload variation.
